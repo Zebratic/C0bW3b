@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace C0bW3b
@@ -44,11 +36,9 @@ namespace C0bW3b
 
         public void AddScrapeHit(Scraper.ScrapeHit scrapeHit)
         {
-            this.Invoke((MethodInvoker)delegate { Hits++; });
-
             // print data to log
             string log = $"URL: https://{scrapeHit.Url.Replace("www.", "")} | Matches: {scrapeHit.Matches.Count} | Dork: {scrapeHit.Dork} | Proxy: {(scrapeHit.Proxy == null ? "proxyless" : scrapeHit.Proxy.Address.ToString()) + "\n"}";
-            txtHits.Invoke((MethodInvoker) delegate { txtHits.AppendText(log); });
+            txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(log); });
 
             // get time file
             try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", log); } catch { }
@@ -143,7 +133,7 @@ namespace C0bW3b
             {
                 foreach (Thread t in Scraper.RunningScrapers)
                     t.Abort();
-            }       
+            }
         }
 
         private void GUI_FormClosing(object sender, FormClosingEventArgs e)
