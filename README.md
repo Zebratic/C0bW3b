@@ -2,7 +2,7 @@
  A web crawler that looks for targetted sites using a dork list with a match list.
 
 # Overview
-
+![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_I94wsxJF7y.png?raw=true)
 
 # Installation
 Head over to the releases and download the latest build.
