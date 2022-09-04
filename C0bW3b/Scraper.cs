@@ -35,59 +35,73 @@ namespace C0bW3b
             }
         }
 
-        public static void Start(int threads, bool proxyless)
+        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl)
         {
             for (int i = 0; i < threads; i++)
             {
-                Thread t = new Thread(() => Scrape(proxyless));
+                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl));
                 RunningScrapers.Add(t);
                 t.Start();
             }
         }
 
-        public static void Scrape(bool proxyless)
+        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl)
         {
             while (true)
             {
-                string dork = GUI.Dorks[new Random().Next(GUI.Dorks.Length)];
-                string useragent = UserAgents.Agents[new Random().Next(UserAgents.Agents.Length)];
-                WebProxy proxy = null;
-                List<ScrapeHit> results = new List<ScrapeHit>();
-
-                if (!proxyless)
-                    proxy = GUI.Proxies[new Random().Next(GUI.Proxies.Length)];
-
-                try { results.AddRange(Google(dork, useragent, proxyless, proxy)); } catch { }
-                try { results.AddRange(Bing(dork, useragent, proxyless, proxy)); } catch { }
-
-                if (results != null && results.Count > 0)
+                try
                 {
-                    foreach (ScrapeHit result in results)
-                    {
-                        try
-                        {
-                            result.Html = AnalyseURL(result);
+                    string dork = GUI.Dorks[new Random().Next(GUI.Dorks.Length)];
+                    string useragent = UserAgents.Agents[new Random().Next(UserAgents.Agents.Length)];
+                    WebProxy proxy = null;
+                    List<ScrapeHit> results = new List<ScrapeHit>();
 
-                            foreach (string match in GUI.Matches)
+                    if (!proxyless)
+                        proxy = GUI.Proxies[new Random().Next(GUI.Proxies.Length)];
+
+                    try { results.AddRange(Google(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
+                    try { results.AddRange(Bing(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
+
+                    if (results != null && results.Count > 0)
+                    {
+                        foreach (ScrapeHit result in results)
+                        {
+                            try
                             {
-                                if (result.Html.ToLower().Contains(match.ToLower()))
-                                    result.Matches.Add(match);
-                            }
-                            if (result.Matches.Count > 0)
-                            {
-                                if (ScrapeHits.FindAll(x => x.Url.ToLower() == result.Url.ToLower()).Count == 0)
+                                result.Html = AnalyseURL(result);
+
+                                foreach (string match in GUI.Matches)
                                 {
-                                    ScrapeHits.Add(result);
-                                    GUI.instance.Hits++;
-                                    GUI.instance.AddScrapeHit(result);
+                                    if (!regexmatches)
+                                    {
+                                        if (result.Html.Contains(match))
+                                            result.Matches.Add(match);
+                                    }
+                                    else
+                                    {
+                                        Regex regex = new Regex(match);
+                                        foreach (Match rmatch in regex.Matches(result.Html))
+                                            result.Matches.Add(rmatch.Groups[1].Value);
+                                    }
                                 }
+
+                                if (result.Matches.Count > 0)
+                                {
+                                    if (allowduplicates || ScrapeHits.FindAll(x => x.Url == result.Url).Count == 0)
+                                    {
+                                        ScrapeHits.Add(result);
+                                        GUI.instance.Hits++;
+                                        GUI.instance.AddScrapeHit(result);
+                                    }
+                                }
+                                else
+                                    GUI.instance.Bad++;
                             }
-                            else
-                                GUI.instance.Bad++;
+                            catch { GUI.instance.Retries++; }
                         }
-                        catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
                     }
                 }
+                catch { GUI.instance.Retries++; }
             }
         }
 
@@ -107,7 +121,7 @@ namespace C0bW3b
             return html;
         }
 
-        public static List<ScrapeHit> Google(string dork, string useragent, bool proxyless, WebProxy proxy = null)
+        public static List<ScrapeHit> Google(string dork, string useragent, bool proxyless, bool allowduplicates, bool logfullurl, WebProxy proxy = null)
         {
             try
             {
@@ -138,29 +152,22 @@ namespace C0bW3b
                         {
                             string url = match.Groups[1].Value;
 
-                            // if url is not google webcache, continue
-                            if (!url.Contains("webcache.googleusercontent.com") && url.Contains("https://"))
-                            {
-                                string root = new Uri(url).Host;
-                                if (ScrapeHits.FindAll(x => x.Url.ToLower() == root.ToLower()).Count == 0)
-                                    if (results.FindAll(x => x.Url.ToLower() == root.ToLower()).Count == 0)
-                                        results.Add(new ScrapeHit(dork, root, null, null, proxy));
-                            }
-                            results.Add(new ScrapeHit(dork, request.Address.ToString(), null, null, proxy));
+                            if (url.Contains("https://"))
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
                         }
-                        catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+                        catch { GUI.instance.Retries++; }
                     }
                 }
-                catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+                catch { GUI.instance.Retries++; }
 
                 return results;
             }
-            catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+            catch { GUI.instance.Retries++; }
 
             return new List<ScrapeHit>();
         }
 
-        public static List<ScrapeHit> Bing(string dork, string useragent, bool proxyless, WebProxy proxy = null)
+        public static List<ScrapeHit> Bing(string dork, string useragent, bool proxyless, bool allowduplicates, bool logfullurl, WebProxy proxy = null)
         {
             try
             {
@@ -189,20 +196,15 @@ namespace C0bW3b
                         {
                             string url = match.Groups[1].Value;
                             if (url.Contains("https://"))
-                            {
-                                string root = new Uri(url).Host;
-                                if (ScrapeHits.FindAll(x => x.Url.ToLower() == root.ToLower()).Count == 0)
-                                    if (results.FindAll(x => x.Url.ToLower() == root.ToLower()).Count == 0)
-                                        results.Add(new ScrapeHit(dork, root, null, null, proxy));
-                            }
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
                         }
-                        catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+                        catch { GUI.instance.Retries++; }
                     }
                 }
-                catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+                catch { GUI.instance.Retries++; }
                 return results;
             }
-            catch (Exception ex) { Console.WriteLine(ex); GUI.instance.Retries++; }
+            catch { GUI.instance.Retries++; }
             return new List<ScrapeHit>();
         }
     }

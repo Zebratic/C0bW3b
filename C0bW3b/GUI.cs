@@ -69,8 +69,8 @@ namespace C0bW3b
             {
                 string[] dorks = File.ReadAllLines(ofd.FileName);
                 Dorks = dorks;
+                btnLoadDorks.Text = $"Load Dorks [{Dorks.Length}]";
             }
-            btnLoadDorks.Text = $"Load Dorks [{Dorks.Length}]";
         }
 
         private void btnLoadMatches_Click(object sender, EventArgs e)
@@ -84,8 +84,8 @@ namespace C0bW3b
             {
                 string[] matches = File.ReadAllLines(ofd.FileName);
                 Matches = matches;
+                btnLoadMatches.Text = $"Load Matches [{Matches.Length}]";
             }
-            btnLoadMatches.Text = $"Load Matches [{Matches.Length}]";
         }
 
         private void btnLoadProxies_Click(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace C0bW3b
 
                         Proxies[i] = new WebProxy(ip, port);
                     }
-                    catch (Exception ex) { Console.WriteLine(ex); }
+                    catch { }
                 }
 
                 btnLoadProxies.Text = $"Load Proxies [{Proxies.Length}]";
@@ -127,10 +127,22 @@ namespace C0bW3b
         {
             if (!Running)
             {
-                Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked);
+                if (Dorks.Length != 0 && Matches.Length != 0)
+                {
+                    Running = true;
+                    btnStart.Text = "Stop";
+                    lblHits.Text = "Hits: 0";
+                    lblBad.Text = "Bad: 0";
+                    lblRetries.Text = "Retries: 0";
+                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked);
+                }
+                else
+                    MessageBox.Show("Dorks or Matches are empty!");
             }
             else
             {
+                Running = false;
+                btnStart.Text = "Start";
                 foreach (Thread t in Scraper.RunningScrapers)
                     t.Abort();
             }
