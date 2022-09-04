@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
             this.txtHits = new System.Windows.Forms.RichTextBox();
             this.btnLoadDorks = new System.Windows.Forms.Button();
             this.btnLoadProxies = new System.Windows.Forms.Button();
@@ -59,7 +60,7 @@
             this.txtHits.Location = new System.Drawing.Point(0, 0);
             this.txtHits.Name = "txtHits";
             this.txtHits.ReadOnly = true;
-            this.txtHits.Size = new System.Drawing.Size(483, 311);
+            this.txtHits.Size = new System.Drawing.Size(764, 323);
             this.txtHits.TabIndex = 0;
             this.txtHits.Text = "";
             this.txtHits.WordWrap = false;
@@ -75,7 +76,7 @@
             this.btnLoadDorks.ForeColor = System.Drawing.Color.White;
             this.btnLoadDorks.Location = new System.Drawing.Point(12, 12);
             this.btnLoadDorks.Name = "btnLoadDorks";
-            this.btnLoadDorks.Size = new System.Drawing.Size(133, 23);
+            this.btnLoadDorks.Size = new System.Drawing.Size(117, 23);
             this.btnLoadDorks.TabIndex = 1;
             this.btnLoadDorks.Text = "Load Dorks";
             this.btnLoadDorks.UseVisualStyleBackColor = false;
@@ -91,7 +92,7 @@
             this.btnLoadProxies.ForeColor = System.Drawing.Color.White;
             this.btnLoadProxies.Location = new System.Drawing.Point(12, 93);
             this.btnLoadProxies.Name = "btnLoadProxies";
-            this.btnLoadProxies.Size = new System.Drawing.Size(133, 23);
+            this.btnLoadProxies.Size = new System.Drawing.Size(117, 23);
             this.btnLoadProxies.TabIndex = 2;
             this.btnLoadProxies.Text = "Load Proxies";
             this.btnLoadProxies.UseVisualStyleBackColor = false;
@@ -99,8 +100,10 @@
             // 
             // SplitContainer
             // 
+            this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SplitContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainer.Location = new System.Drawing.Point(0, 0);
             this.SplitContainer.Name = "SplitContainer";
             // 
@@ -124,8 +127,8 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.txtHits);
-            this.SplitContainer.Size = new System.Drawing.Size(644, 311);
-            this.SplitContainer.SplitterDistance = 157;
+            this.SplitContainer.Size = new System.Drawing.Size(910, 323);
+            this.SplitContainer.SplitterDistance = 142;
             this.SplitContainer.TabIndex = 3;
             // 
             // cbRegexMatches
@@ -147,7 +150,7 @@
             this.lblRetries.AutoSize = true;
             this.lblRetries.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblRetries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lblRetries.Location = new System.Drawing.Point(11, 253);
+            this.lblRetries.Location = new System.Drawing.Point(11, 265);
             this.lblRetries.Name = "lblRetries";
             this.lblRetries.Size = new System.Drawing.Size(52, 13);
             this.lblRetries.TabIndex = 10;
@@ -159,7 +162,7 @@
             this.lblBad.AutoSize = true;
             this.lblBad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblBad.ForeColor = System.Drawing.Color.Red;
-            this.lblBad.Location = new System.Drawing.Point(11, 237);
+            this.lblBad.Location = new System.Drawing.Point(11, 249);
             this.lblBad.Name = "lblBad";
             this.lblBad.Size = new System.Drawing.Size(38, 13);
             this.lblBad.TabIndex = 9;
@@ -171,7 +174,7 @@
             this.lblHits.AutoSize = true;
             this.lblHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblHits.ForeColor = System.Drawing.Color.Lime;
-            this.lblHits.Location = new System.Drawing.Point(11, 220);
+            this.lblHits.Location = new System.Drawing.Point(11, 232);
             this.lblHits.Name = "lblHits";
             this.lblHits.Size = new System.Drawing.Size(37, 13);
             this.lblHits.TabIndex = 8;
@@ -187,7 +190,7 @@
             this.btnLoadMatches.ForeColor = System.Drawing.Color.White;
             this.btnLoadMatches.Location = new System.Drawing.Point(12, 41);
             this.btnLoadMatches.Name = "btnLoadMatches";
-            this.btnLoadMatches.Size = new System.Drawing.Size(133, 23);
+            this.btnLoadMatches.Size = new System.Drawing.Size(117, 23);
             this.btnLoadMatches.TabIndex = 7;
             this.btnLoadMatches.Text = "Load Matches";
             this.btnLoadMatches.UseVisualStyleBackColor = false;
@@ -218,7 +221,7 @@
             0,
             0});
             this.numThreads.Name = "numThreads";
-            this.numThreads.Size = new System.Drawing.Size(86, 20);
+            this.numThreads.Size = new System.Drawing.Size(70, 20);
             this.numThreads.TabIndex = 5;
             this.numThreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numThreads.Value = new decimal(new int[] {
@@ -251,9 +254,9 @@
             this.btnStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(12, 276);
+            this.btnStart.Location = new System.Drawing.Point(12, 288);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(133, 23);
+            this.btnStart.Size = new System.Drawing.Size(117, 23);
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -293,8 +296,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 311);
+            this.ClientSize = new System.Drawing.Size(910, 323);
             this.Controls.Add(this.SplitContainer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(660, 350);
             this.Name = "GUI";
             this.Text = "C0bW3b";

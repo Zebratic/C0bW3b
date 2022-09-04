@@ -131,9 +131,10 @@ namespace C0bW3b
                 {
                     Running = true;
                     btnStart.Text = "Stop";
-                    lblHits.Text = "Hits: 0";
-                    lblBad.Text = "Bad: 0";
-                    lblRetries.Text = "Retries: 0";
+                    Hits = 0;
+                    Bad = 0;
+                    Retries = 0;
+                    txtHits.Clear();
                     Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked);
                 }
                 else
