@@ -35,17 +35,17 @@ namespace C0bW3b
             }
         }
 
-        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl)
+        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch)
         {
             for (int i = 0; i < threads; i++)
             {
-                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl));
+                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl, minmatch));
                 RunningScrapers.Add(t);
                 t.Start();
             }
         }
 
-        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl)
+        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch)
         {
             while (true)
             {
@@ -85,7 +85,7 @@ namespace C0bW3b
                                     }
                                 }
 
-                                if (result.Matches.Count > 0)
+                                if (result.Matches.Count >= minmatch)
                                 {
                                     if (allowduplicates || ScrapeHits.FindAll(x => x.Url == result.Url).Count == 0)
                                     {

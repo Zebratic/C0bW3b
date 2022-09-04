@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -34,10 +35,31 @@ namespace C0bW3b
                 Directory.CreateDirectory(Environment.CurrentDirectory + @"\Hits");
         }
 
+        public void LockElements(bool enabled)
+        {
+            btnLoadDorks.Enabled = enabled;
+
+            btnLoadMatches.Enabled = enabled;
+            cbRegexMatches.Enabled = enabled;
+
+            btnLoadProxies.Enabled = enabled;
+            cbProxyless.Enabled = enabled;
+
+            lblThreads.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
+            numThreads.Enabled = enabled;
+
+            cbAllowDuplicates.Enabled = enabled;
+            cbLogFullURL.Enabled = enabled;
+
+            lblMinMatch.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
+            numMinMatch.Enabled = enabled;
+        }
+
+
         public void AddScrapeHit(Scraper.ScrapeHit scrapeHit)
         {
             // print data to log
-            string log = $"URL: https://{scrapeHit.Url.Replace("www.", "")} | Matches: {scrapeHit.Matches.Count} | Dork: {scrapeHit.Dork} | Proxy: {(scrapeHit.Proxy == null ? "proxyless" : scrapeHit.Proxy.Address.ToString()) + "\n"}";
+            string log = $"URL: https://{scrapeHit.Url.Replace("www.", "")} | Matches: {scrapeHit.Matches.Count} | Dork: {scrapeHit.Dork}\n";
             txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(log); });
 
             // get time file
@@ -129,23 +151,36 @@ namespace C0bW3b
             {
                 if (Dorks.Length != 0 && Matches.Length != 0)
                 {
+                    Time = DateTime.Now.ToString("dd-MM-yyyy HH;mm");
                     Running = true;
+                    LockElements(false);
                     btnStart.Text = "Stop";
                     Hits = 0;
                     Bad = 0;
                     Retries = 0;
                     txtHits.Clear();
-                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked);
+                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value));
                 }
                 else
                     MessageBox.Show("Dorks or Matches are empty!");
             }
             else
             {
+                Thread a = new Thread(() =>
+                {
+                    foreach (Thread t in Scraper.RunningScrapers)
+                    {
+                        t.Interrupt();
+                        t.Abort();
+                    }
+                    Scraper.RunningScrapers.Clear();
+                });
+                a.Start();
+                btnStart.Text = "Stopping threads...";
+                a.Join();
                 Running = false;
+                LockElements(true);
                 btnStart.Text = "Start";
-                foreach (Thread t in Scraper.RunningScrapers)
-                    t.Abort();
             }
         }
 
