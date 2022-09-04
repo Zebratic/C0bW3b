@@ -37,6 +37,8 @@ namespace C0bW3b
 
         public void LockElements(bool enabled)
         {
+            txtTarget.Enabled = enabled;
+
             btnLoadDorks.Enabled = enabled;
 
             btnLoadMatches.Enabled = enabled;
@@ -91,6 +93,7 @@ namespace C0bW3b
             {
                 string[] dorks = File.ReadAllLines(ofd.FileName);
                 Dorks = dorks;
+
                 btnLoadDorks.Text = $"Load Dorks [{Dorks.Length}]";
             }
         }
@@ -159,7 +162,7 @@ namespace C0bW3b
                     Bad = 0;
                     Retries = 0;
                     txtHits.Clear();
-                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value));
+                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value), txtTarget.Text);
                 }
                 else
                     MessageBox.Show("Dorks or Matches are empty!");

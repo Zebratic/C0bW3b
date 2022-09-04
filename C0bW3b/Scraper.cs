@@ -35,23 +35,24 @@ namespace C0bW3b
             }
         }
 
-        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch)
+        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
         {
             for (int i = 0; i < threads; i++)
             {
-                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl, minmatch));
+                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget));
                 RunningScrapers.Add(t);
                 t.Start();
             }
         }
 
-        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch)
+        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
         {
             while (true)
             {
                 try
                 {
                     string dork = GUI.Dorks[new Random().Next(GUI.Dorks.Length)];
+                    dork = dork.Replace("%ITEM%", itemtarget);
                     string useragent = UserAgents.Agents[new Random().Next(UserAgents.Agents.Length)];
                     WebProxy proxy = null;
                     List<ScrapeHit> results = new List<ScrapeHit>();
