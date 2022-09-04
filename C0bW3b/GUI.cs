@@ -37,6 +37,7 @@ namespace C0bW3b
 
         public void LockElements(bool enabled)
         {
+            lblTarget.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
             txtTarget.Enabled = enabled;
 
             btnLoadDorks.Enabled = enabled;
@@ -76,7 +77,7 @@ namespace C0bW3b
                 lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                 lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
 
-                Thread.Sleep(250);
+                Thread.Sleep(100);
             }
         }
 
