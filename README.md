@@ -48,7 +48,7 @@ If you like this software, consider making a donation to the developer. Thank yo
 - ETH: **0x71504CAAbD13F0cDEF71e342D3Aa6D91139A8EDe**
 
 # Contact
-Telegram: ``Zebratic``
-Discord: ``Zebratic#6969``
+- Telegram: ``Zebratic``
+- Discord: ``Zebratic#6969``
 
 Found a bug? [Create an issue!](https://help.github.com/en/articles/creating-an-issue)
