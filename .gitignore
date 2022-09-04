@@ -1,5 +1,5 @@
 Debug
-.vs
+Release
 bin
 obj
-.vs/*
+.vs
