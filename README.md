@@ -1,5 +1,5 @@
 # C0bW3b
-<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/icon.png?raw=true" style="width: 150px;"/>
+<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
 
 <h3>
  A web crawler that looks for targetted sites using a dork list with a match list.
