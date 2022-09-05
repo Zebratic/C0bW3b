@@ -30,6 +30,7 @@
 - [x] Proxyless
 - [x] Regex Matches
 - [ ] Plugin Support
+- [ ] Recursive Searches (URL's inside URL's)
 
 ## Search Engines:
 - [x] Bing
