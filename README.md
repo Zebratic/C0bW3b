@@ -42,6 +42,7 @@ Such as:
 - Regex Matches
   - You can use **Regular Expressions** in your Match list to find specific results.
   - To use Regex Matches, make sure you enable the feature on the side panel before starting.
+  - By having Regex Matches enabled, it will read your Match list as a list of **Regular Expressions**. (Using this setting without any Regex's will give no results)
   - [View more about Regex here](https://cs.lmu.edu/~ray/notes/regex/)
 - Proxyless
   - Use this if you dont have proxies to use, or you just want to run on your current IP address.
