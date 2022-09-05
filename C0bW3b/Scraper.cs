@@ -51,14 +51,14 @@ namespace C0bW3b
             {
                 try
                 {
-                    string dork = GUI.Dorks[new Random().Next(GUI.Dorks.Length)];
+                    string dork = Forms.Runner.Dorks[new Random().Next(Forms.Runner.Dorks.Length)];
                     dork = dork.Replace("%ITEM%", itemtarget);
                     string useragent = UserAgents.Agents[new Random().Next(UserAgents.Agents.Length)];
                     WebProxy proxy = null;
                     List<ScrapeHit> results = new List<ScrapeHit>();
 
                     if (!proxyless)
-                        proxy = GUI.Proxies[new Random().Next(GUI.Proxies.Length)];
+                        proxy = Forms.Runner.Proxies[new Random().Next(Forms.Runner.Proxies.Length)];
 
                     try { results.AddRange(Google(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
                     try { results.AddRange(Bing(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
@@ -71,10 +71,10 @@ namespace C0bW3b
                             {
                                 result.Html = AnalyseURL(result);
 
-                                foreach (string match in GUI.Matches)
+                                foreach (string match in Forms.Runner.Matches)
                                 {
                                     string match2 = match.Replace("%ITEM%", itemtarget);
-                                    
+
                                     if (!regexmatches)
                                     {
                                         if (result.Html.Contains(match2))
@@ -93,18 +93,18 @@ namespace C0bW3b
                                     if (allowduplicates || ScrapeHits.FindAll(x => x.Url == result.Url).Count == 0)
                                     {
                                         ScrapeHits.Add(result);
-                                        GUI.instance.Hits++;
-                                        GUI.instance.AddScrapeHit(result);
+                                        Forms.Runner.instance.Hits++;
+                                        Forms.Runner.instance.AddScrapeHit(result);
                                     }
                                 }
                                 else
-                                    GUI.instance.Bad++;
+                                    Forms.Runner.instance.Bad++;
                             }
-                            catch { GUI.instance.Retries++; }
+                            catch { Forms.Runner.instance.Retries++; }
                         }
                     }
                 }
-                catch { GUI.instance.Retries++; }
+                catch { Forms.Runner.instance.Retries++; }
             }
         }
 
@@ -158,14 +158,14 @@ namespace C0bW3b
                             if (url.Contains("https://"))
                                 results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
                         }
-                        catch { GUI.instance.Retries++; }
+                        catch { Forms.Runner.instance.Retries++; }
                     }
                 }
-                catch { GUI.instance.Retries++; }
+                catch { Forms.Runner.instance.Retries++; }
 
                 return results;
             }
-            catch { GUI.instance.Retries++; }
+            catch { Forms.Runner.instance.Retries++; }
 
             return new List<ScrapeHit>();
         }
@@ -201,13 +201,13 @@ namespace C0bW3b
                             if (url.Contains("https://"))
                                 results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
                         }
-                        catch { GUI.instance.Retries++; }
+                        catch { Forms.Runner.instance.Retries++; }
                     }
                 }
-                catch { GUI.instance.Retries++; }
+                catch { Forms.Runner.instance.Retries++; }
                 return results;
             }
-            catch { GUI.instance.Retries++; }
+            catch { Forms.Runner.instance.Retries++; }
             return new List<ScrapeHit>();
         }
     }

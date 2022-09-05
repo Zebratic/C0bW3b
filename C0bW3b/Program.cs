@@ -15,7 +15,7 @@ namespace C0bW3b
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new GUI());
+                Application.Run(new Main());
             }
             catch (Exception ex)
             {
