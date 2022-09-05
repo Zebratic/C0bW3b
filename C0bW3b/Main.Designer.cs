@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pnlBar2 = new System.Windows.Forms.Panel();
-            this.btnLoadDorks = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.pnlBar2 = new System.Windows.Forms.Panel();
+            this.btnLoadDorks = new System.Windows.Forms.Button();
             this.pnlBar.SuspendLayout();
-            this.pnlBar2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.pnlBar2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBar
@@ -68,33 +68,6 @@
             this.lblTitle.Text = "C0bW3b";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
-            // 
-            // pnlBar2
-            // 
-            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.pnlBar2.Controls.Add(this.btnLoadDorks);
-            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
-            this.pnlBar2.Name = "pnlBar2";
-            this.pnlBar2.Size = new System.Drawing.Size(1000, 30);
-            this.pnlBar2.TabIndex = 1;
-            // 
-            // btnLoadDorks
-            // 
-            this.btnLoadDorks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnLoadDorks.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLoadDorks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.btnLoadDorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadDorks.ForeColor = System.Drawing.Color.White;
-            this.btnLoadDorks.Image = global::C0bW3b.Properties.Resources.Cog;
-            this.btnLoadDorks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadDorks.Location = new System.Drawing.Point(0, 0);
-            this.btnLoadDorks.Name = "btnLoadDorks";
-            this.btnLoadDorks.Size = new System.Drawing.Size(85, 30);
-            this.btnLoadDorks.TabIndex = 2;
-            this.btnLoadDorks.Text = "Runner";
-            this.btnLoadDorks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLoadDorks.UseVisualStyleBackColor = false;
             // 
             // picLogo
             // 
@@ -164,6 +137,33 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // pnlBar2
+            // 
+            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.pnlBar2.Controls.Add(this.btnLoadDorks);
+            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
+            this.pnlBar2.Name = "pnlBar2";
+            this.pnlBar2.Size = new System.Drawing.Size(1000, 37);
+            this.pnlBar2.TabIndex = 1;
+            // 
+            // btnLoadDorks
+            // 
+            this.btnLoadDorks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnLoadDorks.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadDorks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnLoadDorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadDorks.ForeColor = System.Drawing.Color.White;
+            this.btnLoadDorks.Image = global::C0bW3b.Properties.Resources.Cog;
+            this.btnLoadDorks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLoadDorks.Location = new System.Drawing.Point(0, 0);
+            this.btnLoadDorks.Name = "btnLoadDorks";
+            this.btnLoadDorks.Size = new System.Drawing.Size(85, 37);
+            this.btnLoadDorks.TabIndex = 2;
+            this.btnLoadDorks.Text = "Runner";
+            this.btnLoadDorks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLoadDorks.UseVisualStyleBackColor = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,8 +179,8 @@
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.pnlBar.ResumeLayout(false);
-            this.pnlBar2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.pnlBar2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
