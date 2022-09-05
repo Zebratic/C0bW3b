@@ -43,6 +43,23 @@ Such as:
   - You can use **Regular Expressions** in your Match list to find specific results.
   - To use Regex Matches, make sure you enable the feature on the side panel before starting.
   - [View more about Regex here](https://cs.lmu.edu/~ray/notes/regex/)
+- Proxyless
+  - Use this if you dont have proxies to use, or you just want to run on your current IP address.
+- Threads
+  - This number means how many simultanious searches the software can do at a time, the more threads, the faster results.
+- Allow Duplicates
+  - This setting will allow duplicate results, if for an example, the software finds the same url, it will still check it, even though it has already been checked.
+- Log Full URL
+  - This setting will save the whole url that was found, so instead of having the root url as: `https://website.com/` it will log is as `https://website.com/somedirectory/somewebpage.php` etc.
+- Min Matches
+  - This number means how many matches are required for a site to be marked as a hit.
+  - If this number is higher than the lines in your **Matches List**, it will never mark anything as a hit, obviously.
+- Recursive Search
+  - This setting will allow the software to go deep into a site, and routing through other URLs that direct to other sites, to check those aswell as the original URL.
+  - ⚠ *This setting is still being developed, and is not available yet!* ⚠
+- Recursive Limit
+  - This number is the limit of how deep the software is allowed to go, so it wont go infinitely deep into a site.
+  - ⚠ *This setting is still being developed, and is not available yet!* ⚠
 
 # Todo
 - [x] Target Search (Replaces `%ITEM%` with input in Target's text field)
