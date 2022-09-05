@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -198,5 +199,7 @@ namespace C0bW3b
         {
             new Thread(UpdateStats).Start();
         }
+
+        private void txtHits_LinkClicked(object sender, LinkClickedEventArgs e) => Process.Start(e.LinkText);
     }
 }

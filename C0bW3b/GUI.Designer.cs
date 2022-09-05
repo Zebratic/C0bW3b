@@ -47,6 +47,7 @@
             this.lblMinMatch = new System.Windows.Forms.Label();
             this.txtTarget = new System.Windows.Forms.TextBox();
             this.lblTarget = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinMatch)).BeginInit();
             this.SuspendLayout();
@@ -63,11 +64,12 @@
             this.txtHits.Location = new System.Drawing.Point(132, 0);
             this.txtHits.Name = "txtHits";
             this.txtHits.ReadOnly = true;
-            this.txtHits.Size = new System.Drawing.Size(402, 370);
+            this.txtHits.Size = new System.Drawing.Size(402, 397);
             this.txtHits.TabIndex = 0;
             this.txtHits.Text = "";
             this.txtHits.WordWrap = false;
             this.txtHits.ZoomFactor = 2F;
+            this.txtHits.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.txtHits_LinkClicked);
             // 
             // btnLoadDorks
             // 
@@ -116,7 +118,7 @@
             this.lblRetries.AutoSize = true;
             this.lblRetries.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblRetries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lblRetries.Location = new System.Drawing.Point(11, 312);
+            this.lblRetries.Location = new System.Drawing.Point(11, 339);
             this.lblRetries.Name = "lblRetries";
             this.lblRetries.Size = new System.Drawing.Size(52, 13);
             this.lblRetries.TabIndex = 10;
@@ -128,7 +130,7 @@
             this.lblBad.AutoSize = true;
             this.lblBad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblBad.ForeColor = System.Drawing.Color.Red;
-            this.lblBad.Location = new System.Drawing.Point(11, 296);
+            this.lblBad.Location = new System.Drawing.Point(11, 323);
             this.lblBad.Name = "lblBad";
             this.lblBad.Size = new System.Drawing.Size(38, 13);
             this.lblBad.TabIndex = 9;
@@ -140,7 +142,7 @@
             this.lblHits.AutoSize = true;
             this.lblHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblHits.ForeColor = System.Drawing.Color.Lime;
-            this.lblHits.Location = new System.Drawing.Point(11, 279);
+            this.lblHits.Location = new System.Drawing.Point(11, 306);
             this.lblHits.Name = "lblHits";
             this.lblHits.Size = new System.Drawing.Size(37, 13);
             this.lblHits.TabIndex = 8;
@@ -220,7 +222,7 @@
             this.btnStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(12, 335);
+            this.btnStart.Location = new System.Drawing.Point(12, 362);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(114, 23);
             this.btnStart.TabIndex = 3;
@@ -310,12 +312,28 @@
             this.lblTarget.TabIndex = 17;
             this.lblTarget.Text = "Target:";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox1.ForeColor = System.Drawing.Color.White;
+            this.checkBox1.Location = new System.Drawing.Point(12, 269);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(108, 17);
+            this.checkBox1.TabIndex = 18;
+            this.checkBox1.Text = "Recursive Search";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.ClientSize = new System.Drawing.Size(534, 370);
+            this.ClientSize = new System.Drawing.Size(534, 397);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lblTarget);
             this.Controls.Add(this.txtTarget);
             this.Controls.Add(this.numMinMatch);
@@ -367,6 +385,7 @@
         private System.Windows.Forms.Label lblMinMatch;
         private System.Windows.Forms.TextBox txtTarget;
         private System.Windows.Forms.Label lblTarget;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
