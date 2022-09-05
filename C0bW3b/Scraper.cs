@@ -73,14 +73,16 @@ namespace C0bW3b
 
                                 foreach (string match in GUI.Matches)
                                 {
+                                    string match2 = match.Replace("%ITEM%", itemtarget);
+                                    
                                     if (!regexmatches)
                                     {
-                                        if (result.Html.Contains(match))
-                                            result.Matches.Add(match);
+                                        if (result.Html.Contains(match2))
+                                            result.Matches.Add(match2);
                                     }
                                     else
                                     {
-                                        Regex regex = new Regex(match);
+                                        Regex regex = new Regex(match2);
                                         foreach (Match rmatch in regex.Matches(result.Html))
                                             result.Matches.Add(rmatch.Groups[1].Value);
                                     }
