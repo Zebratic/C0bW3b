@@ -22,15 +22,35 @@
 5. You can find the executable inside the folders `C0bW3b/bin/Release`
 
 # Usage
-### Coming soon!
+## Lists
+There is 3 different type of lists:
+- Dorks
+  - A Dork list is the terms that C0bW3b will use to search for sites, its practically what it will google for.
+- Matches
+  - A Match list is what all the result sites that are found will be checked against.
+  - An example would be if a site has some text where it says `Buy Now`, and you have that exact text in your match list, it will flag that site as a Hit.
+- Proxies
+  - A Proxy list is simple, you would have a list of proxies which would be used to search around the web with.
+  - Proxy formats that are supported are `IP:PORT` and `IP:PORT:USER:PASS`.
+  - Alternatively, you can still find hits easily without proxies. *(Proxies are not needed)*
+
+## Settings
+C0bW3b has many settings that can help find your target more specifically.
+Such as:
+- Target Search
+  - You can use the `%ITEM%` tag in both your Dork and Match list to replace it with whatever is inputted in the Target text field.
+- Regex Matches
+  - You can use **Regular Expressions** in your Match list to find specific results.
+  - To use Regex Matches, make sure you enable the feature on the side panel before starting.
+  - [View more about Regex here](https://cs.lmu.edu/~ray/notes/regex/)
 
 # Todo
-- [x] Target Search (Replaces `%ITEM%` with Input in text field)
-- [x] Proxy Support (**IP:PORT** and **IP:PORT:USER:PASS**)
+- [x] Target Search (Replaces `%ITEM%` with input in Target's text field)
+- [x] Proxy Support (`IP:PORT` and `IP:PORT:USER:PASS`)
 - [x] Proxyless
 - [x] Regex Matches
 - [ ] Plugin Support
-- [ ] Recursive Searches (URL's inside URL's)
+- [ ] Recursive Searches (Deep scan on websites, Find Urls in Urls...)
 
 ## Search Engines:
 - [x] Bing
