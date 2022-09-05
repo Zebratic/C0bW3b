@@ -83,6 +83,7 @@ namespace C0bW3b
         }
 
         private void cbProxyless_CheckedChanged(object sender, EventArgs e) => btnLoadProxies.Enabled = !cbProxyless.Checked;
+        private void txtHits_LinkClicked(object sender, LinkClickedEventArgs e) => Process.Start(e.LinkText);
 
         private void btnLoadDorks_Click(object sender, EventArgs e)
         {
@@ -199,7 +200,5 @@ namespace C0bW3b
         {
             new Thread(UpdateStats).Start();
         }
-
-        private void txtHits_LinkClicked(object sender, LinkClickedEventArgs e) => Process.Start(e.LinkText);
     }
 }
