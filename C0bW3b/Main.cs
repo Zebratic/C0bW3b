@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -45,13 +44,8 @@ namespace C0bW3b
             var LatestVersion = AssemblyInfo[AssemblyInfo.FindIndex(str => str.Contains("[assembly: AssemblyFileVersion"))].Split('"')[1];
             lblTitle.Text = $"C0bW3b [{CurrentVersion}]";
             if (CurrentVersion != LatestVersion)
-            {
-                if (MessageBox.Show(null, "It seems like you are using a outdated version, would you like to update?", "C0bW3b", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
+                if (MessageBox.Show("It seems like you are using a outdated version, would you like to update?", "C0bW3b", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     Process.Start("https://github.com/Zebratic/C0bW3b/");
-                }
-
-            }
         }
         private void btnClose_Click(object sender, EventArgs e) => Environment.Exit(0);
         private void btnMaximize_Click(object sender, EventArgs e) => this.WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
