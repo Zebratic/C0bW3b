@@ -144,24 +144,24 @@
             this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBar2.Location = new System.Drawing.Point(0, 32);
             this.pnlBar2.Name = "pnlBar2";
-            this.pnlBar2.Size = new System.Drawing.Size(1000, 37);
+            this.pnlBar2.Size = new System.Drawing.Size(1000, 44);
             this.pnlBar2.TabIndex = 1;
             // 
             // btnLoadDorks
             // 
-            this.btnLoadDorks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnLoadDorks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btnLoadDorks.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLoadDorks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnLoadDorks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btnLoadDorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadDorks.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadDorks.ForeColor = System.Drawing.Color.White;
             this.btnLoadDorks.Image = global::C0bW3b.Properties.Resources.Cog;
-            this.btnLoadDorks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLoadDorks.Location = new System.Drawing.Point(0, 0);
             this.btnLoadDorks.Name = "btnLoadDorks";
-            this.btnLoadDorks.Size = new System.Drawing.Size(85, 37);
+            this.btnLoadDorks.Size = new System.Drawing.Size(104, 44);
             this.btnLoadDorks.TabIndex = 2;
             this.btnLoadDorks.Text = "Runner";
-            this.btnLoadDorks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLoadDorks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLoadDorks.UseVisualStyleBackColor = false;
             // 
             // Main
