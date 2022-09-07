@@ -70,6 +70,7 @@ Such as:
 - [x] Regex Matches
 - [ ] Plugin Support
 - [ ] Recursive Searches (Deep scan on websites, Find Urls in Urls...)
+- [ ] New UI
 
 ## Search Engines:
 - [x] Bing
