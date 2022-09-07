@@ -1,6 +1,7 @@
 # C0bW3b
-<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
+## ⚠ BE AWARE, DONT USE SOURCE, USE STABLE BUILD UNDER RELEASES ⚠
 
+<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
 <h3>
  A web crawler that looks for targetted sites using a dork list with a match list.
  
@@ -15,7 +16,6 @@
 1. Head over to the releases and download the latest build.
 
 ## Or alternatively:
-⚠ BE AWARE, CURRENT SOURCE IS NOT DONE, PLEASE ONLY USE STABLE BUILD UNDER RELEASES ⚠
 1. Make sure you have installed the `.NET Framework 4.7.2`.
 2. **Clone this repository** and open the solution file with Visual Studio. Preferebly `Visual Studio Community 2022`.
 3. Switch to **Release** mode for a much cleaner output.
