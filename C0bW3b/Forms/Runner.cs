@@ -164,6 +164,7 @@ namespace C0bW3b.Forms
                     Hits = 0;
                     Bad = 0;
                     Retries = 0;
+                    Scraper.ScrapeHits.Clear();
                     txtHits.Clear();
                     Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value), txtTarget.Text);
                 }
