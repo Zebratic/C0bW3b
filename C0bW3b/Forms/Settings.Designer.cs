@@ -1,6 +1,6 @@
 ﻿namespace C0bW3b.Forms
 {
-    partial class Runner
+    partial class Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -72,7 +72,6 @@
             this.txtHits.Text = "";
             this.txtHits.WordWrap = false;
             this.txtHits.ZoomFactor = 2F;
-            this.txtHits.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.txtHits_LinkClicked);
             // 
             // btnLoadDorks
             // 
@@ -86,7 +85,6 @@
             this.btnLoadDorks.TabIndex = 1;
             this.btnLoadDorks.Text = "Load Dorks";
             this.btnLoadDorks.UseVisualStyleBackColor = false;
-            this.btnLoadDorks.Click += new System.EventHandler(this.btnLoadDorks_Click);
             // 
             // btnLoadProxies
             // 
@@ -100,7 +98,6 @@
             this.btnLoadProxies.TabIndex = 2;
             this.btnLoadProxies.Text = "Load Proxies";
             this.btnLoadProxies.UseVisualStyleBackColor = false;
-            this.btnLoadProxies.Click += new System.EventHandler(this.btnLoadProxies_Click);
             // 
             // cbRegexMatches
             // 
@@ -163,7 +160,6 @@
             this.btnLoadMatches.TabIndex = 7;
             this.btnLoadMatches.Text = "Load Matches";
             this.btnLoadMatches.UseVisualStyleBackColor = false;
-            this.btnLoadMatches.Click += new System.EventHandler(this.btnLoadMatches_Click);
             // 
             // lblThreads
             // 
@@ -216,7 +212,6 @@
             this.cbProxyless.TabIndex = 4;
             this.cbProxyless.Text = "Proxyless";
             this.cbProxyless.UseVisualStyleBackColor = false;
-            this.cbProxyless.CheckedChanged += new System.EventHandler(this.cbProxyless_CheckedChanged);
             // 
             // btnStart
             // 
@@ -231,7 +226,6 @@
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // cbAllowDuplicates
             // 
@@ -389,10 +383,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(300, 420);
-            this.Name = "Runner";
+            this.Name = "Settings";
             this.Text = "C0bW3b";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
-            this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinMatch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRecursiveLimit)).EndInit();

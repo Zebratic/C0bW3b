@@ -31,15 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlBar2 = new System.Windows.Forms.Panel();
+            this.pnlPageViewer = new System.Windows.Forms.Panel();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnRunner = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.pnlBar2 = new System.Windows.Forms.Panel();
-            this.btnLoadDorks = new System.Windows.Forms.Button();
             this.pnlBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlBar2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBar
@@ -61,13 +64,87 @@
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(32, 0);
+            this.lblTitle.Location = new System.Drawing.Point(25, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(839, 32);
+            this.lblTitle.Size = new System.Drawing.Size(846, 32);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "C0bW3b";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
+            // 
+            // pnlBar2
+            // 
+            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.pnlBar2.Controls.Add(this.btnSettings);
+            this.pnlBar2.Controls.Add(this.btnRunner);
+            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
+            this.pnlBar2.Name = "pnlBar2";
+            this.pnlBar2.Size = new System.Drawing.Size(1000, 44);
+            this.pnlBar2.TabIndex = 1;
+            // 
+            // pnlPageViewer
+            // 
+            this.pnlPageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPageViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.pnlPageViewer.Location = new System.Drawing.Point(12, 87);
+            this.pnlPageViewer.Name = "pnlPageViewer";
+            this.pnlPageViewer.Size = new System.Drawing.Size(976, 390);
+            this.pnlPageViewer.TabIndex = 2;
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlFooter.Location = new System.Drawing.Point(37, 477);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(926, 23);
+            this.pnlFooter.TabIndex = 3;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.Image = global::C0bW3b.Properties.Resources.Cog;
+            this.btnSettings.Location = new System.Drawing.Point(111, 0);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(111, 44);
+            this.btnSettings.TabIndex = 3;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnRunner
+            // 
+            this.btnRunner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnRunner.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRunner.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnRunner.FlatAppearance.BorderSize = 0;
+            this.btnRunner.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnRunner.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnRunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRunner.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRunner.ForeColor = System.Drawing.Color.White;
+            this.btnRunner.Image = global::C0bW3b.Properties.Resources.runner;
+            this.btnRunner.Location = new System.Drawing.Point(0, 0);
+            this.btnRunner.Name = "btnRunner";
+            this.btnRunner.Size = new System.Drawing.Size(111, 44);
+            this.btnRunner.TabIndex = 2;
+            this.btnRunner.Text = "Runner";
+            this.btnRunner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRunner.UseVisualStyleBackColor = false;
+            this.btnRunner.Click += new System.EventHandler(this.btnRunner_Click);
             // 
             // picLogo
             // 
@@ -76,7 +153,7 @@
             this.picLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.picLogo.Location = new System.Drawing.Point(0, 0);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(32, 32);
+            this.picLogo.Size = new System.Drawing.Size(25, 32);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogo.TabIndex = 5;
             this.picLogo.TabStop = false;
@@ -137,39 +214,14 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // pnlBar2
-            // 
-            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.pnlBar2.Controls.Add(this.btnLoadDorks);
-            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
-            this.pnlBar2.Name = "pnlBar2";
-            this.pnlBar2.Size = new System.Drawing.Size(1000, 44);
-            this.pnlBar2.TabIndex = 1;
-            // 
-            // btnLoadDorks
-            // 
-            this.btnLoadDorks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnLoadDorks.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLoadDorks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnLoadDorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadDorks.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadDorks.ForeColor = System.Drawing.Color.White;
-            this.btnLoadDorks.Image = global::C0bW3b.Properties.Resources.Cog;
-            this.btnLoadDorks.Location = new System.Drawing.Point(0, 0);
-            this.btnLoadDorks.Name = "btnLoadDorks";
-            this.btnLoadDorks.Size = new System.Drawing.Size(104, 44);
-            this.btnLoadDorks.TabIndex = 2;
-            this.btnLoadDorks.Text = "Runner";
-            this.btnLoadDorks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLoadDorks.UseVisualStyleBackColor = false;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.ClientSize = new System.Drawing.Size(1000, 500);
+            this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.pnlPageViewer);
             this.Controls.Add(this.pnlBar2);
             this.Controls.Add(this.pnlBar);
             this.ForeColor = System.Drawing.Color.White;
@@ -179,8 +231,8 @@
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.pnlBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlBar2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,6 +246,9 @@
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlBar2;
-        private System.Windows.Forms.Button btnLoadDorks;
+        private System.Windows.Forms.Button btnRunner;
+        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Panel pnlPageViewer;
+        private System.Windows.Forms.Panel pnlFooter;
     }
 }

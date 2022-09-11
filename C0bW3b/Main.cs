@@ -1,6 +1,8 @@
-﻿using System;
+﻿using C0bW3b.Forms;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -10,12 +12,35 @@ namespace C0bW3b
 {
     public partial class Main : Form
     {
+        public static Page CurrentPage = Page.Runner;
+        public static Runner runner = new Runner();
+        public static Settings settings = new Settings();
+
+
         public Main()
         {
             InitializeComponent();
+            HighlightButton();
+
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            InitializeForms();
         }
 
-        #region Window Drag
+        #region Form Initializer
+        public void InitializeForms()
+        {
+            runner.TopLevel = false;
+            runner.AutoScroll = true;
+            pnlPageViewer.Controls.Add(runner);
+
+            settings.TopLevel = false;
+            settings.AutoScroll = true;
+            pnlPageViewer.Controls.Add(settings);
+        }
+        #endregion
+
+        #region Window Drag & Resize
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -33,6 +58,37 @@ namespace C0bW3b
             }
         }
 
+        private const int cGrip = 16;      // Grip size
+        private const int cCaption = 32;   // Caption bar height;
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
+            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
+            rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
+            e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
+            pnlFooter.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlFooter.Width, pnlFooter.Height * 2, 20, 20));
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x84)
+            {  // Trap WM_NCHITTEST
+                Point pos = new Point(m.LParam.ToInt32());
+                pos = this.PointToClient(pos);
+                if (pos.Y < cCaption)
+                {
+                    m.Result = (IntPtr)2;  // HTCAPTION
+                    return;
+                }
+                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
+                {
+                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
+                    return;
+                }
+            }
+            base.WndProc(ref m);
+        }
         #endregion
 
         #region Bar
@@ -52,6 +108,19 @@ namespace C0bW3b
         private void btnMinimize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
         #endregion
 
+        #region Rounding
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+        #endregion
+
         #region Override Form Params
         protected override CreateParams CreateParams
         {
@@ -64,5 +133,42 @@ namespace C0bW3b
             }
         }
         #endregion
+
+        #region Menu Buttons
+        private void btnRunner_Click(object sender, EventArgs e) { CurrentPage = Page.Runner; HighlightButton(); }
+        private void btnSettings_Click(object sender, EventArgs e) { CurrentPage = Page.Settings; HighlightButton(); }
+
+        public void HighlightButton()
+        {
+            btnRunner.ForeColor = CurrentPage == Page.Runner ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+            btnSettings.ForeColor = CurrentPage == Page.Settings ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+
+            UpdatePage();
+        }
+        #endregion
+
+        #region Page Manager
+        public void UpdatePage()
+        {
+            switch (CurrentPage)
+            {
+                case Page.Runner:
+                    runner.Show();
+                    settings.Hide();
+                    break;
+
+                case Page.Settings:
+                    runner.Hide();
+                    settings.Show();
+                    break;
+            }
+        }
+        #endregion
+    }
+
+    public enum Page
+    {
+        Runner,
+        Settings
     }
 }

@@ -191,6 +191,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Runner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="UserAgents.cs" />
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Runner.resx">
       <DependentUpon>Runner.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="images\runner.png" />
     <None Include="images\Cog.png" />
     <None Include="images\icon.png" />
     <None Include="images\Minimize.png" />
