@@ -1,5 +1,5 @@
 # C0bW3b
-## ⚠ BE AWARE, DONT USE SOURCE, USE STABLE BUILD UNDER RELEASES ⚠
+## ⚠BE AWARE, DONT USE SOURCE, USE STABLE BUILD UNDER RELEASES⚠
 
 <img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
 <h3>
