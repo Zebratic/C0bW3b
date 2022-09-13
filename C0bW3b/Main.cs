@@ -32,10 +32,12 @@ namespace C0bW3b
         {
             runner.TopLevel = false;
             runner.AutoScroll = true;
+            runner.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(runner);
 
             settings.TopLevel = false;
             settings.AutoScroll = true;
+            settings.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(settings);
         }
         #endregion
@@ -153,11 +155,13 @@ namespace C0bW3b
             switch (CurrentPage)
             {
                 case Page.Runner:
+                    this.MinimumSize = new Size(runner.MinimumSize.Width + (12 * 2), runner.MinimumSize.Height + 87 + 29);
                     runner.Show();
                     settings.Hide();
                     break;
 
                 case Page.Settings:
+                    this.MinimumSize = new Size(settings.MinimumSize.Width + (12 * 2), settings.MinimumSize.Height + 87 + 29);
                     runner.Hide();
                     settings.Show();
                     break;

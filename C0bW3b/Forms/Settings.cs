@@ -9,5 +9,10 @@ namespace C0bW3b.Forms
         {
             InitializeComponent();
         }
+
+        private void Settings_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

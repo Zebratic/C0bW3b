@@ -9,8 +9,25 @@ namespace C0bW3b
 {
     public class Scraper
     {
-        public static List<Thread> RunningScrapers = new List<Thread>();
+        public static List<RunnerThread> RunningScrapers = new List<RunnerThread>();
         public static List<ScrapeHit> ScrapeHits = new List<ScrapeHit>();
+
+        public class RunnerThread
+        {
+            public Thread Thread;
+
+            public int ID;
+            public WebProxy Proxy;
+            public string ThreadStatus;
+            public string Dork;
+
+            public RunnerThread(Thread thread, int id)
+            {
+                Thread = thread;
+                ID = id;
+            }
+        }
+
 
         public class ScrapeHit
         {
@@ -37,15 +54,15 @@ namespace C0bW3b
 
         public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
         {
-            for (int i = 0; i < threads; i++)
+            for (int i = 0; i <= threads; i++)
             {
-                Thread t = new Thread(() => Scrape(proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget));
-                RunningScrapers.Add(t);
+                Thread t = new Thread(() => Scrape(i - 1, proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget));
+                RunningScrapers.Add(new RunnerThread(t, i));
                 t.Start();
             }
         }
 
-        public static void Scrape(bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
+        public static void Scrape(int id, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
         {
             while (true)
             {
@@ -53,12 +70,16 @@ namespace C0bW3b
                 {
                     string dork = Forms.Runner.Dorks[new Random().Next(Forms.Runner.Dorks.Length)];
                     dork = dork.Replace("%ITEM%", itemtarget);
+                    RunningScrapers.Find(x => x.ID == id).Dork = dork;
                     string useragent = UserAgents.Agents[new Random().Next(UserAgents.Agents.Length)];
                     WebProxy proxy = null;
                     List<ScrapeHit> results = new List<ScrapeHit>();
 
                     if (!proxyless)
+                    {
                         proxy = Forms.Runner.Proxies[new Random().Next(Forms.Runner.Proxies.Length)];
+                        RunningScrapers.Find(x => x.ID == id).Proxy = proxy;
+                    }
 
                     try { results.AddRange(Google(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
                     try { results.AddRange(Bing(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }

@@ -10,9 +10,9 @@ namespace C0bW3b.Forms
 {
     public partial class Runner : Form
     {
-        public static string[] Dorks;
-        public static string[] Matches;
-        public static WebProxy[] Proxies;
+        public static string[] Dorks = new string[] { };
+        public static string[] Matches = new string[] { };
+        public static WebProxy[] Proxies = new WebProxy[] { };
         public static bool Running = false;
         public static Runner instance;
         public string Time = DateTime.Now.ToString("dd-MM-yyyy HH;mm");
@@ -77,6 +77,22 @@ namespace C0bW3b.Forms
                 lblHits.Invoke((MethodInvoker)delegate { lblHits.Text = "Hits: " + Hits; });
                 lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                 lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
+
+                // update listThreads with current running threads
+                listThreads.Invoke((MethodInvoker)delegate
+                {
+                    listThreads.Items.Clear();
+                    foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = s.ID.ToString();
+                        item.SubItems.Add(s.Proxy == null ? "proxyless" : s.Proxy.Address.ToString());
+                        item.SubItems.Add(s.Thread.ThreadState.ToString());
+                        item.SubItems.Add(s.Dork);
+
+                        listThreads.Items.Add(item);
+                    }
+                });
 
                 Thread.Sleep(100);
             }
@@ -164,8 +180,8 @@ namespace C0bW3b.Forms
                     Hits = 0;
                     Bad = 0;
                     Retries = 0;
-                    Scraper.ScrapeHits.Clear();
                     txtHits.Clear();
+                    Scraper.ScrapeHits.Clear();
                     Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value), txtTarget.Text);
                 }
                 else
@@ -175,10 +191,10 @@ namespace C0bW3b.Forms
             {
                 Thread a = new Thread(() =>
                 {
-                    foreach (Thread t in Scraper.RunningScrapers)
+                    foreach (Scraper.RunnerThread r in Scraper.RunningScrapers)
                     {
-                        t.Interrupt();
-                        t.Abort();
+                        r.Thread.Interrupt();
+                        r.Thread.Abort();
                     }
                     Scraper.RunningScrapers.Clear();
                 });
