@@ -11,6 +11,7 @@ namespace C0bW3b.Forms
             InitializeComponent();
         }
 
+        #region Output Format Reorder system
         private void cblistVariables_MouseDown(object sender, MouseEventArgs e)
         {
             if (this.cblistVariables.SelectedItem == null) return;
@@ -39,5 +40,6 @@ namespace C0bW3b.Forms
                 this.cblistVariables.SetItemChecked(index, isChecked);
             }
         }
+        #endregion
     }
 }

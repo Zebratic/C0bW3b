@@ -57,9 +57,9 @@
             "Proxy",
             "URL",
             "User Agent"});
-            this.cblistVariables.Location = new System.Drawing.Point(35, 77);
+            this.cblistVariables.Location = new System.Drawing.Point(12, 31);
             this.cblistVariables.Name = "cblistVariables";
-            this.cblistVariables.Size = new System.Drawing.Size(183, 120);
+            this.cblistVariables.Size = new System.Drawing.Size(78, 75);
             this.cblistVariables.TabIndex = 22;
             this.cblistVariables.ThreeDCheckBoxes = true;
             this.cblistVariables.DragDrop += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragDrop);
