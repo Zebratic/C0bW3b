@@ -86,8 +86,8 @@ namespace C0bW3b.Forms
                     {
                         ListViewItem item = new ListViewItem();
                         item.Text = s.ID.ToString();
-                        item.SubItems.Add(s.Proxy == null ? "proxyless" : s.Proxy.Address.ToString());
-                        item.SubItems.Add(s.Thread.ThreadState.ToString());
+                        item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
+                        item.SubItems.Add(s.Status);
                         item.SubItems.Add(s.Dork);
 
                         listThreads.Items.Add(item);
