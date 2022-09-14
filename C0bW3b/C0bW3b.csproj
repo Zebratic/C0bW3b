@@ -213,6 +213,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scraper.cs" />
+    <Compile Include="UIControls\ListViewFix.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserAgents.cs" />
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -257,7 +260,6 @@
     <None Include="images\Close.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UIControls\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

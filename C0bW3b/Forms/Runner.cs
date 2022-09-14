@@ -25,6 +25,9 @@ namespace C0bW3b.Forms
         {
             InitializeComponent();
             instance = this;
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+
 
             if (!Directory.Exists(Environment.CurrentDirectory + @"\Dorks"))
                 Directory.CreateDirectory(Environment.CurrentDirectory + @"\Dorks");
@@ -57,8 +60,11 @@ namespace C0bW3b.Forms
 
             lblMinMatch.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
             numMinMatch.Enabled = enabled;
-        }
 
+            cbRecursiveSearch.Enabled = enabled;
+            lblRecursiveLimit.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
+            numRecursiveLimit.Enabled = enabled;
+        }
 
         public void AddScrapeHit(Scraper.ScrapeHit scrapeHit)
         {
@@ -78,21 +84,41 @@ namespace C0bW3b.Forms
                 lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                 lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
 
-                // update listThreads with current running threads
-                listThreads.Invoke((MethodInvoker)delegate
+                // update listThreads with current threads
+                if (listThreads.Items.Count != Scraper.RunningScrapers.Count)
                 {
-                    listThreads.Items.Clear();
+                    listThreads.Invoke((MethodInvoker)delegate
+                    {
+                        listThreads.Items.Clear();
+                        foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                        {
+                            ListViewItem item = new ListViewItem();
+                            item.Text = s.ID.ToString();
+                            item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
+                            item.SubItems.Add(s.Status);
+                            item.SubItems.Add(s.Dork);
+
+                            listThreads.Items.Add(item);
+                        }
+                    });
+                }
+                else
+                {
+                    // update changed threads
                     foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
                     {
-                        ListViewItem item = new ListViewItem();
-                        item.Text = s.ID.ToString();
-                        item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
-                        item.SubItems.Add(s.Status);
-                        item.SubItems.Add(s.Dork);
-
-                        listThreads.Items.Add(item);
+                        listThreads.Invoke((MethodInvoker)delegate
+                        {
+                            var item = listThreads.Items[s.ID];
+                            if (item != null)
+                            {
+                                if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
+                                if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
+                                if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
+                            }
+                        });
                     }
-                });
+                }
 
                 Thread.Sleep(100);
             }
@@ -182,7 +208,17 @@ namespace C0bW3b.Forms
                     Retries = 0;
                     txtHits.Clear();
                     Scraper.ScrapeHits.Clear();
-                    Scraper.Start(Convert.ToInt32(numThreads.Value), cbProxyless.Checked, cbRegexMatches.Checked, cbAllowDuplicates.Checked, cbLogFullURL.Checked, Convert.ToInt32(numMinMatch.Value), txtTarget.Text);
+                    Scraper.Start(
+                        Convert.ToInt32(numThreads.Value),
+                        cbProxyless.Checked,
+                        cbRegexMatches.Checked,
+                        cbAllowDuplicates.Checked,
+                        cbLogFullURL.Checked,
+                        Convert.ToInt32(numMinMatch.Value),
+                        txtTarget.Text,
+                        cbRecursiveSearch.Checked,
+                        Convert.ToInt32(numRecursiveLimit.Value)
+                   );
                 }
                 else
                     MessageBox.Show("Dorks or Matches are empty!");
@@ -198,12 +234,15 @@ namespace C0bW3b.Forms
                     }
                     Scraper.RunningScrapers.Clear();
                 });
-                a.Start();
-                btnStart.Text = "Stopping threads...";
-                a.Join();
-                Running = false;
-                LockElements(true);
-                btnStart.Text = "Start";
+                new Thread(() =>
+                {
+                    a.Start();
+                    this.Invoke((MethodInvoker)delegate { btnStart.Text = "Stopping threads..."; });
+                    a.Join();
+                    Running = false;
+                    this.Invoke((MethodInvoker)delegate { LockElements(true); });
+                    this.Invoke((MethodInvoker)delegate { btnStart.Text = "Start"; });
+                }).Start();
             }
         }
 

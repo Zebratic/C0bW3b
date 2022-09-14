@@ -56,7 +56,7 @@
             this.pnlBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBar.Location = new System.Drawing.Point(0, 0);
             this.pnlBar.Name = "pnlBar";
-            this.pnlBar.Size = new System.Drawing.Size(1000, 32);
+            this.pnlBar.Size = new System.Drawing.Size(1237, 32);
             this.pnlBar.TabIndex = 0;
             this.pnlBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
             // 
@@ -66,7 +66,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(25, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(846, 32);
+            this.lblTitle.Size = new System.Drawing.Size(1083, 32);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "C0bW3b";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -96,7 +96,7 @@
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Myanmar Text", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(871, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(1108, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(43, 32);
             this.btnMinimize.TabIndex = 4;
@@ -114,7 +114,7 @@
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Font = new System.Drawing.Font("Myanmar Text", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaximize.ForeColor = System.Drawing.Color.White;
-            this.btnMaximize.Location = new System.Drawing.Point(914, 0);
+            this.btnMaximize.Location = new System.Drawing.Point(1151, 0);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(43, 32);
             this.btnMaximize.TabIndex = 3;
@@ -133,7 +133,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Myanmar Text", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(957, 0);
+            this.btnClose.Location = new System.Drawing.Point(1194, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(43, 32);
             this.btnClose.TabIndex = 2;
@@ -148,7 +148,7 @@
             this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBar2.Location = new System.Drawing.Point(0, 32);
             this.pnlBar2.Name = "pnlBar2";
-            this.pnlBar2.Size = new System.Drawing.Size(1000, 44);
+            this.pnlBar2.Size = new System.Drawing.Size(1237, 44);
             this.pnlBar2.TabIndex = 1;
             // 
             // btnSettings
@@ -201,7 +201,7 @@
             this.pnlPageViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.pnlPageViewer.Location = new System.Drawing.Point(12, 87);
             this.pnlPageViewer.Name = "pnlPageViewer";
-            this.pnlPageViewer.Size = new System.Drawing.Size(976, 384);
+            this.pnlPageViewer.Size = new System.Drawing.Size(1213, 460);
             this.pnlPageViewer.TabIndex = 2;
             // 
             // pnlFooter
@@ -209,9 +209,9 @@
             this.pnlFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.pnlFooter.Location = new System.Drawing.Point(37, 477);
+            this.pnlFooter.Location = new System.Drawing.Point(37, 553);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(926, 23);
+            this.pnlFooter.Size = new System.Drawing.Size(1163, 23);
             this.pnlFooter.TabIndex = 3;
             // 
             // Main
@@ -219,7 +219,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.ClientSize = new System.Drawing.Size(1000, 500);
+            this.ClientSize = new System.Drawing.Size(1237, 576);
             this.Controls.Add(this.pnlFooter);
             this.Controls.Add(this.pnlPageViewer);
             this.Controls.Add(this.pnlBar2);

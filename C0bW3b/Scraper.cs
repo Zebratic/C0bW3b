@@ -4,7 +4,6 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows;
 
 namespace C0bW3b
 {
@@ -55,25 +54,25 @@ namespace C0bW3b
 
         public static RunnerThread GetThread(int id) => RunningScrapers.Find(x => x.ID == id);
 
-        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
+        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit)
         {
             for (int i = 0; i < threads; i++)
             {
-                Thread t = new Thread(() => Scrape(i - 1, proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget));
-                RunningScrapers.Add(new RunnerThread(t, i));
+                int id = i;
+                Thread t = new Thread(() => Scrape(id, proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget, recursive, recursivelimit));
+                RunningScrapers.Add(new RunnerThread(t, id));
                 t.Start();
-                Thread.Sleep(1000);
             }
         }
 
-        public static void Scrape(int id, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget)
+        public static void Scrape(int id, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit)
         {
             while (true)
             {
                 try
                 {
                     GetThread(id).Status = "<<INITIALIZING>>";
-                    
+
                     string dork = Forms.Runner.Dorks[new Random().Next(Forms.Runner.Dorks.Length)];
                     dork = dork.Replace("%ITEM%", itemtarget);
                     GetThread(id).Dork = dork;
@@ -88,10 +87,10 @@ namespace C0bW3b
                     }
 
                     GetThread(id).Status = "<<DORKING [GOOGLE]>>";
-                    try { results.AddRange(Google(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
-                    
+                    try { results.AddRange(Google(dork, useragent, proxyless, logfullurl, proxy)); } catch { }
+
                     GetThread(id).Status = "<<DORKING [BING]>>";
-                    try { results.AddRange(Bing(dork, useragent, proxyless, allowduplicates, logfullurl, proxy)); } catch { }
+                    try { results.AddRange(Bing(dork, useragent, proxyless, logfullurl, proxy)); } catch { }
 
                     if (results != null && results.Count > 0)
                     {
@@ -133,7 +132,7 @@ namespace C0bW3b
                                 }
                                 else
                                     Forms.Runner.instance.Bad++;
-                                
+
                             }
                             catch (Exception ex)
                             {
@@ -169,7 +168,7 @@ namespace C0bW3b
             return html;
         }
 
-        public static List<ScrapeHit> Google(string dork, string useragent, bool proxyless, bool allowduplicates, bool logfullurl, WebProxy proxy = null)
+        public static List<ScrapeHit> Google(string dork, string useragent, bool proxyless, bool logfullurl, WebProxy proxy = null)
         {
             try
             {
@@ -215,7 +214,7 @@ namespace C0bW3b
             return new List<ScrapeHit>();
         }
 
-        public static List<ScrapeHit> Bing(string dork, string useragent, bool proxyless, bool allowduplicates, bool logfullurl, WebProxy proxy = null)
+        public static List<ScrapeHit> Bing(string dork, string useragent, bool proxyless, bool logfullurl, WebProxy proxy = null)
         {
             try
             {

@@ -47,11 +47,11 @@
             this.lblMinMatch = new System.Windows.Forms.Label();
             this.txtTarget = new System.Windows.Forms.TextBox();
             this.lblTarget = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbRecursiveSearch = new System.Windows.Forms.CheckBox();
             this.numRecursiveLimit = new System.Windows.Forms.NumericUpDown();
             this.lblRecursiveLimit = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.listThreads = new System.Windows.Forms.ListView();
+            this.listThreads = new C0bW3b.UIControls.ListViewNF();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Proxy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,7 +75,7 @@
             this.txtHits.Location = new System.Drawing.Point(0, 0);
             this.txtHits.Name = "txtHits";
             this.txtHits.ReadOnly = true;
-            this.txtHits.Size = new System.Drawing.Size(347, 443);
+            this.txtHits.Size = new System.Drawing.Size(319, 548);
             this.txtHits.TabIndex = 0;
             this.txtHits.Text = "";
             this.txtHits.WordWrap = false;
@@ -129,7 +129,7 @@
             this.lblRetries.AutoSize = true;
             this.lblRetries.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblRetries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lblRetries.Location = new System.Drawing.Point(9, 416);
+            this.lblRetries.Location = new System.Drawing.Point(9, 521);
             this.lblRetries.Name = "lblRetries";
             this.lblRetries.Size = new System.Drawing.Size(52, 13);
             this.lblRetries.TabIndex = 10;
@@ -141,7 +141,7 @@
             this.lblBad.AutoSize = true;
             this.lblBad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblBad.ForeColor = System.Drawing.Color.Red;
-            this.lblBad.Location = new System.Drawing.Point(9, 399);
+            this.lblBad.Location = new System.Drawing.Point(9, 504);
             this.lblBad.Name = "lblBad";
             this.lblBad.Size = new System.Drawing.Size(38, 13);
             this.lblBad.TabIndex = 9;
@@ -153,7 +153,7 @@
             this.lblHits.AutoSize = true;
             this.lblHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblHits.ForeColor = System.Drawing.Color.Lime;
-            this.lblHits.Location = new System.Drawing.Point(9, 382);
+            this.lblHits.Location = new System.Drawing.Point(9, 487);
             this.lblHits.Name = "lblHits";
             this.lblHits.Size = new System.Drawing.Size(37, 13);
             this.lblHits.TabIndex = 8;
@@ -233,7 +233,7 @@
             this.btnStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(12, 432);
+            this.btnStart.Location = new System.Drawing.Point(12, 537);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(136, 23);
             this.btnStart.TabIndex = 3;
@@ -321,18 +321,18 @@
             this.lblTarget.TabIndex = 17;
             this.lblTarget.Text = "Target:";
             // 
-            // checkBox1
+            // cbRecursiveSearch
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.ForeColor = System.Drawing.Color.White;
-            this.checkBox1.Location = new System.Drawing.Point(12, 282);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(108, 17);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Recursive Search";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.cbRecursiveSearch.AutoSize = true;
+            this.cbRecursiveSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.cbRecursiveSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRecursiveSearch.ForeColor = System.Drawing.Color.White;
+            this.cbRecursiveSearch.Location = new System.Drawing.Point(12, 282);
+            this.cbRecursiveSearch.Name = "cbRecursiveSearch";
+            this.cbRecursiveSearch.Size = new System.Drawing.Size(108, 17);
+            this.cbRecursiveSearch.TabIndex = 18;
+            this.cbRecursiveSearch.Text = "Recursive Search";
+            this.cbRecursiveSearch.UseVisualStyleBackColor = false;
             // 
             // numRecursiveLimit
             // 
@@ -381,8 +381,8 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.txtHits);
-            this.splitContainer.Size = new System.Drawing.Size(677, 443);
-            this.splitContainer.SplitterDistance = 326;
+            this.splitContainer.Size = new System.Drawing.Size(951, 548);
+            this.splitContainer.SplitterDistance = 628;
             this.splitContainer.TabIndex = 21;
             // 
             // listThreads
@@ -400,7 +400,7 @@
             this.listThreads.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listThreads.Location = new System.Drawing.Point(0, 0);
             this.listThreads.Name = "listThreads";
-            this.listThreads.Size = new System.Drawing.Size(326, 443);
+            this.listThreads.Size = new System.Drawing.Size(628, 548);
             this.listThreads.TabIndex = 1;
             this.listThreads.UseCompatibleStateImageBehavior = false;
             this.listThreads.View = System.Windows.Forms.View.Details;
@@ -408,31 +408,33 @@
             // ID
             // 
             this.ID.Text = "ID";
+            this.ID.Width = 30;
             // 
             // Proxy
             // 
             this.Proxy.Text = "Proxy";
+            this.Proxy.Width = 80;
             // 
             // Status
             // 
             this.Status.Text = "Status";
-            this.Status.Width = 70;
+            this.Status.Width = 300;
             // 
             // Dork
             // 
             this.Dork.Text = "Dork";
-            this.Dork.Width = 95;
+            this.Dork.Width = 200;
             // 
             // Runner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.ClientSize = new System.Drawing.Size(843, 467);
+            this.ClientSize = new System.Drawing.Size(1117, 572);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.numRecursiveLimit);
             this.Controls.Add(this.lblRecursiveLimit);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cbRecursiveSearch);
             this.Controls.Add(this.lblTarget);
             this.Controls.Add(this.txtTarget);
             this.Controls.Add(this.numMinMatch);
@@ -490,11 +492,11 @@
         private System.Windows.Forms.Label lblMinMatch;
         private System.Windows.Forms.TextBox txtTarget;
         private System.Windows.Forms.Label lblTarget;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbRecursiveSearch;
         private System.Windows.Forms.NumericUpDown numRecursiveLimit;
         private System.Windows.Forms.Label lblRecursiveLimit;
         private System.Windows.Forms.SplitContainer splitContainer;
-        private System.Windows.Forms.ListView listThreads;
+        private C0bW3b.UIControls.ListViewNF listThreads;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Proxy;
         private System.Windows.Forms.ColumnHeader Status;
