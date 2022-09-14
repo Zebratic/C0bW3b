@@ -387,7 +387,8 @@
             // 
             // listThreads
             // 
-            this.listThreads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.listThreads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.listThreads.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listThreads.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.Proxy,
