@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace C0bW3b.Forms
 {
     public partial class Settings : Form
     {
+        public List<string> OutputFormat = new List<string>();
 
         public Settings()
         {
@@ -41,5 +43,12 @@ namespace C0bW3b.Forms
             }
         }
         #endregion
+
+        private void cblistVariables_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            OutputFormat.Clear();
+            foreach (string item in cblistVariables.CheckedItems)
+                OutputFormat.Add(item);
+        }
     }
 }

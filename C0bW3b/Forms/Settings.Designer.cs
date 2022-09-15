@@ -55,13 +55,14 @@
             "Dork",
             "Matches",
             "Proxy",
-            "URL",
+            "Url",
             "User Agent"});
             this.cblistVariables.Location = new System.Drawing.Point(12, 31);
             this.cblistVariables.Name = "cblistVariables";
             this.cblistVariables.Size = new System.Drawing.Size(78, 75);
             this.cblistVariables.TabIndex = 22;
             this.cblistVariables.ThreeDCheckBoxes = true;
+            this.cblistVariables.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cblistVariables_ItemCheck);
             this.cblistVariables.DragDrop += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragDrop);
             this.cblistVariables.DragOver += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragOver);
             this.cblistVariables.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cblistVariables_MouseDown);

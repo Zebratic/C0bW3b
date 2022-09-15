@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -12,16 +13,17 @@ namespace C0bW3b
 {
     public partial class Main : Form
     {
-        public static Page CurrentPage = Page.Runner;
-        public static Runner runner = new Runner();
-        public static Settings settings = new Settings();
-
+        public Page CurrentPage = Page.Runner;
+        public Runner runner = new Runner();
+        public Settings settings = new Settings();
+        public static Main instance;
 
         public Main()
         {
             InitializeComponent();
             HighlightButton();
 
+            instance = this;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             InitializeForms();

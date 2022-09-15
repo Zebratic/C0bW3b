@@ -69,11 +69,25 @@ namespace C0bW3b.Forms
         public void AddScrapeHit(Scraper.ScrapeHit scrapeHit)
         {
             // print data to log
-            string log = $"URL: https://{scrapeHit.Url.Replace("www.", "")} | Matches: {scrapeHit.Matches.Count} | Dork: {scrapeHit.Dork}\n";
-            txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(log); });
+            string output = string.Empty;
+            foreach (string variable in Main.instance.settings.OutputFormat)
+            {
+                MessageBox.Show(variable);
+                try
+                {
+                    output += scrapeHit.GetType().GetProperty(variable).GetValue(scrapeHit, null).ToString().Replace("www.", "");
 
-            // get time file
-            try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", log); } catch { }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
+            }
+
+            txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(output); });
+
+            try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", output); } catch { }
         }
 
         public void UpdateStats()
