@@ -72,17 +72,14 @@ namespace C0bW3b.Forms
             string output = string.Empty;
             foreach (string variable in Main.instance.settings.OutputFormat)
             {
-                MessageBox.Show(variable);
                 try
                 {
-                    output += scrapeHit.GetType().GetProperty(variable).GetValue(scrapeHit, null).ToString().Replace("www.", "");
-
+                    output += variable + ": " + scrapeHit.GetType().GetProperty(variable).GetValue(scrapeHit).ToString().Replace("www.", "");
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
-
             }
 
             txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(output); });
@@ -94,47 +91,53 @@ namespace C0bW3b.Forms
         {
             while (true)
             {
-                lblHits.Invoke((MethodInvoker)delegate { lblHits.Text = "Hits: " + Hits; });
-                lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
-                lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
-
-                // update listThreads with current threads
-                if (listThreads.Items.Count != Scraper.RunningScrapers.Count)
+                try
                 {
-                    listThreads.Invoke((MethodInvoker)delegate
-                    {
-                        listThreads.Items.Clear();
-                        foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
-                        {
-                            ListViewItem item = new ListViewItem();
-                            item.Text = s.ID.ToString();
-                            item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
-                            item.SubItems.Add(s.Status);
-                            item.SubItems.Add(s.Dork);
+                    lblHits.Invoke((MethodInvoker)delegate { lblHits.Text = "Hits: " + Hits; });
+                    lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
+                    lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
 
-                            listThreads.Items.Add(item);
-                        }
-                    });
-                }
-                else
-                {
-                    // update changed threads
-                    foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                    // update listThreads with current threads
+                    if (listThreads.Items.Count != Scraper.RunningScrapers.Count)
                     {
                         listThreads.Invoke((MethodInvoker)delegate
                         {
-                            var item = listThreads.Items[s.ID];
-                            if (item != null)
+                            listThreads.Items.Clear();
+                            foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
                             {
-                                if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
-                                if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
-                                if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
+                                ListViewItem item = new ListViewItem();
+                                item.Text = s.ID.ToString();
+                                item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
+                                item.SubItems.Add(s.Status);
+                                item.SubItems.Add(s.Dork);
+
+                                listThreads.Items.Add(item);
                             }
                         });
                     }
-                }
+                    else
+                    {
+                        // update changed threads
 
-                Thread.Sleep(100);
+                        foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                        {
+                            listThreads.Invoke((MethodInvoker)delegate
+                            {
+                                var item = listThreads.Items[s.ID];
+                                if (item != null)
+                                {
+                                    if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
+                                    if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
+                                    if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
+                                }
+                            });
+                        }
+
+                    }
+
+                    Thread.Sleep(100);
+                }
+                catch { }
             }
         }
 
