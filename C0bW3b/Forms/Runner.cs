@@ -39,6 +39,8 @@ namespace C0bW3b.Forms
                 Directory.CreateDirectory(Environment.CurrentDirectory + @"\Hits");
         }
 
+        private void GUI_Load(object sender, EventArgs e) => new Thread(UpdateStats).Start();
+
         public void LockElements(bool enabled)
         {
             lblTarget.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
@@ -81,13 +83,13 @@ namespace C0bW3b.Forms
                     // get variable value
                     switch (variable.ToUpper())
                     {
-                        case "URL":         output += $"{variable.ToUpper()} = https://{scrapeHit.Url.Replace("www.", "")}";   break;
-                        case "DORK":        output += $"{variable.ToUpper()} = {scrapeHit.Dork}";                              break;
-                        case "HTML":        output += $"{variable.ToUpper()} = {scrapeHit.Html}";                              break;
-                        case "MATCHES":     output += $"{variable.ToUpper()} = {string.Join(", ", scrapeHit.Matches)}";        break;
-                        case "MATCH COUNT": output += $"{variable.ToUpper()} = {scrapeHit.Matches.Count}";                     break;
-                        case "PROXY":       output += $"{variable.ToUpper()} = {scrapeHit.Proxy.Address}";                     break;
-                        case "USER AGENT":  output += $"{variable.ToUpper()} = {scrapeHit.UserAgent}";                         break;
+                        case "URL": output += $"{variable.ToUpper()} = https://{scrapeHit.Url.Replace("www.", "")}"; break;
+                        case "DORK": output += $"{variable.ToUpper()} = {scrapeHit.Dork}"; break;
+                        case "HTML": output += $"{variable.ToUpper()} = {scrapeHit.Html}"; break;
+                        case "MATCHES": output += $"{variable.ToUpper()} = {string.Join(", ", scrapeHit.Matches)}"; break;
+                        case "MATCH COUNT": output += $"{variable.ToUpper()} = {scrapeHit.Matches.Count}"; break;
+                        case "PROXY": output += $"{variable.ToUpper()} = {scrapeHit.Proxy.Address}"; break;
+                        case "USER AGENT": output += $"{variable.ToUpper()} = {scrapeHit.UserAgent}"; break;
                     }
                 }
                 catch (Exception ex)
@@ -146,7 +148,6 @@ namespace C0bW3b.Forms
                                 }
                             });
                         }
-
                     }
 
                     Thread.Sleep(100);
@@ -281,11 +282,6 @@ namespace C0bW3b.Forms
         {
             Environment.Exit(0);
             Application.Exit();
-        }
-
-        private void GUI_Load(object sender, EventArgs e)
-        {
-            new Thread(UpdateStats).Start();
         }
     }
 }
