@@ -36,8 +36,9 @@ namespace C0bW3b
             public string Html;
             public List<string> Matches = new List<string>();
             public WebProxy Proxy;
-
-            public ScrapeHit(string dork, string url, string html, List<string> matches, WebProxy proxy)
+            public string UserAgent;
+            
+            public ScrapeHit(string dork, string url, string html, List<string> matches, WebProxy proxy, string userAgent)
             {
                 this.Dork = dork;
                 this.Url = url;
@@ -49,6 +50,7 @@ namespace C0bW3b
                     this.Matches = new List<string>();
 
                 this.Proxy = proxy;
+                UserAgent = userAgent;
             }
         }
 
@@ -200,7 +202,7 @@ namespace C0bW3b
                             string url = match.Groups[1].Value;
 
                             if (url.Contains("https://"))
-                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
                         }
                         catch { Forms.Runner.instance.Retries++; }
                     }
@@ -243,7 +245,7 @@ namespace C0bW3b
                         {
                             string url = match.Groups[1].Value;
                             if (url.Contains("https://"))
-                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy));
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
                         }
                         catch { Forms.Runner.instance.Retries++; }
                     }

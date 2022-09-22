@@ -7,10 +7,21 @@ namespace C0bW3b.Forms
     public partial class Settings : Form
     {
         public List<string> OutputFormat = new List<string>();
+        public static Settings instance;
 
         public Settings()
         {
             InitializeComponent();
+            instance = this;
+            
+            // check off the default output format
+            cblistVariables.SetItemChecked(0, true); // URL
+            cblistVariables.SetItemChecked(3, true); // MATCH COUNT
+
+            // setup tooltips
+            toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
+            toolTip.SetToolTip(lblSeperator, "Add a new format.");
+            toolTip.ShowAlways = true;
         }
 
         #region Output Format Reorder system
@@ -42,13 +53,13 @@ namespace C0bW3b.Forms
                 this.cblistVariables.SetItemChecked(index, isChecked);
             }
         }
-        #endregion
 
-        private void cblistVariables_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void cblistVariables_Leave(object sender, System.EventArgs e)
         {
             OutputFormat.Clear();
             foreach (string item in cblistVariables.CheckedItems)
                 OutputFormat.Add(item);
         }
+        #endregion
     }
 }

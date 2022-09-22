@@ -72,9 +72,23 @@ namespace C0bW3b.Forms
             string output = string.Empty;
             foreach (string variable in Main.instance.settings.OutputFormat)
             {
+                Console.WriteLine(variable.ToUpper());
                 try
                 {
-                    output += variable + ": " + scrapeHit.GetType().GetProperty(variable).GetValue(scrapeHit).ToString().Replace("www.", "");
+                    if (!string.IsNullOrWhiteSpace(output))
+                        output += " | ";
+
+                    // get variable value
+                    switch (variable.ToUpper())
+                    {
+                        case "URL":         output += $"{variable.ToUpper()} = https://{scrapeHit.Url.Replace("www.", "")}";   break;
+                        case "DORK":        output += $"{variable.ToUpper()} = {scrapeHit.Dork}";                              break;
+                        case "HTML":        output += $"{variable.ToUpper()} = {scrapeHit.Html}";                              break;
+                        case "MATCHES":     output += $"{variable.ToUpper()} = {string.Join(", ", scrapeHit.Matches)}";        break;
+                        case "MATCH COUNT": output += $"{variable.ToUpper()} = {scrapeHit.Matches.Count}";                     break;
+                        case "PROXY":       output += $"{variable.ToUpper()} = {scrapeHit.Proxy.Address}";                     break;
+                        case "USER AGENT":  output += $"{variable.ToUpper()} = {scrapeHit.UserAgent}";                         break;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -82,9 +96,9 @@ namespace C0bW3b.Forms
                 }
             }
 
-            txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(output); });
+            txtHits.Invoke((MethodInvoker)delegate { txtHits.AppendText(output + "\n"); });
 
-            try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", output); } catch { }
+            try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", output + "\n"); } catch { }
         }
 
         public void UpdateStats()
