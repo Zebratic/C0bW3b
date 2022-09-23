@@ -9,7 +9,7 @@
 </h3>
 <h3>✔ This project is still actively being developed!</h3>
 
-# Overview
+# Pages Overview
 ## Runner
 ![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v2_runner.png?raw=true)
 
