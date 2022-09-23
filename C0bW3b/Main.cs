@@ -21,6 +21,9 @@ namespace C0bW3b
         public Engines engines = new Engines();
         public static Main instance;
 
+        public Size OldSize;
+        public bool IsSnapped = false;
+
         public Main()
         {
             InitializeComponent();
@@ -73,10 +76,46 @@ namespace C0bW3b
 
         private void pnlBar_MouseMove(object sender, MouseEventArgs e)
         {
+            
+
             if (e.Button == MouseButtons.Left)
             {
+                if (IsSnapped) // unsnap
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    this.Size = OldSize;
+                    IsSnapped = false;
+                }
+
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+                // if window is is above screens height, then snap to screen
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    // if window is above screen height, then snap to screen
+                    Point mousePos = Cursor.Position;
+                    if (mousePos.Y == 0) // top of screen
+                    {
+                        this.WindowState = FormWindowState.Maximized;
+                    }
+                    else if (mousePos.X == s.Bounds.X) // left side of screen
+                    {
+                        IsSnapped = true;
+                        OldSize = this.Size;
+                        this.Height = s.Bounds.Height;
+                        this.Width = s.Bounds.Width / 2;
+                        this.Location = new Point(0, 0);
+                    }
+                    else if (mousePos.X == s.Bounds.Width - 1) // right side of screen
+                    {
+                        IsSnapped = true;
+                        OldSize = this.Size;
+                        this.Height = s.Bounds.Height;
+                        this.Width = s.Bounds.Width / 2;
+                        this.Location = new Point(s.Bounds.Width / 2, 0);
+                    }
+                }
             }
         }
 
@@ -227,9 +266,9 @@ namespace C0bW3b
             }
         }
         #endregion
-
     }
 
+    #region Pages
     public enum Page
     {
         Runner,
@@ -238,4 +277,5 @@ namespace C0bW3b
         Plugins,
         Engines
     }
+    #endregion
 }
