@@ -56,6 +56,8 @@
             this.Proxy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Dork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.numUrlLimit = new System.Windows.Forms.NumericUpDown();
+            this.lblUrlLimit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinMatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRecursiveLimit)).BeginInit();
@@ -63,6 +65,7 @@
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUrlLimit)).BeginInit();
             this.SuspendLayout();
             // 
             // txtHits
@@ -426,12 +429,56 @@
             this.Dork.Text = "Dork";
             this.Dork.Width = 200;
             // 
+            // numUrlLimit
+            // 
+            this.numUrlLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.numUrlLimit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numUrlLimit.ForeColor = System.Drawing.Color.White;
+            this.numUrlLimit.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numUrlLimit.Location = new System.Drawing.Point(87, 331);
+            this.numUrlLimit.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numUrlLimit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUrlLimit.Name = "numUrlLimit";
+            this.numUrlLimit.Size = new System.Drawing.Size(61, 20);
+            this.numUrlLimit.TabIndex = 22;
+            this.numUrlLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUrlLimit.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // lblUrlLimit
+            // 
+            this.lblUrlLimit.AutoSize = true;
+            this.lblUrlLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.lblUrlLimit.ForeColor = System.Drawing.Color.White;
+            this.lblUrlLimit.Location = new System.Drawing.Point(9, 334);
+            this.lblUrlLimit.Name = "lblUrlLimit";
+            this.lblUrlLimit.Size = new System.Drawing.Size(56, 13);
+            this.lblUrlLimit.TabIndex = 23;
+            this.lblUrlLimit.Text = "URL Limit:";
+            // 
             // Runner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(1117, 572);
+            this.Controls.Add(this.numUrlLimit);
+            this.Controls.Add(this.lblUrlLimit);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.numRecursiveLimit);
             this.Controls.Add(this.lblRecursiveLimit);
@@ -468,6 +515,7 @@
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numUrlLimit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,6 +550,8 @@
         private System.Windows.Forms.ColumnHeader Proxy;
         private System.Windows.Forms.ColumnHeader Status;
         private System.Windows.Forms.ColumnHeader Dork;
+        private System.Windows.Forms.NumericUpDown numUrlLimit;
+        private System.Windows.Forms.Label lblUrlLimit;
     }
 }
 

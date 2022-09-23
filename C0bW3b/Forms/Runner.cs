@@ -74,11 +74,10 @@ namespace C0bW3b.Forms
             string output = string.Empty;
             foreach (string variable in Main.instance.settings.OutputFormat)
             {
-                Console.WriteLine(variable.ToUpper());
                 try
                 {
                     if (!string.IsNullOrWhiteSpace(output))
-                        output += " | ";
+                        output += $" {Main.instance.settings.Seperator} ";
 
                     // get variable value
                     switch (variable.ToUpper())
@@ -113,46 +112,57 @@ namespace C0bW3b.Forms
                     lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                     lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
 
-                    // update listThreads with current threads
-                    if (listThreads.Items.Count != Scraper.RunningScrapers.Count)
+                    if (Main.instance.settings.UpdateThreadStatus)
                     {
-                        listThreads.Invoke((MethodInvoker)delegate
-                        {
-                            listThreads.Items.Clear();
-                            foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
-                            {
-                                ListViewItem item = new ListViewItem();
-                                item.Text = s.ID.ToString();
-                                item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
-                                item.SubItems.Add(s.Status);
-                                item.SubItems.Add(s.Dork);
-
-                                listThreads.Items.Add(item);
-                            }
-                        });
-                    }
-                    else
-                    {
-                        // update changed threads
-
-                        foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                        // update listThreads with current threads
+                        if (listThreads.Items.Count != Scraper.RunningScrapers.Count)
                         {
                             listThreads.Invoke((MethodInvoker)delegate
                             {
-                                var item = listThreads.Items[s.ID];
-                                if (item != null)
+                                listThreads.Items.Clear();
+                                foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
                                 {
-                                    if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
-                                    if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
-                                    if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
+                                    ListViewItem item = new ListViewItem();
+                                    item.Text = s.ID.ToString();
+                                    item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
+                                    item.SubItems.Add(s.Status);
+                                    item.SubItems.Add(s.Dork);
+
+                                    listThreads.Items.Add(item);
                                 }
                             });
                         }
+                        else
+                        {
+                            // update changed threads
+
+                            foreach (Scraper.RunnerThread s in Scraper.RunningScrapers)
+                            {
+                                listThreads.Invoke((MethodInvoker)delegate
+                                {
+                                    var item = listThreads.Items[s.ID];
+                                    if (item != null)
+                                    {
+                                        if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
+                                        if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
+                                        if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        listThreads.Invoke((MethodInvoker)delegate
+                        {
+                            if (listThreads.Items.Count > 0)
+                                listThreads.Items.Clear();
+                        });
                     }
 
                     Thread.Sleep(100);
                 }
-                catch { }
+                catch { Thread.Sleep(1000); }
             }
         }
 
@@ -249,7 +259,8 @@ namespace C0bW3b.Forms
                         Convert.ToInt32(numMinMatch.Value),
                         txtTarget.Text,
                         cbRecursiveSearch.Checked,
-                        Convert.ToInt32(numRecursiveLimit.Value)
+                        Convert.ToInt32(numRecursiveLimit.Value),
+                        Convert.ToInt32(numUrlLimit.Value)
                    );
                 }
                 else

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace C0bW3b
 {
@@ -37,7 +39,7 @@ namespace C0bW3b
             public List<string> Matches = new List<string>();
             public WebProxy Proxy;
             public string UserAgent;
-            
+
             public ScrapeHit(string dork, string url, string html, List<string> matches, WebProxy proxy, string userAgent)
             {
                 this.Dork = dork;
@@ -56,18 +58,18 @@ namespace C0bW3b
 
         public static RunnerThread GetThread(int id) => RunningScrapers.Find(x => x.ID == id);
 
-        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit)
+        public static void Start(int threads, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit, int urllimit)
         {
             for (int i = 0; i < threads; i++)
             {
                 int id = i;
-                Thread t = new Thread(() => Scrape(id, proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget, recursive, recursivelimit));
+                Thread t = new Thread(() => Scrape(id, proxyless, regexmatches, allowduplicates, logfullurl, minmatch, itemtarget, recursive, recursivelimit, urllimit));
                 RunningScrapers.Add(new RunnerThread(t, id));
                 t.Start();
             }
         }
 
-        public static void Scrape(int id, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit)
+        public static void Scrape(int id, bool proxyless, bool regexmatches, bool allowduplicates, bool logfullurl, int minmatch, string itemtarget, bool recursive, int recursivelimit, int urllimit)
         {
             while (true)
             {
@@ -93,6 +95,50 @@ namespace C0bW3b
 
                     GetThread(id).Status = "<<DORKING [BING]>>";
                     try { results.AddRange(Bing(dork, useragent, proxyless, logfullurl, proxy)); } catch { }
+
+                    if (recursive)
+                    {
+                        List<ScrapeHit> recursivehits = new List<ScrapeHit>();
+                        for (int i = 0; i < recursivelimit; i++)
+                        {
+                            try
+                            {
+                                List<ScrapeHit> recursiveresults = results;
+                                GetThread(id).Status = $"<<RECURSING [{recursivehits.Count}/{i}/{recursivelimit}]>>";
+                                foreach (ScrapeHit result in recursiveresults)
+                                {
+                                    try
+                                    {
+                                        result.Html = AnalyseURL(result);
+
+                                        // find all urls
+                                        List<string> urls = new List<string>();
+                                        Regex regex = new Regex(@"((http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)");
+                                        foreach (Match match in regex.Matches(result.Html))
+                                        {
+                                            string url = match.Groups[1].Value;
+                                            if (url.Contains("https://"))
+                                            {
+                                                if (recursivehits.FindAll(x => x.Url == url).Count == 0 && recursiveresults.FindAll(x => x.Url == url).Count == 0)
+                                                {
+                                                    recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
+                                                    Console.WriteLine(url);
+                                                    if (recursivehits.Count >= urllimit)
+                                                        goto stop;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    catch { }
+                                }
+                                recursiveresults = recursivehits;
+                            }
+                            catch { }
+                        }
+                    stop:
+
+                        results.AddRange(recursivehits);
+                    }
 
                     if (results != null && results.Count > 0)
                     {

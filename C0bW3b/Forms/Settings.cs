@@ -9,14 +9,23 @@ namespace C0bW3b.Forms
         public List<string> OutputFormat = new List<string>();
         public static Settings instance;
 
+        // settings
+        public bool UpdateThreadStatus = false;
+        public string Seperator = "|";
+
         public Settings()
         {
             InitializeComponent();
             instance = this;
-            
+
+            // SETTINGS //
             // check off the default output format
             cblistVariables.SetItemChecked(0, true); // URL
             cblistVariables.SetItemChecked(3, true); // MATCH COUNT
+            foreach (string item in cblistVariables.CheckedItems)
+                OutputFormat.Add(item);
+
+            UpdateThreadStatus = cbUpdateThreadStatus.Checked;
 
             // setup tooltips
             toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
@@ -31,10 +40,7 @@ namespace C0bW3b.Forms
             this.cblistVariables.DoDragDrop(this.cblistVariables.SelectedItem, DragDropEffects.Move);
         }
 
-        private void cblistVariables_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
+        private void cblistVariables_DragOver(object sender, DragEventArgs e) => e.Effect = DragDropEffects.Move;
 
         private void cblistVariables_DragDrop(object sender, DragEventArgs e)
         {
@@ -61,5 +67,8 @@ namespace C0bW3b.Forms
                 OutputFormat.Add(item);
         }
         #endregion
+
+        private void cbUpdateThreadStatus_CheckedChanged(object sender, System.EventArgs e) => UpdateThreadStatus = cbUpdateThreadStatus.Checked;
+        private void txtSeperator_TextChanged(object sender, System.EventArgs e) => Seperator = txtSeperator.Text;
     }
 }

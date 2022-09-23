@@ -15,7 +15,10 @@ namespace C0bW3b
     {
         public Page CurrentPage = Page.Runner;
         public Runner runner = new Runner();
+        public Hits hits = new Hits();
         public Settings settings = new Settings();
+        public Plugins plugins = new Plugins();
+        public Engines engines = new Engines();
         public static Main instance;
 
         public Main()
@@ -37,10 +40,25 @@ namespace C0bW3b
             runner.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(runner);
 
+            hits.TopLevel = false;
+            hits.AutoScroll = true;
+            hits.Dock = DockStyle.Fill;
+            pnlPageViewer.Controls.Add(hits);
+
             settings.TopLevel = false;
             settings.AutoScroll = true;
             settings.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(settings);
+
+            plugins.TopLevel = false;
+            plugins.AutoScroll = true;
+            plugins.Dock = DockStyle.Fill;
+            pnlPageViewer.Controls.Add(plugins);
+
+            engines.TopLevel = false;
+            engines.AutoScroll = true;
+            engines.Dock = DockStyle.Fill;
+            pnlPageViewer.Controls.Add(engines);
         }
         #endregion
 
@@ -140,12 +158,18 @@ namespace C0bW3b
 
         #region Menu Buttons
         private void btnRunner_Click(object sender, EventArgs e) { CurrentPage = Page.Runner; HighlightButton(); }
+        private void btnHits_Click(object sender, EventArgs e) { CurrentPage = Page.Hits; HighlightButton(); }
         private void btnSettings_Click(object sender, EventArgs e) { CurrentPage = Page.Settings; HighlightButton(); }
+        private void btnPlugins_Click(object sender, EventArgs e) { CurrentPage = Page.Plugins; HighlightButton(); }
+        private void btnEngines_Click(object sender, EventArgs e) { CurrentPage = Page.Engines; HighlightButton(); }
 
         public void HighlightButton()
         {
             btnRunner.ForeColor = CurrentPage == Page.Runner ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+            btnHits.ForeColor = CurrentPage == Page.Hits ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
             btnSettings.ForeColor = CurrentPage == Page.Settings ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+            btnPlugins.ForeColor = CurrentPage == Page.Plugins ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+            btnEngines.ForeColor = CurrentPage == Page.Engines ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
 
             UpdatePage();
         }
@@ -159,22 +183,59 @@ namespace C0bW3b
                 case Page.Runner:
                     this.MinimumSize = new Size(runner.MinimumSize.Width + (12 * 2), runner.MinimumSize.Height + 87 + 29);
                     runner.Show();
+                    hits.Hide();
                     settings.Hide();
+                    plugins.Hide();
+                    engines.Hide();
+                    break;
+
+                case Page.Hits:
+                    this.MinimumSize = new Size(hits.MinimumSize.Width + (12 * 2), hits.MinimumSize.Height + 87 + 29);
+                    runner.Hide();
+                    hits.Show();
+                    settings.Hide();
+                    plugins.Hide();
+                    engines.Hide();
                     break;
 
                 case Page.Settings:
                     this.MinimumSize = new Size(settings.MinimumSize.Width + (12 * 2), settings.MinimumSize.Height + 87 + 29);
                     runner.Hide();
+                    hits.Hide();
                     settings.Show();
+                    plugins.Hide();
+                    engines.Hide();
+                    break;
+
+                case Page.Plugins:
+                    this.MinimumSize = new Size(plugins.MinimumSize.Width + (12 * 2), plugins.MinimumSize.Height + 87 + 29);
+                    runner.Hide();
+                    hits.Hide();
+                    settings.Hide();
+                    plugins.Show();
+                    engines.Hide();
+                    break;
+
+                case Page.Engines:
+                    this.MinimumSize = new Size(engines.MinimumSize.Width + (12 * 2), engines.MinimumSize.Height + 87 + 29);
+                    runner.Hide();
+                    hits.Hide();
+                    settings.Hide();
+                    plugins.Hide();
+                    engines.Show();
                     break;
             }
         }
         #endregion
+
     }
 
     public enum Page
     {
         Runner,
-        Settings
+        Hits,
+        Settings,
+        Plugins,
+        Engines
     }
 }

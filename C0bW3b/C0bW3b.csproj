@@ -193,6 +193,24 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Engines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engines.Designer.cs">
+      <DependentUpon>Engines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Hits.Designer.cs">
+      <DependentUpon>Hits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Plugins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Plugins.Designer.cs">
+      <DependentUpon>Plugins.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +236,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserAgents.cs" />
+    <EmbeddedResource Include="Forms\Engines.resx">
+      <DependentUpon>Engines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Hits.resx">
+      <DependentUpon>Hits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Plugins.resx">
+      <DependentUpon>Plugins.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="images\Spyglass.png" />
+    <None Include="images\Database.png" />
+    <None Include="images\Puzzle.png" />
     <None Include="images\runner.png" />
     <None Include="images\Cog.png" />
     <None Include="images\icon.png" />

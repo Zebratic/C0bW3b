@@ -36,6 +36,7 @@
             this.lblSeperator = new System.Windows.Forms.Label();
             this.gbOutput = new System.Windows.Forms.GroupBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbUpdateThreadStatus = new System.Windows.Forms.CheckBox();
             this.gbOutput.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             this.txtSeperator.Size = new System.Drawing.Size(55, 20);
             this.txtSeperator.TabIndex = 23;
             this.txtSeperator.Text = "|";
+            this.txtSeperator.TextChanged += new System.EventHandler(this.txtSeperator_TextChanged);
             // 
             // lblSeperator
             // 
@@ -99,6 +101,7 @@
             // gbOutput
             // 
             this.gbOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.gbOutput.Controls.Add(this.cbUpdateThreadStatus);
             this.gbOutput.Controls.Add(this.lblOutputFormat);
             this.gbOutput.Controls.Add(this.lblSeperator);
             this.gbOutput.Controls.Add(this.cblistVariables);
@@ -107,10 +110,26 @@
             this.gbOutput.ForeColor = System.Drawing.Color.White;
             this.gbOutput.Location = new System.Drawing.Point(12, 12);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(173, 135);
+            this.gbOutput.Size = new System.Drawing.Size(244, 131);
             this.gbOutput.TabIndex = 25;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";
+            // 
+            // cbUpdateThreadStatus
+            // 
+            this.cbUpdateThreadStatus.AutoSize = true;
+            this.cbUpdateThreadStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.cbUpdateThreadStatus.Checked = true;
+            this.cbUpdateThreadStatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbUpdateThreadStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbUpdateThreadStatus.ForeColor = System.Drawing.Color.White;
+            this.cbUpdateThreadStatus.Location = new System.Drawing.Point(110, 67);
+            this.cbUpdateThreadStatus.Name = "cbUpdateThreadStatus";
+            this.cbUpdateThreadStatus.Size = new System.Drawing.Size(128, 17);
+            this.cbUpdateThreadStatus.TabIndex = 25;
+            this.cbUpdateThreadStatus.Text = "Update Thread Status";
+            this.cbUpdateThreadStatus.UseVisualStyleBackColor = false;
+            this.cbUpdateThreadStatus.CheckedChanged += new System.EventHandler(this.cbUpdateThreadStatus_CheckedChanged);
             // 
             // Settings
             // 
@@ -139,6 +158,7 @@
         private System.Windows.Forms.Label lblSeperator;
         private System.Windows.Forms.GroupBox gbOutput;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.CheckBox cbUpdateThreadStatus;
     }
 }
 

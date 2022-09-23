@@ -31,18 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlBar2 = new System.Windows.Forms.Panel();
+            this.pnlPageViewer = new System.Windows.Forms.Panel();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.btnEngines = new System.Windows.Forms.Button();
+            this.btnPlugins = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnHits = new System.Windows.Forms.Button();
+            this.btnRunner = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.pnlBar2 = new System.Windows.Forms.Panel();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnRunner = new System.Windows.Forms.Button();
-            this.pnlPageViewer = new System.Windows.Forms.Panel();
-            this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlBar2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBar
@@ -71,6 +74,146 @@
             this.lblTitle.Text = "C0bW3b";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
+            // 
+            // pnlBar2
+            // 
+            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.pnlBar2.Controls.Add(this.btnEngines);
+            this.pnlBar2.Controls.Add(this.btnPlugins);
+            this.pnlBar2.Controls.Add(this.btnSettings);
+            this.pnlBar2.Controls.Add(this.btnHits);
+            this.pnlBar2.Controls.Add(this.btnRunner);
+            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
+            this.pnlBar2.Name = "pnlBar2";
+            this.pnlBar2.Size = new System.Drawing.Size(1237, 44);
+            this.pnlBar2.TabIndex = 1;
+            // 
+            // pnlPageViewer
+            // 
+            this.pnlPageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPageViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.pnlPageViewer.Location = new System.Drawing.Point(12, 87);
+            this.pnlPageViewer.Name = "pnlPageViewer";
+            this.pnlPageViewer.Size = new System.Drawing.Size(1213, 460);
+            this.pnlPageViewer.TabIndex = 2;
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlFooter.Location = new System.Drawing.Point(37, 553);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(1163, 23);
+            this.pnlFooter.TabIndex = 3;
+            // 
+            // btnEngines
+            // 
+            this.btnEngines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnEngines.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEngines.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnEngines.FlatAppearance.BorderSize = 0;
+            this.btnEngines.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnEngines.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnEngines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEngines.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEngines.ForeColor = System.Drawing.Color.White;
+            this.btnEngines.Image = global::C0bW3b.Properties.Resources.Spyglass;
+            this.btnEngines.Location = new System.Drawing.Point(444, 0);
+            this.btnEngines.Name = "btnEngines";
+            this.btnEngines.Size = new System.Drawing.Size(111, 44);
+            this.btnEngines.TabIndex = 8;
+            this.btnEngines.Text = "Engines";
+            this.btnEngines.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEngines.UseVisualStyleBackColor = false;
+            this.btnEngines.Click += new System.EventHandler(this.btnEngines_Click);
+            // 
+            // btnPlugins
+            // 
+            this.btnPlugins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnPlugins.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPlugins.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnPlugins.FlatAppearance.BorderSize = 0;
+            this.btnPlugins.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnPlugins.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnPlugins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlugins.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlugins.ForeColor = System.Drawing.Color.White;
+            this.btnPlugins.Image = global::C0bW3b.Properties.Resources.Puzzle;
+            this.btnPlugins.Location = new System.Drawing.Point(333, 0);
+            this.btnPlugins.Name = "btnPlugins";
+            this.btnPlugins.Size = new System.Drawing.Size(111, 44);
+            this.btnPlugins.TabIndex = 7;
+            this.btnPlugins.Text = "Plugins";
+            this.btnPlugins.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPlugins.UseVisualStyleBackColor = false;
+            this.btnPlugins.Click += new System.EventHandler(this.btnPlugins_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.Image = global::C0bW3b.Properties.Resources.Cog;
+            this.btnSettings.Location = new System.Drawing.Point(222, 0);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(111, 44);
+            this.btnSettings.TabIndex = 6;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnHits
+            // 
+            this.btnHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnHits.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnHits.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnHits.FlatAppearance.BorderSize = 0;
+            this.btnHits.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnHits.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnHits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHits.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHits.ForeColor = System.Drawing.Color.White;
+            this.btnHits.Image = global::C0bW3b.Properties.Resources.Database;
+            this.btnHits.Location = new System.Drawing.Point(111, 0);
+            this.btnHits.Name = "btnHits";
+            this.btnHits.Size = new System.Drawing.Size(111, 44);
+            this.btnHits.TabIndex = 4;
+            this.btnHits.Text = "Hits";
+            this.btnHits.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHits.UseVisualStyleBackColor = false;
+            this.btnHits.Click += new System.EventHandler(this.btnHits_Click);
+            // 
+            // btnRunner
+            // 
+            this.btnRunner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.btnRunner.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRunner.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnRunner.FlatAppearance.BorderSize = 0;
+            this.btnRunner.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnRunner.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.btnRunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRunner.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRunner.ForeColor = System.Drawing.Color.White;
+            this.btnRunner.Image = global::C0bW3b.Properties.Resources.runner;
+            this.btnRunner.Location = new System.Drawing.Point(0, 0);
+            this.btnRunner.Name = "btnRunner";
+            this.btnRunner.Size = new System.Drawing.Size(111, 44);
+            this.btnRunner.TabIndex = 2;
+            this.btnRunner.Text = "Runner";
+            this.btnRunner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRunner.UseVisualStyleBackColor = false;
+            this.btnRunner.Click += new System.EventHandler(this.btnRunner_Click);
             // 
             // picLogo
             // 
@@ -140,80 +283,6 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // pnlBar2
-            // 
-            this.pnlBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.pnlBar2.Controls.Add(this.btnSettings);
-            this.pnlBar2.Controls.Add(this.btnRunner);
-            this.pnlBar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBar2.Location = new System.Drawing.Point(0, 32);
-            this.pnlBar2.Name = "pnlBar2";
-            this.pnlBar2.Size = new System.Drawing.Size(1237, 44);
-            this.pnlBar2.TabIndex = 1;
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Image = global::C0bW3b.Properties.Resources.Cog;
-            this.btnSettings.Location = new System.Drawing.Point(111, 0);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(111, 44);
-            this.btnSettings.TabIndex = 3;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnRunner
-            // 
-            this.btnRunner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.btnRunner.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRunner.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnRunner.FlatAppearance.BorderSize = 0;
-            this.btnRunner.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnRunner.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.btnRunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRunner.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRunner.ForeColor = System.Drawing.Color.White;
-            this.btnRunner.Image = global::C0bW3b.Properties.Resources.runner;
-            this.btnRunner.Location = new System.Drawing.Point(0, 0);
-            this.btnRunner.Name = "btnRunner";
-            this.btnRunner.Size = new System.Drawing.Size(111, 44);
-            this.btnRunner.TabIndex = 2;
-            this.btnRunner.Text = "Runner";
-            this.btnRunner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRunner.UseVisualStyleBackColor = false;
-            this.btnRunner.Click += new System.EventHandler(this.btnRunner_Click);
-            // 
-            // pnlPageViewer
-            // 
-            this.pnlPageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlPageViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.pnlPageViewer.Location = new System.Drawing.Point(12, 87);
-            this.pnlPageViewer.Name = "pnlPageViewer";
-            this.pnlPageViewer.Size = new System.Drawing.Size(1213, 460);
-            this.pnlPageViewer.TabIndex = 2;
-            // 
-            // pnlFooter
-            // 
-            this.pnlFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.pnlFooter.Location = new System.Drawing.Point(37, 553);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1163, 23);
-            this.pnlFooter.TabIndex = 3;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,8 +300,8 @@
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.pnlBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlBar2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -247,8 +316,11 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlBar2;
         private System.Windows.Forms.Button btnRunner;
-        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel pnlPageViewer;
         private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.Button btnHits;
+        private System.Windows.Forms.Button btnPlugins;
+        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnEngines;
     }
 }

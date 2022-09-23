@@ -35,7 +35,7 @@ There is 3 different type of lists:
   - Proxy formats that are supported are `IP:PORT` and `IP:PORT:USER:PASS`.
   - Alternatively, you can still find hits easily without proxies. *(Proxies are not needed)*
 
-## Settings
+## Runner Settings
 C0bW3b has many settings that can help find your target more specifically.
 Such as:
 - Target Search
@@ -58,10 +58,19 @@ Such as:
   - If this number is higher than the lines in your **Matches List**, it will never mark anything as a hit, obviously.
 - Recursive Search
   - This setting will allow the software to go deep into a site, and routing through other URLs that direct to other sites, to check those aswell as the original URL.
-  - ⚠ *This setting is still being developed, and is not available yet!* ⚠
 - Recursive Limit
-  - This number is the limit of how deep the software is allowed to go, so it wont go infinitely deep into a site.
-  - ⚠ *This setting is still being developed, and is not available yet!* ⚠
+  - This number is the limit of how deep into the found urls the software is allowed to go, so it wont go indefinitely deep into a site.
+- URL Limit
+  - This number is the limit of how many links the software can maximum gather in a recursive search. (*This is to prevent mass spam of random links*) 
+
+## Other Settings
+- Output
+  - Output Format
+    - This is the variables that will be printed in the **output log**, that is displayed on the **Runner's tab**. You can also rearrange the variables by drag-dropping to your liking.
+  - Seperator
+    - This string of text is what gets printed in between the selected variables in the **Output Format**.
+  - Update Thread Status
+    - This setting will allow you to **disable** updating the threads status on the **Runner's tab**. (*This can improve performance on some systems, or on big deep searches*)
 
 # Todo
 - [x] Target Search (Replaces `%ITEM%` with input in Target's text field)
@@ -69,10 +78,12 @@ Such as:
 - [x] Proxyless
 - [x] Regex Matches
 - [ ] Plugin Support
-- [ ] Recursive Searches (Deep scan on websites, Find Urls in Urls...)
-- [ ] New UI
+- [x] Recursive Searches (Deep scan on websites, Find Urls in Urls...)
+- [x] New UI
+- [ ] Hits database tab
+- [ ] Engines tab (Custom search engines)
 
-## Search Engines:
+## Search Engines: (Will be customizable in Engines tab)
 - [x] Bing
 - [x] Google (*Gives Captcha without proxies*)
 - [ ] DuckDuckGo
