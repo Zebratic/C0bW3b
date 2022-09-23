@@ -128,7 +128,7 @@ namespace C0bW3b.Forms
                                     ListViewItem item = new ListViewItem();
                                     item.Text = s.ID.ToString();
                                     item.SubItems.Add(s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString());
-                                    item.SubItems.Add(s.Status);
+                                    item.SubItems.Add(s.Status.Replace("THREAD WAS BEING ABORTED.", "THREAD IS BEING ABORTED"));
                                     item.SubItems.Add(s.Dork);
 
                                     listThreads.Items.Add(item);
@@ -147,7 +147,7 @@ namespace C0bW3b.Forms
                                     if (item != null)
                                     {
                                         if (item.SubItems[1].Text != (s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString())) item.SubItems[1].Text = s.Proxy == null ? "Proxyless" : s.Proxy.Address.ToString();
-                                        if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status;
+                                        if (item.SubItems[2].Text != s.Status) item.SubItems[2].Text = s.Status.Replace("THREAD WAS BEING ABORTED.", "THREAD IS BEING ABORTED");
                                         if (item.SubItems[3].Text != s.Dork) item.SubItems[3].Text = s.Dork;
                                     }
                                 });
