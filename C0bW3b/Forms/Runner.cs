@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -75,12 +76,12 @@ namespace C0bW3b.Forms
         {
             // print data to log
             string output = string.Empty;
-            foreach (string variable in Main.instance.settings.OutputFormat)
+            foreach (string variable in ConfigSystem.config.OutputFormat.Keys)
             {
                 try
                 {
                     if (!string.IsNullOrWhiteSpace(output))
-                        output += $" {Main.instance.settings.Seperator} ";
+                        output += $" {ConfigSystem.config.Seperator} ";
 
                     // get variable value
                     switch (variable.ToUpper())
@@ -115,7 +116,7 @@ namespace C0bW3b.Forms
                     lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                     lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
 
-                    if (Main.instance.settings.UpdateThreadStatus)
+                    if (ConfigSystem.config.UpdateThreadStatus)
                     {
                         // update listThreads with current threads
                         if (listThreads.Items.Count != Scraper.RunningScrapers.Count)

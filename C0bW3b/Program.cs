@@ -13,13 +13,15 @@ namespace C0bW3b
         {
             try
             {
+                ConfigSystem.LoadConfig();
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Main());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "C0bW3b - Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), "C0bW3b ~ Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

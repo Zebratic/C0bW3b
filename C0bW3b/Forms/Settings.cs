@@ -6,12 +6,10 @@ namespace C0bW3b.Forms
 {
     public partial class Settings : Form
     {
-        public List<string> OutputFormat = new List<string>();
         public static Settings instance;
 
         // settings
-        public bool UpdateThreadStatus = false;
-        public string Seperator = "|";
+        
 
         public Settings()
         {
@@ -20,12 +18,36 @@ namespace C0bW3b.Forms
 
             // SETTINGS //
             // check off the default output format
-            cblistVariables.SetItemChecked(0, true); // URL
-            cblistVariables.SetItemChecked(3, true); // MATCH COUNT
-            foreach (string item in cblistVariables.CheckedItems)
-                OutputFormat.Add(item);
+            //cblistVariables.SetItemChecked(0, true); // URL
+            //cblistVariables.SetItemChecked(3, true); // MATCH COUNT
 
-            UpdateThreadStatus = cbUpdateThreadStatus.Checked;
+            /*
+            Url
+            Dork
+            Matches
+            Match Count
+            User Agent
+            Proxy
+            */
+
+            cblistVariables.Items.Clear();
+            int i = 0;
+            foreach (var item in ConfigSystem.config.OutputFormat)
+            {
+                MessageBox.Show(item.Key);
+                if (item.Key == "Url" ||
+                    item.Key == "Dork" ||
+                    item.Key == "Matches" ||
+                    item.Key == "Match Count" ||
+                    item.Key == "User Agent" ||
+                    item.Key == "Proxy")
+                {
+                    // get index
+                    cblistVariables.Items.Add(item.Key, item.Value);
+                }
+
+                i++;
+            }
 
             // setup tooltips
             toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
@@ -62,13 +84,13 @@ namespace C0bW3b.Forms
 
         private void cblistVariables_Leave(object sender, System.EventArgs e)
         {
-            OutputFormat.Clear();
-            foreach (string item in cblistVariables.CheckedItems)
-                OutputFormat.Add(item);
+            ConfigSystem.config.OutputFormat.Clear();
+            for (int i = 0; i < cblistVariables.Items.Count; i++)
+                ConfigSystem.config.OutputFormat.Add(cblistVariables.Items[i].ToString(), cblistVariables.GetItemCheckState(i) == CheckState.Checked ? true : false);
         }
         #endregion
 
-        private void cbUpdateThreadStatus_CheckedChanged(object sender, System.EventArgs e) => UpdateThreadStatus = cbUpdateThreadStatus.Checked;
-        private void txtSeperator_TextChanged(object sender, System.EventArgs e) => Seperator = txtSeperator.Text;
+        private void cbUpdateThreadStatus_CheckedChanged(object sender, System.EventArgs e) => ConfigSystem.config.UpdateThreadStatus = cbUpdateThreadStatus.Checked;
+        private void txtSeperator_TextChanged(object sender, System.EventArgs e) => ConfigSystem.config.Seperator = txtSeperator.Text;
     }
 }

@@ -32,6 +32,7 @@ namespace C0bW3b
             instance = this;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+
             InitializeForms();
         }
 

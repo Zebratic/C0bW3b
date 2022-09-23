@@ -28,33 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hits));
-            this.lblWarning = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Engines));
+            this.cbSearchEngines = new System.Windows.Forms.ComboBox();
+            this.btnStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lblWarning
+            // cbSearchEngines
             // 
-            this.lblWarning.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarning.Location = new System.Drawing.Point(0, 0);
-            this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(973, 539);
-            this.lblWarning.TabIndex = 0;
-            this.lblWarning.Text = "⚠️ This tab has not been made yet! ⚠️";
-            this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbSearchEngines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.cbSearchEngines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSearchEngines.ForeColor = System.Drawing.Color.White;
+            this.cbSearchEngines.FormattingEnabled = true;
+            this.cbSearchEngines.Location = new System.Drawing.Point(12, 12);
+            this.cbSearchEngines.Name = "cbSearchEngines";
+            this.cbSearchEngines.Size = new System.Drawing.Size(290, 21);
+            this.cbSearchEngines.TabIndex = 0;
             // 
-            // Hits
+            // btnStart
+            // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.ForeColor = System.Drawing.Color.White;
+            this.btnStart.Location = new System.Drawing.Point(308, 12);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(136, 23);
+            this.btnStart.TabIndex = 4;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = false;
+            // 
+            // Engines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(973, 539);
-            this.Controls.Add(this.lblWarning);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.cbSearchEngines);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(613, 482);
-            this.Name = "Hits";
+            this.Name = "Engines";
             this.Text = "C0bW3b";
             this.ResumeLayout(false);
 
@@ -69,7 +85,8 @@
         private System.Windows.Forms.GroupBox gbOutput;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox cbUpdateThreadStatus;
-        private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.ComboBox cbSearchEngines;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 
