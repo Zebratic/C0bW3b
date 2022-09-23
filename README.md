@@ -30,7 +30,7 @@
 1. Head over to the releases and download the latest build.
 
 ## Or alternatively:
-1. Make sure you have installed the `.NET Framework 4.7.2`.
+1. Make sure you have installed the `.NET Framework 4.8`.
 2. **Clone this repository** and open the solution file with Visual Studio. Preferebly `Visual Studio Community 2022`.
 3. Switch to **Release** mode for a much cleaner output.
 4. **Build** the solution (Visual Studio will fetch all the missing nuget packages).
