@@ -66,6 +66,9 @@ namespace C0bW3b.Forms
             cbRecursiveSearch.Enabled = enabled;
             lblRecursiveLimit.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
             numRecursiveLimit.Enabled = enabled;
+
+            lblUrlLimit.Enabled = enabled;
+            numUrlLimit.Enabled = enabled;
         }
 
         public void AddScrapeHit(Scraper.ScrapeHit scrapeHit)

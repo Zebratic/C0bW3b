@@ -10,7 +10,21 @@
 <h3>✔ This project is still actively being developed!</h3>
 
 # Overview
-![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_I94wsxJF7y.png?raw=true)
+## Runner
+![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v2_runner.png?raw=true)
+
+## Hits
+- Not finished
+
+## Settings
+![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v2_settings.png?raw=true)
+
+## Plugins
+- Not finished
+
+## Engines
+- Not finished
+
 
 # Installation
 1. Head over to the releases and download the latest build.
