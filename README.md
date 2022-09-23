@@ -107,6 +107,13 @@ Such as:
 - [ ] Yandex
 - [ ] Naver
 
+
+# Legacy Builds
+- You can always download older versions of C0bW3b, but I would always recommend running the latest build to minimize most issues and bugs in previous versions.
+## V1
+![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v1.png?raw=true)
+
+
 # Donate
 If you like this software, consider making a donation to the developer. Thank you!
 - BTC: **bc1qh5tamp2sq7mdelxz2leeuc47j9llp2wt9y4d67**
