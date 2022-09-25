@@ -9,7 +9,7 @@ namespace C0bW3b.Forms
         public static Settings instance;
 
         // settings
-        
+
 
         public Settings()
         {
@@ -34,7 +34,6 @@ namespace C0bW3b.Forms
             int i = 0;
             foreach (var item in ConfigSystem.config.OutputFormat)
             {
-                MessageBox.Show(item.Key);
                 if (item.Key == "Url" ||
                     item.Key == "Dork" ||
                     item.Key == "Matches" ||

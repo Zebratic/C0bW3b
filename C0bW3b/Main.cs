@@ -77,8 +77,6 @@ namespace C0bW3b
 
         private void pnlBar_MouseMove(object sender, MouseEventArgs e)
         {
-            
-
             if (e.Button == MouseButtons.Left)
             {
                 if (IsSnapped) // unsnap
