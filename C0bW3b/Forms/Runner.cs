@@ -112,6 +112,8 @@ namespace C0bW3b.Forms
             {
                 try
                 {
+                    //Utils.DiscordRPC.UpdatePresence(state: $"H: {Hits} | B: {Bad} | R: {Retries}");
+
                     lblHits.Invoke((MethodInvoker)delegate { lblHits.Text = "Hits: " + Hits; });
                     lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                     lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
@@ -272,6 +274,8 @@ namespace C0bW3b.Forms
             }
             else
             {
+                Utils.DiscordRPC.UpdatePresence(state: "The fastest way to find vulnurable websites.");
+
                 Thread a = new Thread(() =>
                 {
                     foreach (Scraper.RunnerThread r in Scraper.RunningScrapers)
