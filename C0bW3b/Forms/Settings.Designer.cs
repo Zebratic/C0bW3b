@@ -35,8 +35,8 @@
             this.txtSeperator = new System.Windows.Forms.TextBox();
             this.lblSeperator = new System.Windows.Forms.Label();
             this.gbOutput = new System.Windows.Forms.GroupBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cbUpdateThreadStatus = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbOutput.SuspendLayout();
             this.SuspendLayout();
             // 

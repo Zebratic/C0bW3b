@@ -245,32 +245,39 @@ namespace C0bW3b.Forms
         {
             if (!Running)
             {
-                if (Dorks.Length != 0 && Matches.Length != 0)
+                if (Dorks.Length == 0 || Matches.Length == 0)
                 {
-                    Time = DateTime.Now.ToString("dd-MM-yyyy HH;mm");
-                    Running = true;
-                    LockElements(false);
-                    btnStart.Text = "Stop";
-                    Hits = 0;
-                    Bad = 0;
-                    Retries = 0;
-                    txtHits.Clear();
-                    Scraper.ScrapeHits.Clear();
-                    Scraper.Start(
-                        Convert.ToInt32(numThreads.Value),
-                        cbProxyless.Checked,
-                        cbRegexMatches.Checked,
-                        cbAllowDuplicates.Checked,
-                        cbLogFullURL.Checked,
-                        Convert.ToInt32(numMinMatch.Value),
-                        txtTarget.Text,
-                        cbRecursiveSearch.Checked,
-                        Convert.ToInt32(numRecursiveLimit.Value),
-                        Convert.ToInt32(numUrlLimit.Value)
-                   );
+                    MessageBox.Show("You need to load dorks and matches before you can start the scraper.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else
-                    MessageBox.Show("Dorks or Matches are empty!");
+
+                if (ConfigSystem.config.SearchEngines.Count == 0)
+                {
+                    MessageBox.Show("You need to add at least one search engine before you can start the scraper.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Time = DateTime.Now.ToString("dd-MM-yyyy HH;mm");
+                Running = true;
+                LockElements(false);
+                btnStart.Text = "Stop";
+                Hits = 0;
+                Bad = 0;
+                Retries = 0;
+                txtHits.Clear();
+                Scraper.ScrapeHits.Clear();
+                Scraper.Start(
+                    Convert.ToInt32(numThreads.Value),
+                    cbProxyless.Checked,
+                    cbRegexMatches.Checked,
+                    cbAllowDuplicates.Checked,
+                    cbLogFullURL.Checked,
+                    Convert.ToInt32(numMinMatch.Value),
+                    txtTarget.Text,
+                    cbRecursiveSearch.Checked,
+                    Convert.ToInt32(numRecursiveLimit.Value),
+                    Convert.ToInt32(numUrlLimit.Value)
+               );
             }
             else
             {

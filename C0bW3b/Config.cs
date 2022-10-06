@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using C0bW3b.Forms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -65,7 +66,6 @@ namespace C0bW3b
         public string Seperator = "|";
 
         public Dictionary<string, bool> OutputFormat = new Dictionary<string, bool>();
-
-        
+        public List<SearchEngine> SearchEngines = new List<SearchEngine>();
     }
 }

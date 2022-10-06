@@ -73,6 +73,7 @@
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "C0bW3b";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDoubleClick);
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
             // 
             // picLogo

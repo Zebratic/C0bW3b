@@ -76,6 +76,15 @@ namespace C0bW3b
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        private void lblTitle_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // maximize
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
         private void pnlBar_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
