@@ -123,7 +123,6 @@ namespace C0bW3b
                                                 if (recursivehits.FindAll(x => x.Url == url).Count == 0 && recursiveresults.FindAll(x => x.Url == url).Count == 0)
                                                 {
                                                     recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
-                                                    Console.WriteLine(url);
                                                     if (recursivehits.Count >= urllimit)
                                                         goto stop;
                                                 }
