@@ -30,7 +30,6 @@ namespace C0bW3b
             }
         }
 
-
         public class ScrapeHit
         {
             public string Dork;
@@ -90,11 +89,13 @@ namespace C0bW3b
                         GetThread(id).Proxy = proxy;
                     }
 
-                    GetThread(id).Status = "<<DORKING [GOOGLE]>>";
-                    try { results.AddRange(Google(dork, useragent, proxyless, logfullurl, proxy)); } catch { }
-
-                    GetThread(id).Status = "<<DORKING [BING]>>";
-                    try { results.AddRange(Bing(dork, useragent, proxyless, logfullurl, proxy)); } catch { }
+                    foreach (Forms.SearchEngine engine in ConfigSystem.config.SearchEngines)
+                    {
+                        string name = engine.SearchURL;
+                        try { Uri uri = new Uri(engine.SearchURL); name = uri.Host; } catch { }
+                        GetThread(id).Status = $"<<DORKING [{name.ToUpper()}]>>";
+                        try { results.AddRange(Search(engine, dork, useragent, proxyless, logfullurl, proxy)); } catch { }
+                    }
 
                     if (recursive)
                     {
@@ -216,16 +217,16 @@ namespace C0bW3b
             return html;
         }
 
-        public static List<ScrapeHit> Google(string dork, string useragent, bool proxyless, bool logfullurl, WebProxy proxy = null)
+        public static List<ScrapeHit> Search(Forms.SearchEngine engine, string dork, string useragent, bool proxyless, bool logfullurl, WebProxy proxy = null)
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.google.com/search?q=" + dork);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(engine.SearchURL.Replace("%DORK%", dork));
                 if (!proxyless)
                     request.Proxy = proxy;
 
                 request.UserAgent = useragent;
-                request.Timeout = 2000;
+                request.Timeout = engine.Timeout;
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 string html = reader.ReadToEnd();
@@ -237,10 +238,10 @@ namespace C0bW3b
                 List<ScrapeHit> results = new List<ScrapeHit>();
                 try
                 {
-                    string searches = html.Split(new string[] { "id=\"rso\">" }, StringSplitOptions.None)[1].Split(new string[] { "<div id=\"bottomads\">" }, StringSplitOptions.None)[0];
+                    string searches = html.Split(new string[] { engine.LString }, StringSplitOptions.None)[1].Split(new string[] { engine.RString }, StringSplitOptions.None)[0];
 
                     // get all urls from search results using regex and add to list´
-                    Regex regex = new Regex(@"<a href=""(.*?)"">");
+                    Regex regex = new Regex(engine.URLRegex);
                     foreach (Match match in regex.Matches(searches))
                     {
                         try
@@ -259,47 +260,6 @@ namespace C0bW3b
             }
             catch { Forms.Runner.instance.Retries++; }
 
-            return new List<ScrapeHit>();
-        }
-
-        public static List<ScrapeHit> Bing(string dork, string useragent, bool proxyless, bool logfullurl, WebProxy proxy = null)
-        {
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bing.com/search?q=" + dork);
-                if (!proxyless)
-                    request.Proxy = proxy;
-
-                request.UserAgent = useragent;
-                request.Timeout = 2000;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string html = reader.ReadToEnd();
-                reader.Close();
-                response.Close();
-
-                List<ScrapeHit> results = new List<ScrapeHit>();
-                try
-                {
-                    string searches = html.Split(new string[] { "<ol id=\"b_results\" class=\"\">" }, StringSplitOptions.None)[1].Split(new string[] { "<aside aria-label=\"Additional Results\">" }, StringSplitOptions.None)[0];
-
-                    // get all urls from search results using regex and add to list
-                    Regex regex = new Regex(@"<a href=""(.*?)"">");
-                    foreach (Match match in regex.Matches(searches))
-                    {
-                        try
-                        {
-                            string url = match.Groups[1].Value;
-                            if (url.Contains("https://"))
-                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
-                        }
-                        catch { Forms.Runner.instance.Retries++; }
-                    }
-                }
-                catch { Forms.Runner.instance.Retries++; }
-                return results;
-            }
-            catch { Forms.Runner.instance.Retries++; }
             return new List<ScrapeHit>();
         }
     }

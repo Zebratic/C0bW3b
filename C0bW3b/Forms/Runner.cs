@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -76,23 +77,26 @@ namespace C0bW3b.Forms
         {
             // print data to log
             string output = string.Empty;
-            foreach (string variable in ConfigSystem.config.OutputFormat.Keys)
+            foreach (KeyValuePair<string, bool> variable in ConfigSystem.config.OutputFormat)
             {
                 try
                 {
-                    if (!string.IsNullOrWhiteSpace(output))
-                        output += $" {ConfigSystem.config.Seperator} ";
-
-                    // get variable value
-                    switch (variable.ToUpper())
+                    if (variable.Value)
                     {
-                        case "URL": output += $"{variable.ToUpper()} = https://{scrapeHit.Url.Replace("www.", "")}"; break;
-                        case "DORK": output += $"{variable.ToUpper()} = {scrapeHit.Dork}"; break;
-                        case "HTML": output += $"{variable.ToUpper()} = {scrapeHit.Html}"; break;
-                        case "MATCHES": output += $"{variable.ToUpper()} = {string.Join(", ", scrapeHit.Matches)}"; break;
-                        case "MATCH COUNT": output += $"{variable.ToUpper()} = {scrapeHit.Matches.Count}"; break;
-                        case "PROXY": output += $"{variable.ToUpper()} = {scrapeHit.Proxy.Address}"; break;
-                        case "USER AGENT": output += $"{variable.ToUpper()} = {scrapeHit.UserAgent}"; break;
+                        if (!string.IsNullOrWhiteSpace(output))
+                            output += $" {ConfigSystem.config.Seperator} ";
+
+                        // get variable value
+                        switch (variable.Key.ToUpper())
+                        {
+                            case "URL": output += $"{variable.Key.ToUpper()} = https://{scrapeHit.Url.Replace("www.", "")}"; break;
+                            case "DORK": output += $"{variable.Key.ToUpper()} = {scrapeHit.Dork}"; break;
+                            case "HTML": output += $"{variable.Key.ToUpper()} = {scrapeHit.Html}"; break;
+                            case "MATCHES": output += $"{variable.Key.ToUpper()} = {string.Join(", ", scrapeHit.Matches)}"; break;
+                            case "MATCH COUNT": output += $"{variable.Key.ToUpper()} = {scrapeHit.Matches.Count}"; break;
+                            case "PROXY": output += $"{variable.Key.ToUpper()} = {scrapeHit.Proxy.Address}"; break;
+                            case "USER AGENT": output += $"{variable.Key.ToUpper()} = {scrapeHit.UserAgent}"; break;
+                        }
                     }
                 }
                 catch (Exception ex)
