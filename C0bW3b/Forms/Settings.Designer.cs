@@ -70,6 +70,7 @@
             this.cblistVariables.Size = new System.Drawing.Size(89, 90);
             this.cblistVariables.TabIndex = 22;
             this.cblistVariables.ThreeDCheckBoxes = true;
+            this.cblistVariables.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cblistVariables_MouseClick);
             this.cblistVariables.DragDrop += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragDrop);
             this.cblistVariables.DragOver += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragOver);
             this.cblistVariables.Leave += new System.EventHandler(this.cblistVariables_Leave);

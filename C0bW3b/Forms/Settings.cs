@@ -59,6 +59,7 @@ namespace C0bW3b.Forms
         {
             if (this.cblistVariables.SelectedItem == null) return;
             this.cblistVariables.DoDragDrop(this.cblistVariables.SelectedItem, DragDropEffects.Move);
+            ConfigSystem.SaveConfig();
         }
 
         private void cblistVariables_DragOver(object sender, DragEventArgs e) => e.Effect = DragDropEffects.Move;
@@ -69,9 +70,7 @@ namespace C0bW3b.Forms
             int index = this.cblistVariables.IndexFromPoint(point);
             if (index < 0) index = this.cblistVariables.Items.Count - 1;
             object data = cblistVariables.SelectedItem;
-            if (cblistVariables.SelectedIndex == index)
-                cblistVariables.SetItemChecked(index, !cblistVariables.GetItemChecked(index));
-            else
+            if (cblistVariables.SelectedIndex != index)
             {
                 // check if item is checked
                 bool isChecked = cblistVariables.GetItemChecked(cblistVariables.SelectedIndex);
@@ -79,6 +78,7 @@ namespace C0bW3b.Forms
                 this.cblistVariables.Items.Insert(index, data);
                 this.cblistVariables.SetItemChecked(index, isChecked);
             }
+            ConfigSystem.SaveConfig();
         }
 
         private void cblistVariables_Leave(object sender, System.EventArgs e)
@@ -86,10 +86,37 @@ namespace C0bW3b.Forms
             ConfigSystem.config.OutputFormat.Clear();
             for (int i = 0; i < cblistVariables.Items.Count; i++)
                 ConfigSystem.config.OutputFormat.Add(cblistVariables.Items[i].ToString(), cblistVariables.GetItemCheckState(i) == CheckState.Checked ? true : false);
+
+            ConfigSystem.SaveConfig();
+        }
+
+        private void cblistVariables_MouseClick(object sender, MouseEventArgs e)
+        {
+            // get mouse position
+            Point mousePos = cblistVariables.PointToClient(Cursor.Position);
+
+            // get index
+            int index = cblistVariables.IndexFromPoint(mousePos);
+
+            // check if index is valid
+            MessageBox.Show(index.ToString());
+
+            // flip the check state
+            cblistVariables.SetItemChecked(index, !cblistVariables.GetItemChecked(index));
+
+            ConfigSystem.SaveConfig();
         }
         #endregion
 
-        private void cbUpdateThreadStatus_CheckedChanged(object sender, System.EventArgs e) => ConfigSystem.config.UpdateThreadStatus = cbUpdateThreadStatus.Checked;
-        private void txtSeperator_TextChanged(object sender, System.EventArgs e) => ConfigSystem.config.Seperator = txtSeperator.Text;
+        private void cbUpdateThreadStatus_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.UpdateThreadStatus = cbUpdateThreadStatus.Checked;
+            ConfigSystem.SaveConfig();
+        }
+        private void txtSeperator_TextChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.Seperator = txtSeperator.Text;
+            ConfigSystem.SaveConfig();
+        }
     }
 }
