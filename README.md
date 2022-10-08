@@ -1,5 +1,5 @@
-# C0bW3b
-## ⚠BE AWARE, COMPILING FROM SOURCE NOT RECOMMENDED, USE STABLE BUILD UNDER RELEASES⚠
+## ⚠COMPILING FROM SOURCE IS NOT RECOMMENDED⚠
+# Download the [Latest Build Here](https://github.com/Zebratic/C0bW3b/releases/download/Release/C0bW3b.zip)
 
 <img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
 <h3>
