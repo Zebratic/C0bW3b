@@ -9,22 +9,14 @@
 </h3>
 <h3>✔ This project is still actively being developed!</h3>
 
-# Pages Overview
-## Runner
-![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v2_runner.png?raw=true)
-
-## Hits
-- Not finished
-
-## Settings
-![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v2_settings.png?raw=true)
-
-## Plugins
-- Not finished
-
-## Engines
-- Not finished
-
+# Tab Overview
+|Tab|Description|
+|---|---|
+|<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/runner_tab.png?raw=true" style="height: auto; width: 100%;"/>|<h1>Runner</h1><h3>This is the main tab where you will be spending the most time on the software. This is where you start/stop the web crawler, and change your common settings.</h3>|
+|<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/hits_tab.png?raw=true" style="height: auto; width: 100%;"/>|<h1>Hits</h1><h3>This tab is for viewing your results in a cleaner dataset, and you will soon be able to do more functions with this tab, however, the current state of this tab, is only for viewing previous results.</h3>|
+|<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/settings_tab.png?raw=true" style="height: auto; width: 100%;"/>|<h1>Settings</h1><h3>This tab is your settings tab, this contains theming, output settings, and other configurable settings that you normally only change a few times.</h3>|
+|<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/plugins_tab.png?raw=true" style="height: auto; width: 100%;"/>|<h1>Plugins</h1><h3>This tab has currently not been made yet, however, it will show a list of loaded plugins, together with some documentation on how plugins will work and interract with the software.</h3>|
+|<img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/engines_tab.png?raw=true" style="height: auto; width: 100%;"/>|<h1>Engines</h1><h3>This tab is where you can manage the search engines used, for a wider range of results around the web.</h3>|
 
 # Installation
 1. Head over to the releases and download the latest build.
@@ -40,7 +32,7 @@
 ## Lists
 There is 3 different type of lists:
 - Dorks
-  - A Dork list is the terms that C0bW3b will use to search for sites, its practically what it will google for.
+  - A Dork list is the terms that C0bW3b will use to search for sites, its practically what it will search for.
 - Matches
   - A Match list is what all the result sites that are found will be checked against.
   - An example would be if a site has some text where it says `Buy Now`, and you have that exact text in your match list, it will flag that site as a Hit.
@@ -78,13 +70,21 @@ Such as:
   - This number is the limit of how many links the software can maximum gather in a recursive search. (*This is to prevent mass spam of random links*) 
 
 ## Other Settings
+- Theming
+  - (*Theming is currently not available to change from within the software, however **SOME** values are able to be changed directly from the config*) > However, this is not recommended
+- General
+  - Update Thread Status
+    - This setting will allow you to **disable** updating the threads status on the **Runner's tab**. (*This can improve performance on some systems, or on big deep searches*)
+  - Auto Save
+    - This setting will allow the software to automatically save your settings with a set interval.
+  - Auto Save Interval
+    - This value will determine the Auto Save interval in seconds.
 - Output
   - Output Format
     - This is the variables that will be printed in the **output log**, that is displayed on the **Runner's tab**. You can also rearrange the variables by drag-dropping to your liking.
   - Seperator
     - This string of text is what gets printed in between the selected variables in the **Output Format**.
-  - Update Thread Status
-    - This setting will allow you to **disable** updating the threads status on the **Runner's tab**. (*This can improve performance on some systems, or on big deep searches*)
+  
 
 # Todo
 - [x] Target Search (Replaces `%ITEM%` with input in Target's text field)
@@ -100,7 +100,7 @@ Such as:
 ## Search Engines:
 - [x] Bing
 - [x] Google (*Gives Captcha without proxies*)
-- [x] Custom engines can be added on the Engines Tab
+- [x] Custom engines can now be added on the Engines Tab
 
 # Donate
 If you like this software, consider making a donation to the developer. Thank you!
