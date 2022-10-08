@@ -1,4 +1,5 @@
 {
+  "Threads": 100,
   "AllowDuplicates": false,
   "LogFullUrl": false,
   "MinimumMatches": 5,
@@ -6,7 +7,8 @@
   "RecursiveLimit": 3,
   "UrlLimit": 200,
   "UpdateThreadStatus": true,
-  "Seperator": "|",
+  "AutoSave": true,
+  "AutoSaveInterval": 10,
   "OutputFormat": {
     "Url": true,
     "Dork": false,
@@ -15,6 +17,16 @@
     "User Agent": false,
     "Proxy": false,
     "Engine": false
+  },
+  "Seperator": "|",
+  "CurrentTheme": {
+    "Background1": "25, 25, 25",
+    "Background2": "17, 17, 17",
+    "ForeColor1": "White",
+    "ForeColor2": "0, 150, 255",
+    "Success": "Green",
+    "Error": "Red",
+    "Warning": "255, 255, 128"
   },
   "SearchEngines": [
     {
