@@ -1,13 +1,14 @@
-## ⚠COMPILING FROM SOURCE IS NOT RECOMMENDED⚠
-# Download the [Latest Build Here](https://github.com/Zebratic/C0bW3b/releases/download/Release/C0bW3b.zip)
-
 <img src="https://github.com/Zebratic/C0bW3b/blob/main/imgs/banner.png?raw=true"/>
 <h3>
- A web crawler that looks for targetted sites using a dork list with a match list.
+ 🕷} A web crawler that looks for sites using a dork list with a match list.
  
- Can be used to find vulnurable websites that have exposed strings, or to find sites that sell a specific item.
+ 🕸} Can be used to find vulnurable websites that contains specific keywords.
+ 
+ |⚠ Warning ⚠|
+ |---|
+ |COMPILING FROM SOURCE IS NOT RECOMMENDED|
+ |Download the [Latest Build Here](https://github.com/Zebratic/C0bW3b/releases/download/Release/C0bW3b.zip)|
 </h3>
-<h3>✔ This project is still actively being developed!</h3>
 
 # Tab Overview
 |Tab|Description|
