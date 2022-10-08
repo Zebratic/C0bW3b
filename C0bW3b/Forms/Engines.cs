@@ -93,6 +93,10 @@ namespace C0bW3b.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             // save the new engine
+            bool update = false;
+            if (ConfigSystem.config.SearchEngines[cbSearchEngines.SelectedIndex].SearchURL != txtSearchURL.Text)
+                update = true;
+
             ConfigSystem.config.SearchEngines[cbSearchEngines.SelectedIndex].SearchURL = txtSearchURL.Text;
             ConfigSystem.config.SearchEngines[cbSearchEngines.SelectedIndex].LString = txtLString.Text;
             ConfigSystem.config.SearchEngines[cbSearchEngines.SelectedIndex].RString = txtRString.Text;
@@ -100,6 +104,14 @@ namespace C0bW3b.Forms
             ConfigSystem.config.SearchEngines[cbSearchEngines.SelectedIndex].Timeout = Convert.ToInt32(numTimeout.Value);
 
             ConfigSystem.SaveConfig();
+
+            if (update)
+            {
+                int index = cbSearchEngines.SelectedIndex;
+                UpdateEngines();
+                cbSearchEngines.SelectedIndex = index;
+            }
+
             MessageBox.Show($"Successfully saved {cbSearchEngines.SelectedItem}!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

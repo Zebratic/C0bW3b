@@ -64,13 +64,13 @@
             "Matches",
             "Match Count",
             "User Agent",
-            "Proxy"});
+            "Proxy",
+            "Engine"});
             this.cblistVariables.Location = new System.Drawing.Point(12, 32);
             this.cblistVariables.Name = "cblistVariables";
-            this.cblistVariables.Size = new System.Drawing.Size(89, 90);
+            this.cblistVariables.Size = new System.Drawing.Size(89, 105);
             this.cblistVariables.TabIndex = 22;
             this.cblistVariables.ThreeDCheckBoxes = true;
-            this.cblistVariables.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cblistVariables_MouseClick);
             this.cblistVariables.DragDrop += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragDrop);
             this.cblistVariables.DragOver += new System.Windows.Forms.DragEventHandler(this.cblistVariables_DragOver);
             this.cblistVariables.Leave += new System.EventHandler(this.cblistVariables_Leave);
@@ -111,7 +111,7 @@
             this.gbOutput.ForeColor = System.Drawing.Color.White;
             this.gbOutput.Location = new System.Drawing.Point(12, 12);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(244, 131);
+            this.gbOutput.Size = new System.Drawing.Size(244, 148);
             this.gbOutput.TabIndex = 25;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";

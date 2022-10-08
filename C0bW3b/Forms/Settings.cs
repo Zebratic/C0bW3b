@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace C0bW3b.Forms
@@ -28,25 +29,26 @@ namespace C0bW3b.Forms
             Match Count
             User Agent
             Proxy
+            Engine
             */
 
+            string[] outputs = { "Url", "Dork", "Matches", "Match Count", "User Agent", "Proxy", "Engine" };
+
             cblistVariables.Items.Clear();
-            int i = 0;
             foreach (var item in ConfigSystem.config.OutputFormat)
             {
-                if (item.Key == "Url" ||
-                    item.Key == "Dork" ||
-                    item.Key == "Matches" ||
-                    item.Key == "Match Count" ||
-                    item.Key == "User Agent" ||
-                    item.Key == "Proxy")
+                if (outputs.Contains(item.Key))
                 {
-                    // get index
+                    System.Console.WriteLine(item.Key + " : " + item.Value);
                     cblistVariables.Items.Add(item.Key, item.Value);
                 }
-
-                i++;
             }
+
+            // loop all added outputs, and add if the list dont contain all outputs, add the missing
+            foreach (var item in outputs)
+                if (!ConfigSystem.config.OutputFormat.ContainsKey(item))
+                    ConfigSystem.config.OutputFormat.Add(item, false);
+
 
             // setup tooltips
             toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
@@ -86,23 +88,6 @@ namespace C0bW3b.Forms
             ConfigSystem.config.OutputFormat.Clear();
             for (int i = 0; i < cblistVariables.Items.Count; i++)
                 ConfigSystem.config.OutputFormat.Add(cblistVariables.Items[i].ToString(), cblistVariables.GetItemCheckState(i) == CheckState.Checked ? true : false);
-
-            ConfigSystem.SaveConfig();
-        }
-
-        private void cblistVariables_MouseClick(object sender, MouseEventArgs e)
-        {
-            // get mouse position
-            Point mousePos = cblistVariables.PointToClient(Cursor.Position);
-
-            // get index
-            int index = cblistVariables.IndexFromPoint(mousePos);
-
-            // check if index is valid
-            MessageBox.Show(index.ToString());
-
-            // flip the check state
-            cblistVariables.SetItemChecked(index, !cblistVariables.GetItemChecked(index));
 
             ConfigSystem.SaveConfig();
         }

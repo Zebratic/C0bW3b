@@ -38,8 +38,9 @@ namespace C0bW3b
             public List<string> Matches = new List<string>();
             public WebProxy Proxy;
             public string UserAgent;
+            public string Engine;
 
-            public ScrapeHit(string dork, string url, string html, List<string> matches, WebProxy proxy, string userAgent)
+            public ScrapeHit(string dork, string url, string html, List<string> matches, WebProxy proxy, string userAgent, string engine)
             {
                 this.Dork = dork;
                 this.Url = url;
@@ -51,7 +52,8 @@ namespace C0bW3b
                     this.Matches = new List<string>();
 
                 this.Proxy = proxy;
-                UserAgent = userAgent;
+                this.UserAgent = userAgent;
+                this.Engine = engine;
             }
         }
 
@@ -122,7 +124,7 @@ namespace C0bW3b
                                             {
                                                 if (recursivehits.FindAll(x => x.Url == url).Count == 0 && recursiveresults.FindAll(x => x.Url == url).Count == 0)
                                                 {
-                                                    recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
+                                                    recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, result.Engine));
                                                     if (recursivehits.Count >= urllimit)
                                                         goto stop;
                                                 }
@@ -248,7 +250,11 @@ namespace C0bW3b
                             string url = match.Groups[1].Value;
 
                             if (url.Contains("https://"))
-                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent));
+                            {
+                                string name = engine.SearchURL;
+                                try { Uri uri = new Uri(engine.SearchURL); name = uri.Host; } catch { }
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, name.ToUpper()));
+                            }
                         }
                         catch { Forms.Runner.instance.Retries++; }
                     }

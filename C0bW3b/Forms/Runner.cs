@@ -96,6 +96,7 @@ namespace C0bW3b.Forms
                             case "MATCH COUNT": output += $"{variable.Key.ToUpper()} = {scrapeHit.Matches.Count}"; break;
                             case "PROXY": output += $"{variable.Key.ToUpper()} = {scrapeHit.Proxy.Address}"; break;
                             case "USER AGENT": output += $"{variable.Key.ToUpper()} = {scrapeHit.UserAgent}"; break;
+                            case "ENGINE": output += $"{variable.Key.ToUpper()} = {scrapeHit.Engine}"; break;
                         }
                     }
                 }
