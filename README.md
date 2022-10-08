@@ -94,25 +94,13 @@ Such as:
 - [ ] Plugin Support
 - [x] Recursive Searches (Deep scan on websites, Find Urls in Urls...)
 - [x] New UI
-- [ ] Hits database tab
-- [ ] Engines tab (Custom search engines)
+- [x] Hits database tab (WIP)
+- [x] Engines tab (Custom search engines)
 
-## Search Engines: (Will be customizable in Engines tab)
+## Search Engines:
 - [x] Bing
 - [x] Google (*Gives Captcha without proxies*)
-- [ ] DuckDuckGo
-- [ ] Baidu
-- [ ] Yahoo!
-- [ ] Ask.com
-- [ ] Yandex
-- [ ] Naver
-
-
-# Legacy Builds
-- You can always download older versions of C0bW3b, but I would always recommend running the latest build to minimize most issues and bugs in previous versions.
-## V1
-![Overview](https://github.com/Zebratic/C0bW3b/blob/main/imgs/C0bW3b_v1.png?raw=true)
-
+- [x] Custom engines can be added on the Engines Tab
 
 # Donate
 If you like this software, consider making a donation to the developer. Thank you!
