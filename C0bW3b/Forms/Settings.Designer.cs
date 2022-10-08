@@ -37,7 +37,16 @@
             this.gbOutput = new System.Windows.Forms.GroupBox();
             this.cbUpdateThreadStatus = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.gbGeneral = new System.Windows.Forms.GroupBox();
+            this.numAutoSaveInterval = new System.Windows.Forms.NumericUpDown();
+            this.lblMinMatch = new System.Windows.Forms.Label();
+            this.cbAutoSave = new System.Windows.Forms.CheckBox();
+            this.gbTheme = new System.Windows.Forms.GroupBox();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.gbOutput.SuspendLayout();
+            this.gbGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).BeginInit();
+            this.gbTheme.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOutputFormat
@@ -81,7 +90,7 @@
             this.txtSeperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.txtSeperator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSeperator.ForeColor = System.Drawing.Color.White;
-            this.txtSeperator.Location = new System.Drawing.Point(110, 32);
+            this.txtSeperator.Location = new System.Drawing.Point(12, 162);
             this.txtSeperator.Name = "txtSeperator";
             this.txtSeperator.Size = new System.Drawing.Size(55, 20);
             this.txtSeperator.TabIndex = 23;
@@ -93,7 +102,7 @@
             this.lblSeperator.AutoSize = true;
             this.lblSeperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblSeperator.ForeColor = System.Drawing.Color.White;
-            this.lblSeperator.Location = new System.Drawing.Point(107, 16);
+            this.lblSeperator.Location = new System.Drawing.Point(9, 146);
             this.lblSeperator.Name = "lblSeperator";
             this.lblSeperator.Size = new System.Drawing.Size(56, 13);
             this.lblSeperator.TabIndex = 24;
@@ -101,17 +110,17 @@
             // 
             // gbOutput
             // 
+            this.gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.gbOutput.Controls.Add(this.cbUpdateThreadStatus);
             this.gbOutput.Controls.Add(this.lblOutputFormat);
             this.gbOutput.Controls.Add(this.lblSeperator);
             this.gbOutput.Controls.Add(this.cblistVariables);
             this.gbOutput.Controls.Add(this.txtSeperator);
             this.gbOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbOutput.ForeColor = System.Drawing.Color.White;
-            this.gbOutput.Location = new System.Drawing.Point(12, 12);
+            this.gbOutput.Location = new System.Drawing.Point(601, 12);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(244, 148);
+            this.gbOutput.Size = new System.Drawing.Size(109, 193);
             this.gbOutput.TabIndex = 25;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";
@@ -124,7 +133,7 @@
             this.cbUpdateThreadStatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbUpdateThreadStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbUpdateThreadStatus.ForeColor = System.Drawing.Color.White;
-            this.cbUpdateThreadStatus.Location = new System.Drawing.Point(110, 67);
+            this.cbUpdateThreadStatus.Location = new System.Drawing.Point(6, 14);
             this.cbUpdateThreadStatus.Name = "cbUpdateThreadStatus";
             this.cbUpdateThreadStatus.Size = new System.Drawing.Size(128, 17);
             this.cbUpdateThreadStatus.TabIndex = 25;
@@ -132,13 +141,114 @@
             this.cbUpdateThreadStatus.UseVisualStyleBackColor = false;
             this.cbUpdateThreadStatus.CheckedChanged += new System.EventHandler(this.cbUpdateThreadStatus_CheckedChanged);
             // 
+            // gbGeneral
+            // 
+            this.gbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.gbGeneral.Controls.Add(this.numAutoSaveInterval);
+            this.gbGeneral.Controls.Add(this.lblMinMatch);
+            this.gbGeneral.Controls.Add(this.cbUpdateThreadStatus);
+            this.gbGeneral.Controls.Add(this.cbAutoSave);
+            this.gbGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbGeneral.ForeColor = System.Drawing.Color.White;
+            this.gbGeneral.Location = new System.Drawing.Point(716, 12);
+            this.gbGeneral.Name = "gbGeneral";
+            this.gbGeneral.Size = new System.Drawing.Size(244, 82);
+            this.gbGeneral.TabIndex = 26;
+            this.gbGeneral.TabStop = false;
+            this.gbGeneral.Text = "General";
+            // 
+            // numAutoSaveInterval
+            // 
+            this.numAutoSaveInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.numAutoSaveInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numAutoSaveInterval.ForeColor = System.Drawing.Color.White;
+            this.numAutoSaveInterval.Location = new System.Drawing.Point(109, 50);
+            this.numAutoSaveInterval.Maximum = new decimal(new int[] {
+            300000,
+            0,
+            0,
+            0});
+            this.numAutoSaveInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numAutoSaveInterval.Name = "numAutoSaveInterval";
+            this.numAutoSaveInterval.Size = new System.Drawing.Size(64, 20);
+            this.numAutoSaveInterval.TabIndex = 26;
+            this.numAutoSaveInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numAutoSaveInterval.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numAutoSaveInterval.ValueChanged += new System.EventHandler(this.numAutoSaveInterval_ValueChanged);
+            // 
+            // lblMinMatch
+            // 
+            this.lblMinMatch.AutoSize = true;
+            this.lblMinMatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.lblMinMatch.ForeColor = System.Drawing.Color.White;
+            this.lblMinMatch.Location = new System.Drawing.Point(3, 52);
+            this.lblMinMatch.Name = "lblMinMatch";
+            this.lblMinMatch.Size = new System.Drawing.Size(222, 13);
+            this.lblMinMatch.TabIndex = 27;
+            this.lblMinMatch.Text = "Auto Save Interval:                           seconds.";
+            // 
+            // cbAutoSave
+            // 
+            this.cbAutoSave.AutoSize = true;
+            this.cbAutoSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.cbAutoSave.Checked = true;
+            this.cbAutoSave.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAutoSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbAutoSave.ForeColor = System.Drawing.Color.White;
+            this.cbAutoSave.Location = new System.Drawing.Point(6, 32);
+            this.cbAutoSave.Name = "cbAutoSave";
+            this.cbAutoSave.Size = new System.Drawing.Size(73, 17);
+            this.cbAutoSave.TabIndex = 25;
+            this.cbAutoSave.Text = "Auto Save";
+            this.cbAutoSave.UseVisualStyleBackColor = false;
+            this.cbAutoSave.CheckedChanged += new System.EventHandler(this.cbAutoSave_CheckedChanged);
+            // 
+            // gbTheme
+            // 
+            this.gbTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.gbTheme.Controls.Add(this.lblWarning);
+            this.gbTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbTheme.ForeColor = System.Drawing.Color.White;
+            this.gbTheme.Location = new System.Drawing.Point(12, 12);
+            this.gbTheme.Name = "gbTheme";
+            this.gbTheme.Size = new System.Drawing.Size(583, 515);
+            this.gbTheme.TabIndex = 28;
+            this.gbTheme.TabStop = false;
+            this.gbTheme.Text = "Theme";
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Location = new System.Drawing.Point(3, 16);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(577, 496);
+            this.lblWarning.TabIndex = 2;
+            this.lblWarning.Text = "⚠️ Theming is not done yet ⚠️";
+            this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(973, 539);
+            this.Controls.Add(this.gbTheme);
+            this.Controls.Add(this.gbGeneral);
             this.Controls.Add(this.gbOutput);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -147,6 +257,10 @@
             this.Text = "C0bW3b";
             this.gbOutput.ResumeLayout(false);
             this.gbOutput.PerformLayout();
+            this.gbGeneral.ResumeLayout(false);
+            this.gbGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).EndInit();
+            this.gbTheme.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -160,6 +274,12 @@
         private System.Windows.Forms.GroupBox gbOutput;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox cbUpdateThreadStatus;
+        private System.Windows.Forms.GroupBox gbGeneral;
+        private System.Windows.Forms.CheckBox cbAutoSave;
+        private System.Windows.Forms.NumericUpDown numAutoSaveInterval;
+        private System.Windows.Forms.Label lblMinMatch;
+        private System.Windows.Forms.GroupBox gbTheme;
+        private System.Windows.Forms.Label lblWarning;
     }
 }
 

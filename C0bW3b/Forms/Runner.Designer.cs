@@ -208,7 +208,7 @@
             this.numThreads.TabIndex = 5;
             this.numThreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numThreads.Value = new decimal(new int[] {
-            10,
+            100,
             0,
             0,
             0});

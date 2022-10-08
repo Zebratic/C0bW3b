@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="UserAgents.cs" />
     <Compile Include="Utils\DiscordRPC.cs" />
+    <Compile Include="Utils\Theme.cs" />
     <EmbeddedResource Include="Forms\Engines.resx">
       <DependentUpon>Engines.cs</DependentUpon>
     </EmbeddedResource>

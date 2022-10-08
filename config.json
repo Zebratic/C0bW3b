@@ -1,0 +1,70 @@
+{
+  "AllowDuplicates": false,
+  "LogFullUrl": false,
+  "MinimumMatches": 5,
+  "RecursiveSearch": true,
+  "RecursiveLimit": 3,
+  "UrlLimit": 200,
+  "UpdateThreadStatus": true,
+  "Seperator": "|",
+  "OutputFormat": {
+    "Url": true,
+    "Dork": false,
+    "Matches": false,
+    "Match Count": true,
+    "User Agent": false,
+    "Proxy": false,
+    "Engine": false
+  },
+  "SearchEngines": [
+    {
+      "SearchURL": "https://google.com/search?q=%DORK%",
+      "LString": "id=\"rso\">",
+      "RString": "<div id=\"bottomads\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 2000
+    },
+    {
+      "SearchURL": "https://bing.com/search?q=%DORK%",
+      "LString": "<ol id=\"b_results\" class=\"\">",
+      "RString": "<aside aria-label=\"Additional Results\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 3000
+    },
+    {
+      "SearchURL": "https://duckduckgo.com/?q=%DORK%",
+      "LString": "<div id=\"links\" class=\"results js-results\">",
+      "RString": "<div class=\"results--sidebar js-results-sidebar\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 5000
+    },
+    {
+      "SearchURL": "https://yandex.com/search/?text=%DORK%",
+      "LString": "<ul class=\"serp-list serp-list_left_yes\" id=\"search-result\"",
+      "RString": "<div class=\"pager-counter i-bem\" data-bem=\"",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 5000
+    },
+    {
+      "SearchURL": "https://swisscows.com/en/web?query=%DORK%",
+      "LString": "<div class=\"web-results\">",
+      "RString": "<footer class=\"footer\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 5000
+    },
+    {
+      "SearchURL": "https://gibiru.com/results.html?q=%DORK%",
+      "LString": "<div class=\"gsc-control-cse gsc-control-cse-en\">i",
+      "RString": "<footer class=\"mastfoot text-center\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 5000
+    },
+    {
+      "SearchURL": "https://onesearch.com/yhs/search?p=%DORK%",
+      "LString": "<div id=\"results\">",
+      "RString": "<div id=\"ft_wrapper\">",
+      "URLRegex": "href=\"(.*?)\"",
+      "Timeout": 5000
+    }
+  ]
+}

@@ -17,43 +17,34 @@ namespace C0bW3b.Forms
             InitializeComponent();
             instance = this;
 
-            // SETTINGS //
-            // check off the default output format
-            //cblistVariables.SetItemChecked(0, true); // URL
-            //cblistVariables.SetItemChecked(3, true); // MATCH COUNT
+            // setup tooltips
+            toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
+            toolTip.SetToolTip(lblSeperator, "Add a new format.");
+            toolTip.ShowAlways = true;
 
-            /*
-            Url
-            Dork
-            Matches
-            Match Count
-            User Agent
-            Proxy
-            Engine
-            */
 
+            // OUTPUT SETTINGS
             string[] outputs = { "Url", "Dork", "Matches", "Match Count", "User Agent", "Proxy", "Engine" };
-
             cblistVariables.Items.Clear();
             foreach (var item in ConfigSystem.config.OutputFormat)
-            {
                 if (outputs.Contains(item.Key))
-                {
-                    System.Console.WriteLine(item.Key + " : " + item.Value);
                     cblistVariables.Items.Add(item.Key, item.Value);
-                }
-            }
 
             // loop all added outputs, and add if the list dont contain all outputs, add the missing
             foreach (var item in outputs)
                 if (!ConfigSystem.config.OutputFormat.ContainsKey(item))
                     ConfigSystem.config.OutputFormat.Add(item, false);
 
+            txtSeperator.Text = ConfigSystem.config.Seperator;
 
-            // setup tooltips
-            toolTip.SetToolTip(lblOutputFormat, "You can change the formats order by dragging them around.");
-            toolTip.SetToolTip(lblSeperator, "Add a new format.");
-            toolTip.ShowAlways = true;
+
+            // GENERAL SETTINGS
+            cbUpdateThreadStatus.Checked = ConfigSystem.config.UpdateThreadStatus;
+            cbAutoSave.Checked = ConfigSystem.config.AutoSave;
+            numAutoSaveInterval.Value = ConfigSystem.config.AutoSaveInterval;
+
+            // THEME SETTINGS
+
         }
 
         #region Output Format Reorder system
@@ -98,9 +89,23 @@ namespace C0bW3b.Forms
             ConfigSystem.config.UpdateThreadStatus = cbUpdateThreadStatus.Checked;
             ConfigSystem.SaveConfig();
         }
+
         private void txtSeperator_TextChanged(object sender, System.EventArgs e)
         {
             ConfigSystem.config.Seperator = txtSeperator.Text;
+            ConfigSystem.SaveConfig();
+        }
+
+        private void cbAutoSave_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.AutoSave = cbAutoSave.Checked;
+            ConfigSystem.SaveConfig();
+        }
+
+        private void numAutoSaveInterval_ValueChanged(object sender, System.EventArgs e)
+        {
+            try { Main.instance.AutoSaveTimer.Interval = (int)numAutoSaveInterval.Value * 1000; } catch { }
+            ConfigSystem.config.AutoSaveInterval = (int)numAutoSaveInterval.Value;
             ConfigSystem.SaveConfig();
         }
     }

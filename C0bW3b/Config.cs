@@ -1,7 +1,9 @@
 ﻿using C0bW3b.Forms;
+using C0bW3b.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,7 +40,8 @@ namespace C0bW3b
                         { "Matches", false },
                         { "Match Count", true },
                         { "User Agent", false },
-                        { "Proxy", false }
+                        { "Proxy", false },
+                        { "Engine", false }
                     };
 
                     SaveConfig();
@@ -54,6 +57,7 @@ namespace C0bW3b
     public class Config
     {
         // RUNNER TAB
+        public int Threads = 100;
         public bool AllowDuplicates = false;
         public bool LogFullUrl = false;
         public int MinimumMatches = 1;
@@ -62,10 +66,19 @@ namespace C0bW3b
         public int UrlLimit = 100;
 
         // SETTINGS TAB
+        // > GENERAL
         public bool UpdateThreadStatus = true;
+        public bool AutoSave = true;
+        public int AutoSaveInterval = 5;
+
+        // > OUTPUT
+        public Dictionary<string, bool> OutputFormat = new Dictionary<string, bool>();
         public string Seperator = "|";
 
-        public Dictionary<string, bool> OutputFormat = new Dictionary<string, bool>();
+        // > THEME
+        public Theme CurrentTheme = new Theme();
+
+        // ENGINES TAB
         public List<SearchEngine> SearchEngines = new List<SearchEngine>();
     }
 }

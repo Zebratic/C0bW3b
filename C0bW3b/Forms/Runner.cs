@@ -39,6 +39,15 @@ namespace C0bW3b.Forms
                 Directory.CreateDirectory(Environment.CurrentDirectory + @"\Proxies");
             if (!Directory.Exists(Environment.CurrentDirectory + @"\Hits"))
                 Directory.CreateDirectory(Environment.CurrentDirectory + @"\Hits");
+
+            // load config settings
+            numThreads.Value = ConfigSystem.config.Threads;
+            cbAllowDuplicates.Checked = ConfigSystem.config.AllowDuplicates;
+            cbLogFullURL.Checked = ConfigSystem.config.LogFullUrl;
+            numMinMatch.Value = ConfigSystem.config.MinimumMatches;
+            cbRecursiveSearch.Checked = ConfigSystem.config.RecursiveSearch;
+            numRecursiveLimit.Value = ConfigSystem.config.RecursiveLimit;
+            numUrlLimit.Value = ConfigSystem.config.UrlLimit;
         }
 
         private void GUI_Load(object sender, EventArgs e) => new Thread(UpdateStats).Start();

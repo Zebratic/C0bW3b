@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -42,7 +43,8 @@
             this.btnHits = new System.Windows.Forms.Button();
             this.btnRunner = new System.Windows.Forms.Button();
             this.pnlPageViewer = new System.Windows.Forms.Panel();
-            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.lblFooter = new System.Windows.Forms.Label();
+            this.AutoSave = new System.Windows.Forms.Timer(this.components);
             this.pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlBar2.SuspendLayout();
@@ -265,8 +267,8 @@
             // 
             // pnlPageViewer
             // 
-            this.pnlPageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlPageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPageViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.pnlPageViewer.Location = new System.Drawing.Point(12, 87);
@@ -274,15 +276,19 @@
             this.pnlPageViewer.Size = new System.Drawing.Size(1213, 460);
             this.pnlPageViewer.TabIndex = 2;
             // 
-            // pnlFooter
+            // lblFooter
             // 
-            this.pnlFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.pnlFooter.Location = new System.Drawing.Point(37, 553);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1163, 23);
-            this.pnlFooter.TabIndex = 3;
+            this.lblFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.lblFooter.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFooter.Location = new System.Drawing.Point(37, 553);
+            this.lblFooter.Name = "lblFooter";
+            this.lblFooter.Size = new System.Drawing.Size(1163, 23);
+            this.lblFooter.TabIndex = 3;
+            this.lblFooter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFooter.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDoubleClick);
+            this.lblFooter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlBar_MouseMove);
             // 
             // Main
             // 
@@ -290,7 +296,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.ClientSize = new System.Drawing.Size(1237, 576);
-            this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.pnlPageViewer);
             this.Controls.Add(this.pnlBar2);
             this.Controls.Add(this.pnlBar);
@@ -318,10 +324,11 @@
         private System.Windows.Forms.Panel pnlBar2;
         private System.Windows.Forms.Button btnRunner;
         private System.Windows.Forms.Panel pnlPageViewer;
-        private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.Button btnHits;
         private System.Windows.Forms.Button btnPlugins;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnEngines;
+        private System.Windows.Forms.Timer AutoSave;
     }
 }

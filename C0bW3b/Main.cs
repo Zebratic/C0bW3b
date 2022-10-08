@@ -21,6 +21,7 @@ namespace C0bW3b
         public Plugins plugins = new Plugins();
         public Engines engines = new Engines();
         public static Main instance;
+        public Timer AutoSaveTimer = new Timer();
 
         public Size OldSize;
         public bool IsSnapped = false;
@@ -34,7 +35,12 @@ namespace C0bW3b
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
 
+            AutoSaveTimer.Tick += AutoSaveTimer_Tick;
+            AutoSaveTimer.Start();
+
             InitializeForms();
+
+            UpdateTheme();
         }
 
         #region Form Initializer
@@ -137,7 +143,7 @@ namespace C0bW3b
             ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
             rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
             e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
-            pnlFooter.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlFooter.Width, pnlFooter.Height * 2, 20, 20));
+            lblFooter.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, lblFooter.Width, lblFooter.Height * 2, 20, 20));
         }
 
         protected override void WndProc(ref Message m)
@@ -213,13 +219,14 @@ namespace C0bW3b
 
         public void HighlightButton()
         {
-            btnRunner.ForeColor = CurrentPage == Page.Runner ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
-            btnHits.ForeColor = CurrentPage == Page.Hits ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
-            btnSettings.ForeColor = CurrentPage == Page.Settings ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
-            btnPlugins.ForeColor = CurrentPage == Page.Plugins ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
-            btnEngines.ForeColor = CurrentPage == Page.Engines ? Color.FromArgb(0, 150, 255) : Color.FromArgb(255, 255, 255);
+            btnRunner.ForeColor = CurrentPage == Page.Runner ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnHits.ForeColor = CurrentPage == Page.Hits ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnSettings.ForeColor = CurrentPage == Page.Settings ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnPlugins.ForeColor = CurrentPage == Page.Plugins ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnEngines.ForeColor = CurrentPage == Page.Engines ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
 
             UpdatePage();
+            UpdateTheme();
         }
         #endregion
 
@@ -275,16 +282,52 @@ namespace C0bW3b
             }
         }
         #endregion
-    }
 
-    #region Pages
-    public enum Page
-    {
-        Runner,
-        Hits,
-        Settings,
-        Plugins,
-        Engines
+        private void AutoSaveTimer_Tick(object sender, EventArgs e)
+        {
+            if (ConfigSystem.config.AutoSave)
+            {
+                PrintFooter("Auto Saved Config", ConfigSystem.config.CurrentTheme.Success);
+                ConfigSystem.SaveConfig();
+            }
+        }
+
+        public void PrintFooter(string text, Color color)
+        {
+            lblFooter.ForeColor = color;
+            lblFooter.Text = $"[{DateTime.Now.ToString("HH:mm:ss")}] {text}";
+        }
+
+        public void UpdateTheme()
+        {
+            Theme theme = ConfigSystem.config.CurrentTheme;
+
+            // loop all controls, and all panels
+            foreach (Control control in this.Controls)
+            {
+                // blacklist filter
+                if (control.Name == "pnlBar2") continue;
+
+                if (control is Form)
+                {
+                    foreach (Control control2 in control.Controls)
+                        UpdatePanel(control2, theme.Background1);
+                }
+                UpdatePanel(control, theme.Background1);
+            }
+        }
+
+        private void UpdatePanel(Control control, Color color) => control.BackColor = color;
+
+        #region Pages
+        public enum Page
+        {
+            Runner,
+            Hits,
+            Settings,
+            Plugins,
+            Engines
+        }
+        #endregion
     }
-    #endregion
 }
