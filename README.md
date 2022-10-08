@@ -84,7 +84,12 @@ Such as:
     - This is the variables that will be printed in the **output log**, that is displayed on the **Runner's tab**. You can also rearrange the variables by drag-dropping to your liking.
   - Seperator
     - This string of text is what gets printed in between the selected variables in the **Output Format**.
-  
+
+## Engines:
+- [x] Bing
+- [x] Google (*Gives Captcha without proxies*)
+
+(*Custom engines can now be added on the Engines Tab*)
 
 # Todo
 - [x] Target Search (Replaces `%ITEM%` with input in Target's text field)
@@ -96,11 +101,6 @@ Such as:
 - [x] New UI
 - [x] Hits database tab (WIP)
 - [x] Engines tab (Custom search engines)
-
-## Search Engines:
-- [x] Bing
-- [x] Google (*Gives Captcha without proxies*)
-- [x] Custom engines can now be added on the Engines Tab
 
 # Donate
 If you like this software, consider making a donation to the developer. Thank you!
