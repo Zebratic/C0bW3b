@@ -36,6 +36,7 @@ There is 3 different type of lists:
   - A Dork list is the terms that C0bW3b will use to search for sites, its practically what it will search for.
 - Matches
   - A Match list is what all the result sites that are found will be checked against.
+  - Match lists can also be a list of regex expresions, just make sure to check `Matches is regex` option.
   - An example would be if a site has some text where it says `Buy Now`, and you have that exact text in your match list, it will flag that site as a Hit.
 - Proxies
   - A Proxy list is simple, you would have a list of proxies which would be used to search around the web with.
