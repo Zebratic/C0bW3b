@@ -1,5 +1,6 @@
 ﻿using C0bW3b.Forms;
 using C0bW3b.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,18 +30,25 @@ namespace C0bW3b
         public Main()
         {
             InitializeComponent();
+
             HighlightButton();
 
             instance = this;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
 
-            AutoSaveTimer.Tick += AutoSaveTimer_Tick;
-            AutoSaveTimer.Start();
-
             InitializeForms();
 
             UpdateTheme();
+
+            AutoSaveTimer.Tick += AutoSaveTimer_Tick;
+            AutoSaveTimer.Interval = ConfigSystem.config.AutoSaveInterval * 1000;
+            AutoSaveTimer.Start();
+
+            string username = "";
+            try { username = Utils.DiscordRPC.client.CurrentUser.Username; } catch { }
+
+            PrintFooter($"Welcome {(username != "" ? username + "," : ",")} if you are new, please check the documentation on the github repo", ConfigSystem.config.CurrentTheme.Warning);
         }
 
         #region Form Initializer
@@ -174,10 +182,16 @@ namespace C0bW3b
             var response = new WebClient().DownloadString("https://raw.githubusercontent.com/Zebratic/C0bW3b/main/C0bW3b/Properties/AssemblyInfo.cs");
             List<string> AssemblyInfo = new List<string>(response.Split('\n'));
             var LatestVersion = AssemblyInfo[AssemblyInfo.FindIndex(str => str.Contains("[assembly: AssemblyFileVersion"))].Split('"')[1];
-            lblTitle.Text = $"C0bW3b [{CurrentVersion}]";
+            string username = "";
+            try { username = Utils.DiscordRPC.client.CurrentUser.Username; } catch { }
+            lblTitle.Text = $"C0bW3b [{CurrentVersion}] {(username.Length > 0 ? $"~ Welcome {username}!" : "")}";
+            
             if (CurrentVersion != LatestVersion)
+            {
+                lblTitle.Text = $"C0bW3b [{CurrentVersion}] {(username.Length > 0 ? $"~ Welcome {username} ~ Version {LatestVersion} available!" : $"~ Version {LatestVersion} available!")}";
                 if (MessageBox.Show("It seems like you are using a outdated version, would you like to update?", "C0bW3b", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    Process.Start("https://github.com/Zebratic/C0bW3b/");
+                    Process.Start("https://github.com/Zebratic/C0bW3b/releases");
+            }
         }
         private void btnClose_Click(object sender, EventArgs e) => Environment.Exit(0);
         private void btnMaximize_Click(object sender, EventArgs e) => this.WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;

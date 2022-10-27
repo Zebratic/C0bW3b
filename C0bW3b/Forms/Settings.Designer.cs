@@ -43,10 +43,13 @@
             this.cbAutoSave = new System.Windows.Forms.CheckBox();
             this.gbTheme = new System.Windows.Forms.GroupBox();
             this.lblWarning = new System.Windows.Forms.Label();
+            this.gpBlacklist = new System.Windows.Forms.GroupBox();
+            this.txtBlacklist = new System.Windows.Forms.RichTextBox();
             this.gbOutput.SuspendLayout();
             this.gbGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).BeginInit();
             this.gbTheme.SuspendLayout();
+            this.gpBlacklist.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOutputFormat
@@ -110,7 +113,6 @@
             // 
             // gbOutput
             // 
-            this.gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
             this.gbOutput.Controls.Add(this.lblOutputFormat);
             this.gbOutput.Controls.Add(this.lblSeperator);
@@ -118,9 +120,9 @@
             this.gbOutput.Controls.Add(this.txtSeperator);
             this.gbOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbOutput.ForeColor = System.Drawing.Color.White;
-            this.gbOutput.Location = new System.Drawing.Point(601, 12);
+            this.gbOutput.Location = new System.Drawing.Point(12, 12);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(109, 193);
+            this.gbOutput.Size = new System.Drawing.Size(217, 253);
             this.gbOutput.TabIndex = 25;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";
@@ -143,7 +145,6 @@
             // 
             // gbGeneral
             // 
-            this.gbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
             this.gbGeneral.Controls.Add(this.numAutoSaveInterval);
             this.gbGeneral.Controls.Add(this.lblMinMatch);
@@ -151,9 +152,9 @@
             this.gbGeneral.Controls.Add(this.cbAutoSave);
             this.gbGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbGeneral.ForeColor = System.Drawing.Color.White;
-            this.gbGeneral.Location = new System.Drawing.Point(716, 12);
+            this.gbGeneral.Location = new System.Drawing.Point(235, 12);
             this.gbGeneral.Name = "gbGeneral";
-            this.gbGeneral.Size = new System.Drawing.Size(244, 82);
+            this.gbGeneral.Size = new System.Drawing.Size(329, 253);
             this.gbGeneral.TabIndex = 26;
             this.gbGeneral.TabStop = false;
             this.gbGeneral.Text = "General";
@@ -214,16 +215,16 @@
             // 
             // gbTheme
             // 
-            this.gbTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gbTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
             this.gbTheme.Controls.Add(this.lblWarning);
             this.gbTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbTheme.ForeColor = System.Drawing.Color.White;
-            this.gbTheme.Location = new System.Drawing.Point(12, 12);
+            this.gbTheme.Location = new System.Drawing.Point(570, 12);
             this.gbTheme.Name = "gbTheme";
-            this.gbTheme.Size = new System.Drawing.Size(583, 515);
+            this.gbTheme.Size = new System.Drawing.Size(391, 515);
             this.gbTheme.TabIndex = 28;
             this.gbTheme.TabStop = false;
             this.gbTheme.Text = "Theme";
@@ -231,13 +232,44 @@
             // lblWarning
             // 
             this.lblWarning.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lblWarning.Location = new System.Drawing.Point(3, 16);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(577, 496);
+            this.lblWarning.Size = new System.Drawing.Size(385, 496);
             this.lblWarning.TabIndex = 2;
             this.lblWarning.Text = "⚠️ Theming is not done yet ⚠️";
             this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // gpBlacklist
+            // 
+            this.gpBlacklist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gpBlacklist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.gpBlacklist.Controls.Add(this.txtBlacklist);
+            this.gpBlacklist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gpBlacklist.ForeColor = System.Drawing.Color.White;
+            this.gpBlacklist.Location = new System.Drawing.Point(12, 268);
+            this.gpBlacklist.Name = "gpBlacklist";
+            this.gpBlacklist.Size = new System.Drawing.Size(552, 259);
+            this.gpBlacklist.TabIndex = 28;
+            this.gpBlacklist.TabStop = false;
+            this.gpBlacklist.Text = "Blacklisted Url\'s";
+            // 
+            // txtBlacklist
+            // 
+            this.txtBlacklist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.txtBlacklist.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBlacklist.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtBlacklist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBlacklist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlacklist.ForeColor = System.Drawing.Color.White;
+            this.txtBlacklist.Location = new System.Drawing.Point(3, 16);
+            this.txtBlacklist.Name = "txtBlacklist";
+            this.txtBlacklist.Size = new System.Drawing.Size(546, 240);
+            this.txtBlacklist.TabIndex = 1;
+            this.txtBlacklist.Text = "";
+            this.txtBlacklist.WordWrap = false;
+            this.txtBlacklist.TextChanged += new System.EventHandler(this.txtBlacklist_TextChanged);
             // 
             // Settings
             // 
@@ -245,6 +277,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(973, 539);
+            this.Controls.Add(this.gpBlacklist);
             this.Controls.Add(this.gbTheme);
             this.Controls.Add(this.gbGeneral);
             this.Controls.Add(this.gbOutput);
@@ -261,6 +294,7 @@
             this.gbGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).EndInit();
             this.gbTheme.ResumeLayout(false);
+            this.gpBlacklist.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -280,6 +314,8 @@
         private System.Windows.Forms.Label lblMinMatch;
         private System.Windows.Forms.GroupBox gbTheme;
         private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.GroupBox gpBlacklist;
+        private System.Windows.Forms.RichTextBox txtBlacklist;
     }
 }
 

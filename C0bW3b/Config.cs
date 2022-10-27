@@ -80,5 +80,8 @@ namespace C0bW3b
 
         // ENGINES TAB
         public List<SearchEngine> SearchEngines = new List<SearchEngine>();
+
+        // BLACKLIST TAB
+        public string Blacklist = "";
     }
 }

@@ -42,9 +42,12 @@ namespace C0bW3b.Forms
             cbUpdateThreadStatus.Checked = ConfigSystem.config.UpdateThreadStatus;
             cbAutoSave.Checked = ConfigSystem.config.AutoSave;
             numAutoSaveInterval.Value = ConfigSystem.config.AutoSaveInterval;
+            try { Main.instance.AutoSaveTimer.Interval = (int)numAutoSaveInterval.Value * 1000; } catch { }
 
             // THEME SETTINGS
 
+            // BLACKLIST SETTINGS
+            txtBlacklist.Text = ConfigSystem.config.Blacklist;
         }
 
         #region Output Format Reorder system
@@ -106,6 +109,12 @@ namespace C0bW3b.Forms
         {
             try { Main.instance.AutoSaveTimer.Interval = (int)numAutoSaveInterval.Value * 1000; } catch { }
             ConfigSystem.config.AutoSaveInterval = (int)numAutoSaveInterval.Value;
+            ConfigSystem.SaveConfig();
+        }
+
+        private void txtBlacklist_TextChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.Blacklist = txtBlacklist.Text;
             ConfigSystem.SaveConfig();
         }
     }

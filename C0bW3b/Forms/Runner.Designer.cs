@@ -51,13 +51,13 @@
             this.numRecursiveLimit = new System.Windows.Forms.NumericUpDown();
             this.lblRecursiveLimit = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.numUrlLimit = new System.Windows.Forms.NumericUpDown();
+            this.lblUrlLimit = new System.Windows.Forms.Label();
             this.listThreads = new C0bW3b.UIControls.ListViewNF();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Proxy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Dork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.numUrlLimit = new System.Windows.Forms.NumericUpDown();
-            this.lblUrlLimit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinMatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRecursiveLimit)).BeginInit();
@@ -82,7 +82,6 @@
             this.txtHits.TabIndex = 0;
             this.txtHits.Text = "";
             this.txtHits.WordWrap = false;
-            this.txtHits.ZoomFactor = 2F;
             this.txtHits.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.txtHits_LinkClicked);
             // 
             // btnLoadDorks
@@ -388,47 +387,6 @@
             this.splitContainer.SplitterDistance = 628;
             this.splitContainer.TabIndex = 21;
             // 
-            // listThreads
-            // 
-            this.listThreads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.listThreads.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listThreads.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ID,
-            this.Proxy,
-            this.Status,
-            this.Dork});
-            this.listThreads.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listThreads.ForeColor = System.Drawing.Color.White;
-            this.listThreads.FullRowSelect = true;
-            this.listThreads.HideSelection = false;
-            this.listThreads.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.listThreads.Location = new System.Drawing.Point(0, 0);
-            this.listThreads.Name = "listThreads";
-            this.listThreads.Size = new System.Drawing.Size(628, 548);
-            this.listThreads.TabIndex = 1;
-            this.listThreads.UseCompatibleStateImageBehavior = false;
-            this.listThreads.View = System.Windows.Forms.View.Details;
-            // 
-            // ID
-            // 
-            this.ID.Text = "ID";
-            this.ID.Width = 30;
-            // 
-            // Proxy
-            // 
-            this.Proxy.Text = "Proxy";
-            this.Proxy.Width = 80;
-            // 
-            // Status
-            // 
-            this.Status.Text = "Status";
-            this.Status.Width = 300;
-            // 
-            // Dork
-            // 
-            this.Dork.Text = "Dork";
-            this.Dork.Width = 200;
-            // 
             // numUrlLimit
             // 
             this.numUrlLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -470,6 +428,47 @@
             this.lblUrlLimit.Size = new System.Drawing.Size(56, 13);
             this.lblUrlLimit.TabIndex = 23;
             this.lblUrlLimit.Text = "URL Limit:";
+            // 
+            // listThreads
+            // 
+            this.listThreads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.listThreads.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listThreads.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.Proxy,
+            this.Status,
+            this.Dork});
+            this.listThreads.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listThreads.ForeColor = System.Drawing.Color.White;
+            this.listThreads.FullRowSelect = true;
+            this.listThreads.HideSelection = false;
+            this.listThreads.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listThreads.Location = new System.Drawing.Point(0, 0);
+            this.listThreads.Name = "listThreads";
+            this.listThreads.Size = new System.Drawing.Size(628, 548);
+            this.listThreads.TabIndex = 1;
+            this.listThreads.UseCompatibleStateImageBehavior = false;
+            this.listThreads.View = System.Windows.Forms.View.Details;
+            // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            this.ID.Width = 30;
+            // 
+            // Proxy
+            // 
+            this.Proxy.Text = "Proxy";
+            this.Proxy.Width = 80;
+            // 
+            // Status
+            // 
+            this.Status.Text = "Status";
+            this.Status.Width = 300;
+            // 
+            // Dork
+            // 
+            this.Dork.Text = "Dork";
+            this.Dork.Width = 200;
             // 
             // Runner
             // 

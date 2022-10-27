@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace C0bW3b
@@ -15,7 +16,7 @@ namespace C0bW3b
             {
                 ConfigSystem.LoadConfig();
 
-                C0bW3b.Utils.DiscordRPC.Initialize();
+                Utils.DiscordRPC.Initialize();
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

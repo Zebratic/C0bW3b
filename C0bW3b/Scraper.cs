@@ -150,39 +150,42 @@ namespace C0bW3b
                         {
                             try
                             {
-                                GetThread(id).Status = $"<<ANALYSING [{m}/{i}/{results.Count + 1}]>>";
-                                result.Html = AnalyseURL(result);
-
-                                foreach (string match in Forms.Runner.Matches)
+                                if (!ConfigSystem.config.Blacklist.Contains(result.Url.Replace("www.", "").Replace("https://", "").Replace("http://", "")))
                                 {
-                                    string match2 = match.Replace("%ITEM%", itemtarget);
 
-                                    if (!regexmatches)
+                                    GetThread(id).Status = $"<<ANALYSING [{m}/{i}/{results.Count + 1}]>>";
+                                    result.Html = AnalyseURL(result);
+
+                                    foreach (string match in Forms.Runner.Matches)
                                     {
-                                        if (result.Html.Contains(match2))
-                                            result.Matches.Add(match2);
+                                        string match2 = match.Replace("%ITEM%", itemtarget);
+
+                                        if (!regexmatches)
+                                        {
+                                            if (result.Html.Contains(match2))
+                                                result.Matches.Add(match2);
+                                        }
+                                        else
+                                        {
+                                            Regex regex = new Regex(match2);
+                                            foreach (Match rmatch in regex.Matches(result.Html))
+                                                result.Matches.Add(rmatch.Groups[1].Value);
+                                        }
+                                    }
+
+                                    if (result.Matches.Count >= minmatch)
+                                    {
+                                        if (allowduplicates || ScrapeHits.FindAll(x => x.Url == result.Url).Count == 0)
+                                        {
+                                            m++;
+                                            ScrapeHits.Add(result);
+                                            Forms.Runner.instance.Hits++;
+                                            Forms.Runner.instance.AddScrapeHit(result);
+                                        }
                                     }
                                     else
-                                    {
-                                        Regex regex = new Regex(match2);
-                                        foreach (Match rmatch in regex.Matches(result.Html))
-                                            result.Matches.Add(rmatch.Groups[1].Value);
-                                    }
+                                        Forms.Runner.instance.Bad++;
                                 }
-
-                                if (result.Matches.Count >= minmatch)
-                                {
-                                    if (allowduplicates || ScrapeHits.FindAll(x => x.Url == result.Url).Count == 0)
-                                    {
-                                        m++;
-                                        ScrapeHits.Add(result);
-                                        Forms.Runner.instance.Hits++;
-                                        Forms.Runner.instance.AddScrapeHit(result);
-                                    }
-                                }
-                                else
-                                    Forms.Runner.instance.Bad++;
-
                             }
                             catch (Exception ex)
                             {

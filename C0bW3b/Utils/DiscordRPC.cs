@@ -4,18 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace C0bW3b.Utils
 {
     public class DiscordRPC
     {
-        public static DiscordRpcClient client;
+        public static DiscordRpcClient client = new DiscordRpcClient("1026818126681227324");
 
         public static void Initialize()
         {
-            client = new DiscordRpcClient("1026818126681227324");
-
             //Set the logger
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
 
@@ -53,6 +52,16 @@ namespace C0bW3b.Utils
                     LargeImageText = "Zebratic's C0bW3b - Advanced Web Crawler",
                 }
             });
+
+            int timeout = 0;
+            while (client.CurrentUser == null)
+            {
+                timeout++;
+                if (timeout > 20) // 2 seconds
+                    break;
+                else
+                    Thread.Sleep(100);
+            }
         }
 
         public static void UpdatePresence(string details = null, string state = null, Button[] buttons = null, Assets assets = null)
