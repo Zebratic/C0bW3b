@@ -44,6 +44,11 @@ namespace C0bW3b.Forms
             numAutoSaveInterval.Value = ConfigSystem.config.AutoSaveInterval;
             try { Main.instance.AutoSaveTimer.Interval = (int)numAutoSaveInterval.Value * 1000; } catch { }
 
+            cbGarbageCollector.Checked = ConfigSystem.config.GarbageCollector;
+            numGarbageCollectorInterval.Value = ConfigSystem.config.CollectionInterval;
+            try { Main.instance.GarbageCollectorTimer.Interval = (int)numGarbageCollectorInterval.Value * 1000; } catch { }
+            cbLogCollection.Checked = ConfigSystem.config.LogCollection;
+
             // THEME SETTINGS
 
             // BLACKLIST SETTINGS
@@ -109,6 +114,25 @@ namespace C0bW3b.Forms
         {
             try { Main.instance.AutoSaveTimer.Interval = (int)numAutoSaveInterval.Value * 1000; } catch { }
             ConfigSystem.config.AutoSaveInterval = (int)numAutoSaveInterval.Value;
+            ConfigSystem.SaveConfig();
+        }
+
+        private void cbGarbageCollector_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.GarbageCollector = cbGarbageCollector.Checked;
+            ConfigSystem.SaveConfig();
+        }
+        
+        private void numGarbageCollectorInterval_ValueChanged(object sender, System.EventArgs e)
+        {
+            try { Main.instance.GarbageCollectorTimer.Interval = (int)numGarbageCollectorInterval.Value * 1000; } catch { }
+            ConfigSystem.config.CollectionInterval = (int)numGarbageCollectorInterval.Value;
+            ConfigSystem.SaveConfig();
+        }
+
+        private void cbLogCollection_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.LogCollection = cbLogCollection.Checked;
             ConfigSystem.SaveConfig();
         }
 

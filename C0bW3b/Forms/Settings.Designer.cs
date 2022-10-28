@@ -45,11 +45,16 @@
             this.lblWarning = new System.Windows.Forms.Label();
             this.gpBlacklist = new System.Windows.Forms.GroupBox();
             this.txtBlacklist = new System.Windows.Forms.RichTextBox();
+            this.numGarbageCollectorInterval = new System.Windows.Forms.NumericUpDown();
+            this.lblGarbageCollector = new System.Windows.Forms.Label();
+            this.cbGarbageCollector = new System.Windows.Forms.CheckBox();
+            this.cbLogCollection = new System.Windows.Forms.CheckBox();
             this.gbOutput.SuspendLayout();
             this.gbGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).BeginInit();
             this.gbTheme.SuspendLayout();
             this.gpBlacklist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGarbageCollectorInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOutputFormat
@@ -93,7 +98,7 @@
             this.txtSeperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.txtSeperator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSeperator.ForeColor = System.Drawing.Color.White;
-            this.txtSeperator.Location = new System.Drawing.Point(12, 162);
+            this.txtSeperator.Location = new System.Drawing.Point(12, 165);
             this.txtSeperator.Name = "txtSeperator";
             this.txtSeperator.Size = new System.Drawing.Size(55, 20);
             this.txtSeperator.TabIndex = 23;
@@ -105,7 +110,7 @@
             this.lblSeperator.AutoSize = true;
             this.lblSeperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblSeperator.ForeColor = System.Drawing.Color.White;
-            this.lblSeperator.Location = new System.Drawing.Point(9, 146);
+            this.lblSeperator.Location = new System.Drawing.Point(9, 149);
             this.lblSeperator.Name = "lblSeperator";
             this.lblSeperator.Size = new System.Drawing.Size(56, 13);
             this.lblSeperator.TabIndex = 24;
@@ -146,10 +151,14 @@
             // gbGeneral
             // 
             this.gbGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.gbGeneral.Controls.Add(this.numGarbageCollectorInterval);
+            this.gbGeneral.Controls.Add(this.cbLogCollection);
+            this.gbGeneral.Controls.Add(this.lblGarbageCollector);
             this.gbGeneral.Controls.Add(this.numAutoSaveInterval);
             this.gbGeneral.Controls.Add(this.lblMinMatch);
             this.gbGeneral.Controls.Add(this.cbUpdateThreadStatus);
             this.gbGeneral.Controls.Add(this.cbAutoSave);
+            this.gbGeneral.Controls.Add(this.cbGarbageCollector);
             this.gbGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbGeneral.ForeColor = System.Drawing.Color.White;
             this.gbGeneral.Location = new System.Drawing.Point(235, 12);
@@ -164,7 +173,7 @@
             this.numAutoSaveInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.numAutoSaveInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numAutoSaveInterval.ForeColor = System.Drawing.Color.White;
-            this.numAutoSaveInterval.Location = new System.Drawing.Point(109, 50);
+            this.numAutoSaveInterval.Location = new System.Drawing.Point(109, 59);
             this.numAutoSaveInterval.Maximum = new decimal(new int[] {
             300000,
             0,
@@ -191,7 +200,7 @@
             this.lblMinMatch.AutoSize = true;
             this.lblMinMatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.lblMinMatch.ForeColor = System.Drawing.Color.White;
-            this.lblMinMatch.Location = new System.Drawing.Point(3, 52);
+            this.lblMinMatch.Location = new System.Drawing.Point(3, 61);
             this.lblMinMatch.Name = "lblMinMatch";
             this.lblMinMatch.Size = new System.Drawing.Size(222, 13);
             this.lblMinMatch.TabIndex = 27;
@@ -205,7 +214,7 @@
             this.cbAutoSave.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAutoSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbAutoSave.ForeColor = System.Drawing.Color.White;
-            this.cbAutoSave.Location = new System.Drawing.Point(6, 32);
+            this.cbAutoSave.Location = new System.Drawing.Point(6, 41);
             this.cbAutoSave.Name = "cbAutoSave";
             this.cbAutoSave.Size = new System.Drawing.Size(73, 17);
             this.cbAutoSave.TabIndex = 25;
@@ -271,6 +280,76 @@
             this.txtBlacklist.WordWrap = false;
             this.txtBlacklist.TextChanged += new System.EventHandler(this.txtBlacklist_TextChanged);
             // 
+            // numGarbageCollectorInterval
+            // 
+            this.numGarbageCollectorInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.numGarbageCollectorInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numGarbageCollectorInterval.ForeColor = System.Drawing.Color.White;
+            this.numGarbageCollectorInterval.Location = new System.Drawing.Point(109, 122);
+            this.numGarbageCollectorInterval.Maximum = new decimal(new int[] {
+            300000,
+            0,
+            0,
+            0});
+            this.numGarbageCollectorInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numGarbageCollectorInterval.Name = "numGarbageCollectorInterval";
+            this.numGarbageCollectorInterval.Size = new System.Drawing.Size(64, 20);
+            this.numGarbageCollectorInterval.TabIndex = 28;
+            this.numGarbageCollectorInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numGarbageCollectorInterval.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numGarbageCollectorInterval.ValueChanged += new System.EventHandler(this.numGarbageCollectorInterval_ValueChanged);
+            // 
+            // lblGarbageCollector
+            // 
+            this.lblGarbageCollector.AutoSize = true;
+            this.lblGarbageCollector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.lblGarbageCollector.ForeColor = System.Drawing.Color.White;
+            this.lblGarbageCollector.Location = new System.Drawing.Point(3, 124);
+            this.lblGarbageCollector.Name = "lblGarbageCollector";
+            this.lblGarbageCollector.Size = new System.Drawing.Size(221, 13);
+            this.lblGarbageCollector.TabIndex = 29;
+            this.lblGarbageCollector.Text = "Collection Interval:                            seconds.";
+            // 
+            // cbGarbageCollector
+            // 
+            this.cbGarbageCollector.AutoSize = true;
+            this.cbGarbageCollector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.cbGarbageCollector.Checked = true;
+            this.cbGarbageCollector.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGarbageCollector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGarbageCollector.ForeColor = System.Drawing.Color.White;
+            this.cbGarbageCollector.Location = new System.Drawing.Point(6, 104);
+            this.cbGarbageCollector.Name = "cbGarbageCollector";
+            this.cbGarbageCollector.Size = new System.Drawing.Size(108, 17);
+            this.cbGarbageCollector.TabIndex = 30;
+            this.cbGarbageCollector.Text = "Garbage Collector";
+            this.cbGarbageCollector.UseVisualStyleBackColor = false;
+            this.cbGarbageCollector.CheckedChanged += new System.EventHandler(this.cbGarbageCollector_CheckedChanged);
+            // 
+            // cbLogCollection
+            // 
+            this.cbLogCollection.AutoSize = true;
+            this.cbLogCollection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.cbLogCollection.Checked = true;
+            this.cbLogCollection.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLogCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbLogCollection.ForeColor = System.Drawing.Color.White;
+            this.cbLogCollection.Location = new System.Drawing.Point(6, 140);
+            this.cbLogCollection.Name = "cbLogCollection";
+            this.cbLogCollection.Size = new System.Drawing.Size(90, 17);
+            this.cbLogCollection.TabIndex = 31;
+            this.cbLogCollection.Text = "Log Collection";
+            this.cbLogCollection.UseVisualStyleBackColor = false;
+            this.cbLogCollection.CheckedChanged += new System.EventHandler(this.cbLogCollection_CheckedChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +374,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numAutoSaveInterval)).EndInit();
             this.gbTheme.ResumeLayout(false);
             this.gpBlacklist.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numGarbageCollectorInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -316,6 +396,10 @@
         private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.GroupBox gpBlacklist;
         private System.Windows.Forms.RichTextBox txtBlacklist;
+        private System.Windows.Forms.CheckBox cbGarbageCollector;
+        private System.Windows.Forms.NumericUpDown numGarbageCollectorInterval;
+        private System.Windows.Forms.Label lblGarbageCollector;
+        private System.Windows.Forms.CheckBox cbLogCollection;
     }
 }
 

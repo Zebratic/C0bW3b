@@ -68,8 +68,11 @@ namespace C0bW3b
         // SETTINGS TAB
         // > GENERAL
         public bool UpdateThreadStatus = true;
-        public bool AutoSave = true;
-        public int AutoSaveInterval = 5;
+        public bool AutoSave = false;
+        public int AutoSaveInterval = 120;
+        public bool GarbageCollector = true;
+        public int CollectionInterval = 60;
+        public bool LogCollection = false;
 
         // > OUTPUT
         public Dictionary<string, bool> OutputFormat = new Dictionary<string, bool>();

@@ -23,6 +23,7 @@ namespace C0bW3b
         public Engines engines = new Engines();
         public static Main instance;
         public Timer AutoSaveTimer = new Timer();
+        public Timer GarbageCollectorTimer = new Timer();
 
         public Size OldSize;
         public bool IsSnapped = false;
@@ -40,6 +41,10 @@ namespace C0bW3b
             InitializeForms();
 
             UpdateTheme();
+
+            GarbageCollectorTimer.Tick += GarbageCollectorTimer_Tick;
+            GarbageCollectorTimer.Interval = ConfigSystem.config.CollectionInterval * 1000;
+            GarbageCollectorTimer.Start();
 
             AutoSaveTimer.Tick += AutoSaveTimer_Tick;
             AutoSaveTimer.Interval = ConfigSystem.config.AutoSaveInterval * 1000;
@@ -297,6 +302,28 @@ namespace C0bW3b
         }
         #endregion
 
+        private void GarbageCollectorTimer_Tick(object sender, EventArgs e)
+        {
+            if (ConfigSystem.config.GarbageCollector)
+            {
+                // collect garbage and remove unused memory from the application (this will help with memory leaks)
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                try { Process.GetCurrentProcess().MinWorkingSet = (IntPtr)(300000); } catch { }
+
+                if (ConfigSystem.config.LogCollection)
+                {
+                    string amount = (GC.GetTotalMemory(false) / 1024).ToString();
+                    if (amount.Length > 3)
+                        amount = amount.Substring(0, amount.Length - 3) + "," + amount.Substring(amount.Length - 3, 1);
+
+                    // print amount
+                    PrintFooter($"Garbage Collected: {amount} MB", ConfigSystem.config.CurrentTheme.Error);
+                }
+            }
+        }
+
         private void AutoSaveTimer_Tick(object sender, EventArgs e)
         {
             if (ConfigSystem.config.AutoSave)
@@ -333,7 +360,7 @@ namespace C0bW3b
 
         private void UpdatePanel(Control control, Color color) => control.BackColor = color;
 
-        #region Pages
+#region Pages
         public enum Page
         {
             Runner,
@@ -342,6 +369,6 @@ namespace C0bW3b
             Plugins,
             Engines
         }
-        #endregion
+#endregion
     }
 }
