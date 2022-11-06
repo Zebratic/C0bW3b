@@ -360,7 +360,7 @@ namespace C0bW3b
 
         private void UpdatePanel(Control control, Color color) => control.BackColor = color;
 
-#region Pages
+        #region Pages
         public enum Page
         {
             Runner,
@@ -369,6 +369,6 @@ namespace C0bW3b
             Plugins,
             Engines
         }
-#endregion
+        #endregion
     }
 }

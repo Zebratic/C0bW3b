@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Policy;
@@ -76,7 +77,7 @@ namespace C0bW3b
             {
                 try
                 {
-                    GetThread(id).Status = "<<INITIALIZING>>";
+                    GetThread(id).Status = "INITIALIZING";
 
                     string dork = Forms.Runner.Dorks[new Random().Next(Forms.Runner.Dorks.Length)];
                     dork = dork.Replace("%ITEM%", itemtarget);
@@ -93,9 +94,11 @@ namespace C0bW3b
 
                     foreach (Forms.SearchEngine engine in ConfigSystem.config.SearchEngines)
                     {
+                        if (engine.Banned) continue; // Ignore banned engines
+
                         string name = engine.SearchURL;
                         try { Uri uri = new Uri(engine.SearchURL); name = uri.Host; } catch { }
-                        GetThread(id).Status = $"<<DORKING [{name.ToUpper()}]>>";
+                        GetThread(id).Status = $"DORKING [{name.ToUpper()}]";
                         try { results.AddRange(Search(engine, dork, useragent, proxyless, logfullurl, proxy)); } catch { }
                     }
 
@@ -107,7 +110,7 @@ namespace C0bW3b
                             try
                             {
                                 List<ScrapeHit> recursiveresults = results;
-                                GetThread(id).Status = $"<<RECURSING [{recursivehits.Count}/{i}/{recursivelimit}]>>";
+                                GetThread(id).Status = $"RECURSING [{recursivehits.Count}/{i}/{recursivelimit}]";
                                 foreach (ScrapeHit result in recursiveresults)
                                 {
                                     try
@@ -153,7 +156,7 @@ namespace C0bW3b
                                 if (!ConfigSystem.config.Blacklist.Contains(result.Url.Replace("www.", "").Replace("https://", "").Replace("http://", "")))
                                 {
 
-                                    GetThread(id).Status = $"<<ANALYSING [{m}/{i}/{results.Count + 1}]>>";
+                                    GetThread(id).Status = $"ANALYSING [{m}/{i}/{results.Count + 1}]";
                                     result.Html = AnalyseURL(result);
 
                                     foreach (string match in Forms.Runner.Matches)
@@ -190,7 +193,7 @@ namespace C0bW3b
                             catch (Exception ex)
                             {
                                 Forms.Runner.instance.Retries++;
-                                try { GetThread(id).Status = $"<<{ex.Message.ToUpper()}>>"; } catch { }
+                                try { GetThread(id).Status = $"{ex.Message.ToUpper()}"; } catch { }
                             }
 
                             i++;
@@ -200,7 +203,7 @@ namespace C0bW3b
                 catch (Exception ex)
                 {
                     Forms.Runner.instance.Retries++;
-                    try { GetThread(id).Status = $"<<{ex.Message.ToUpper()}>>"; } catch { }
+                    try { GetThread(id).Status = $"{ex.Message.ToUpper()}"; } catch { }
                 }
             }
         }
@@ -244,7 +247,7 @@ namespace C0bW3b
                 {
                     string searches = html.Split(new string[] { engine.LString }, StringSplitOptions.None)[1].Split(new string[] { engine.RString }, StringSplitOptions.None)[0];
 
-                    // get all urls from search results using regex and add to list´
+                    // get all urls from search results using regex and add to list
                     Regex regex = new Regex(engine.URLRegex);
                     foreach (Match match in regex.Matches(searches))
                     {
@@ -266,7 +269,40 @@ namespace C0bW3b
 
                 return results;
             }
-            catch { Forms.Runner.instance.Retries++; }
+            catch (WebException webex)
+            {
+                string name = engine.SearchURL;
+                try { Uri uri = new Uri(engine.SearchURL); name = uri.Host; } catch { }
+
+                switch (((HttpWebResponse)webex?.Response)?.StatusCode)
+                {
+                    case HttpStatusCode.Forbidden:
+                        engine.Banned = true;
+                        Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        break;
+                    case HttpStatusCode.RequestTimeout:
+                        Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        engine.Banned = true;
+                        break;
+                    case HttpStatusCode.NotFound:
+                        Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        engine.Banned = true;
+                        break;
+                    case HttpStatusCode.InternalServerError:
+                        Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        engine.Banned = true;
+                        break;
+                    case HttpStatusCode.BadGateway:
+                        Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        engine.Banned = true;
+                        break;
+                    default:
+                        Forms.Runner.instance.Retries++;
+                        break;
+                }
+            }
+            catch (IndexOutOfRangeException) { } 
+            catch (Exception) { Forms.Runner.instance.Retries++; }
 
             return new List<ScrapeHit>();
         }
