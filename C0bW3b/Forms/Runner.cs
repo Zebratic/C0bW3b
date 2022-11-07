@@ -50,8 +50,12 @@ namespace C0bW3b.Forms
             numUrlLimit.Value = ConfigSystem.config.UrlLimit;
         }
 
-        private void GUI_Load(object sender, EventArgs e) => new Thread(UpdateStats).Start();
-
+        private void GUI_Load(object sender, EventArgs e)
+        {
+            new Thread(UpdateStats).Start();
+            new Thread(UpdatePresence).Start();
+        }
+        
         public void LockElements(bool enabled)
         {
             lblTarget.ForeColor = enabled ? Color.FromArgb(255, 255, 255) : Color.FromArgb(3, 3, 3);
@@ -120,14 +124,23 @@ namespace C0bW3b.Forms
             try { File.AppendAllText(Environment.CurrentDirectory + $@"\Hits\{Time}.txt", output + "\n"); } catch { }
         }
 
+        public void UpdatePresence()
+        {
+            while (true)
+            {
+                if (Running && ConfigSystem.config.DiscordRPC)
+                    Utils.DiscordRPC.UpdatePresence(state: $"Dorking...\nHits: {Hits}");
+
+                Thread.Sleep(5000);
+            }
+        }
+
         public void UpdateStats()
         {
             while (true)
             {
                 try
                 {
-                    //Utils.DiscordRPC.UpdatePresence(state: $"H: {Hits} | B: {Bad} | R: {Retries}");
-
                     lblHits.Invoke((MethodInvoker)delegate { lblHits.Text = "Hits: " + Hits; });
                     lblBad.Invoke((MethodInvoker)delegate { lblBad.Text = "Bad: " + Bad; });
                     lblRetries.Invoke((MethodInvoker)delegate { lblRetries.Text = "Retries: " + Retries; });
@@ -261,13 +274,13 @@ namespace C0bW3b.Forms
             {
                 if (Dorks.Length == 0 || Matches.Length == 0)
                 {
-                    MessageBox.Show("You need to load dorks and matches before you can start the scraper.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to load dorks and matches before you can start.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (ConfigSystem.config.SearchEngines.Count == 0)
                 {
-                    MessageBox.Show("You need to add at least one search engine before you can start the scraper.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to add at least one search engine before you can start.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -295,7 +308,8 @@ namespace C0bW3b.Forms
             }
             else
             {
-                Utils.DiscordRPC.UpdatePresence(state: "The fastest way to find vulnurable websites.");
+                if (ConfigSystem.config.DiscordRPC)
+                    Utils.DiscordRPC.UpdatePresence(state: "The fastest way to find vulnurable websites.");
 
                 Thread a = new Thread(() =>
                 {
