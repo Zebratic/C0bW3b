@@ -57,7 +57,7 @@ namespace C0bW3b
             string username = "";
             try { username = Utils.DiscordRPC.client.CurrentUser.Username; } catch { }
 
-            PrintFooter($"Welcome {(username != "" ? username + "," : ",")}, if you are new, please check the documentation on the github repo", ConfigSystem.config.CurrentTheme.Warning);
+            PrintFooter($"Welcome{(username != "" ? " " + username + "," : ",")} if you are new, please check the documentation on the github repo", ConfigSystem.config.CurrentTheme.Warning);
         }
 
         #region Form Initializer
@@ -94,7 +94,7 @@ namespace C0bW3b
             pnlPageViewer.Controls.Add(help);
         }
         #endregion
-
+        
         #region Window Drag & Resize
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
