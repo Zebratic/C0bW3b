@@ -64,17 +64,14 @@ namespace C0bW3b.Utils
 
         public static void UpdatePresence(string details = null, string state = null, Button[] buttons = null, Assets assets = null)
         {
-            try
-            {
+            
                 RichPresence presence = client.CurrentPresence;
                 if (!string.IsNullOrWhiteSpace(details)) presence.Details = details;
                 if (!string.IsNullOrWhiteSpace(state)) presence.State = state;
                 if (buttons != null) presence.Buttons = buttons;
                 if (assets != null) presence.Assets = assets;
 
-                client.SetPresence(presence);
-            }
-            catch { }
+            try { client.SetPresence(presence); } catch { }
         }
     }
 }
