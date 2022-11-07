@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Help = C0bW3b.Forms.Help;
 
 namespace C0bW3b
 {
@@ -23,6 +24,7 @@ namespace C0bW3b
         public Settings settings = new Settings();
         public Plugins plugins = new Plugins();
         public Engines engines = new Engines();
+        public Help help = new Help();
         public static Main instance;
         public Timer AutoSaveTimer = new Timer();
         public Timer GarbageCollectorTimer = new Timer();
@@ -85,6 +87,11 @@ namespace C0bW3b
             engines.AutoScroll = true;
             engines.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(engines);
+
+            help.TopLevel = false;
+            help.AutoScroll = true;
+            help.Dock = DockStyle.Fill;
+            pnlPageViewer.Controls.Add(help);
         }
         #endregion
 
@@ -260,6 +267,7 @@ namespace C0bW3b
         private void btnSettings_Click(object sender, EventArgs e) { CurrentPage = Page.Settings; HighlightButton(); }
         private void btnPlugins_Click(object sender, EventArgs e) { CurrentPage = Page.Plugins; HighlightButton(); }
         private void btnEngines_Click(object sender, EventArgs e) { CurrentPage = Page.Engines; HighlightButton(); }
+        private void btnHelp_Click(object sender, EventArgs e) { CurrentPage = Page.Help; HighlightButton(); }
 
         public void HighlightButton()
         {
@@ -268,6 +276,7 @@ namespace C0bW3b
             btnSettings.ForeColor = CurrentPage == Page.Settings ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
             btnPlugins.ForeColor = CurrentPage == Page.Plugins ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
             btnEngines.ForeColor = CurrentPage == Page.Engines ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnHelp.ForeColor = CurrentPage == Page.Help ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
 
             UpdatePage();
             UpdateTheme();
@@ -286,6 +295,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Hits:
@@ -295,6 +305,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Settings:
@@ -304,6 +315,7 @@ namespace C0bW3b
                     settings.Show();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Plugins:
@@ -313,6 +325,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Show();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Engines:
@@ -322,6 +335,17 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Show();
+                    help.Hide();
+                    break;
+
+                case Page.Help:
+                    this.MinimumSize = new Size(help.MinimumSize.Width + (12 * 2), help.MinimumSize.Height + 87 + 29);
+                    runner.Hide();
+                    hits.Hide();
+                    settings.Hide();
+                    plugins.Hide();
+                    engines.Hide();
+                    help.Show();
                     break;
             }
         }
@@ -385,15 +409,16 @@ namespace C0bW3b
 
         private void UpdatePanel(Control control, Color color) => control.BackColor = color;
 
-#region Pages
+        #region Pages
         public enum Page
         {
             Runner,
             Hits,
             Settings,
             Plugins,
-            Engines
+            Engines,
+            Help
         }
-#endregion
+        #endregion
     }
 }

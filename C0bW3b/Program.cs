@@ -18,7 +18,6 @@ namespace C0bW3b
             // if program runs in temp folder
             try
             {
-                MessageBox.Show(Application.StartupPath);
                 if (Application.StartupPath == Path.GetTempPath() && args.Length > 0)
                 {
                     string path = args[1];
