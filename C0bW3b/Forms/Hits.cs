@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -58,21 +60,19 @@ namespace C0bW3b.Forms
             string[] lines = System.IO.File.ReadAllLines(@"Hits\" + cbHits.SelectedItem.ToString());
             foreach (string line in lines)
             {
-                List<ListViewItem> items = new List<ListViewItem>();
-                string[] data = line.Split(new string[] { " | " }, System.StringSplitOptions.None);
-                foreach (ColumnHeader column in listHits.Columns)
+                string[] data = line.Split('|');
+                ListViewItem item = new ListViewItem();
+
+                foreach (string variable in data)
                 {
-                    foreach (string variable in data)
+                    string[] variabledata = variable.Split('=');
+                    if (listHits.Columns.ContainsKey(variabledata[0].Trim().ToUpper()))
                     {
-                        string fixedvariable = variable.Split(new string[] { " =" }, System.StringSplitOptions.None)[0].ToUpper();
-                        if (fixedvariable == column.Text.ToUpper())
-                        {
-                            items.Add(new ListViewItem(variable));
-                        }
+                        item.SubItems.Add(variabledata[1].Trim());
                     }
                 }
 
-                listHits.Items.AddRange(items.ToArray());
+                listHits.Items.Add(item);
             }
         }
     }

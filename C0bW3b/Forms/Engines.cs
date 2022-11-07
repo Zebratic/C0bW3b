@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Security.Policy;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace C0bW3b.Forms
 {
@@ -118,13 +119,14 @@ namespace C0bW3b.Forms
 
     public partial class SearchEngine
     {
-        public SearchEngine(string searchurl, string lstring, string rstring, string urlregex, int timeout = 5000)
+        public SearchEngine(string searchurl, string lstring, string rstring, string urlregex, int timeout = 5000, bool Banned = false)
         {
             SearchURL = searchurl;
             LString = lstring;
             RString = rstring;
             URLRegex = urlregex;
             Timeout = timeout;
+            Banned = false;
         }
 
         public string SearchURL { get; set; }
@@ -132,5 +134,6 @@ namespace C0bW3b.Forms
         public string RString { get; set; }
         public string URLRegex { get; set; }
         public int Timeout { get; set; }
+        public bool Banned { get; set; }
     }
 }

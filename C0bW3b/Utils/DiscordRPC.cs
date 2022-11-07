@@ -18,7 +18,7 @@ namespace C0bW3b.Utils
             // Set the logger
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
 
-            // Subscribe to events
+            //Subscribe to events
             client.OnReady += (sender, e) => Console.WriteLine($"Received Ready from user {e.User.Username}");
             client.OnPresenceUpdate += (sender, e) => Console.WriteLine($"Received Update! {e.Presence}");
 
@@ -45,7 +45,7 @@ namespace C0bW3b.Utils
             client.SetPresence(new RichPresence()
             {
                 Details = "Advanced Web Crawler",
-                State = "The fastest way to find vulnurable websites.",
+                State = "The fastest way to find websites!",
                 Buttons = new Button[]
                {
                     new Button()

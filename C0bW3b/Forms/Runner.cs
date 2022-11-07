@@ -309,7 +309,7 @@ namespace C0bW3b.Forms
             else
             {
                 if (ConfigSystem.config.DiscordRPC)
-                    Utils.DiscordRPC.UpdatePresence(state: "The fastest way to find vulnurable websites.");
+                    Utils.DiscordRPC.UpdatePresence(state: "The fastest way to find websites.");
 
                 Thread a = new Thread(() =>
                 {
