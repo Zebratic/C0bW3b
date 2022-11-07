@@ -73,6 +73,7 @@ namespace C0bW3b
         public bool GarbageCollector = true;
         public int CollectionInterval = 60;
         public bool LogCollection = false;
+        public bool DiscordRPC = false;
 
         // > OUTPUT
         public Dictionary<string, bool> OutputFormat = new Dictionary<string, bool>();

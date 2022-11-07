@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Help = C0bW3b.Forms.Help;
 
 namespace C0bW3b
 {
@@ -21,6 +24,7 @@ namespace C0bW3b
         public Settings settings = new Settings();
         public Plugins plugins = new Plugins();
         public Engines engines = new Engines();
+        public Help help = new Help();
         public static Main instance;
         public Timer AutoSaveTimer = new Timer();
         public Timer GarbageCollectorTimer = new Timer();
@@ -83,6 +87,11 @@ namespace C0bW3b
             engines.AutoScroll = true;
             engines.Dock = DockStyle.Fill;
             pnlPageViewer.Controls.Add(engines);
+
+            help.TopLevel = false;
+            help.AutoScroll = true;
+            help.Dock = DockStyle.Fill;
+            pnlPageViewer.Controls.Add(help);
         }
         #endregion
 
@@ -194,8 +203,31 @@ namespace C0bW3b
             if (CurrentVersion != LatestVersion)
             {
                 lblTitle.Text = $"C0bW3b [{CurrentVersion}] {(username.Length > 0 ? $"~ Welcome {username} ~ Version {LatestVersion} available!" : $"~ Version {LatestVersion} available!")}";
-                if (MessageBox.Show("It seems like you are using a outdated version, would you like to update?", "C0bW3b", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    Process.Start("https://github.com/Zebratic/C0bW3b/releases");
+                if (MessageBox.Show($"It seems like you are using a outdated version, would you like to update?\n", "C0bW3b", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    string url = "https://github.com/Zebratic/C0bW3b/releases/download/Release/C0bW3b.zip";
+                    string path = Path.Combine(Path.GetTempPath(), "C0bW3b.zip");
+                    try { File.Delete(path); } catch { }
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(url, path);
+                    }
+                    if (File.Exists(path))
+                    {
+                        try { File.Delete(Path.Combine(Path.GetTempPath(), "C0bW3b.exe")); } catch { }
+                        ZipFile.ExtractToDirectory(path, Path.GetTempPath());
+                        try { File.Delete(path); } catch { }
+
+                        // run file with startup argument
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = Path.Combine(Path.GetTempPath(), "C0bW3b.exe");
+                        startInfo.Arguments = "update " + Assembly.GetExecutingAssembly().Location;
+                        Process.Start(startInfo);
+
+                        Application.Exit();
+                        Environment.Exit(0);
+                    }
+                }
             }
         }
         private void btnClose_Click(object sender, EventArgs e) => Environment.Exit(0);
@@ -235,6 +267,7 @@ namespace C0bW3b
         private void btnSettings_Click(object sender, EventArgs e) { CurrentPage = Page.Settings; HighlightButton(); }
         private void btnPlugins_Click(object sender, EventArgs e) { CurrentPage = Page.Plugins; HighlightButton(); }
         private void btnEngines_Click(object sender, EventArgs e) { CurrentPage = Page.Engines; HighlightButton(); }
+        private void btnHelp_Click(object sender, EventArgs e) { CurrentPage = Page.Help; HighlightButton(); }
 
         public void HighlightButton()
         {
@@ -243,6 +276,7 @@ namespace C0bW3b
             btnSettings.ForeColor = CurrentPage == Page.Settings ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
             btnPlugins.ForeColor = CurrentPage == Page.Plugins ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
             btnEngines.ForeColor = CurrentPage == Page.Engines ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
+            btnHelp.ForeColor = CurrentPage == Page.Help ? ConfigSystem.config.CurrentTheme.ForeColor2 : ConfigSystem.config.CurrentTheme.ForeColor1;
 
             UpdatePage();
             UpdateTheme();
@@ -261,6 +295,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Hits:
@@ -270,6 +305,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Settings:
@@ -279,6 +315,7 @@ namespace C0bW3b
                     settings.Show();
                     plugins.Hide();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Plugins:
@@ -288,6 +325,7 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Show();
                     engines.Hide();
+                    help.Hide();
                     break;
 
                 case Page.Engines:
@@ -297,6 +335,17 @@ namespace C0bW3b
                     settings.Hide();
                     plugins.Hide();
                     engines.Show();
+                    help.Hide();
+                    break;
+
+                case Page.Help:
+                    this.MinimumSize = new Size(help.MinimumSize.Width + (12 * 2), help.MinimumSize.Height + 87 + 29);
+                    runner.Hide();
+                    hits.Hide();
+                    settings.Hide();
+                    plugins.Hide();
+                    engines.Hide();
+                    help.Show();
                     break;
             }
         }
@@ -367,7 +416,8 @@ namespace C0bW3b
             Hits,
             Settings,
             Plugins,
-            Engines
+            Engines,
+            Help
         }
         #endregion
     }

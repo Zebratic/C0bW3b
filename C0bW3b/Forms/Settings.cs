@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using C0bW3b.Utils;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -48,6 +49,7 @@ namespace C0bW3b.Forms
             numGarbageCollectorInterval.Value = ConfigSystem.config.CollectionInterval;
             try { Main.instance.GarbageCollectorTimer.Interval = (int)numGarbageCollectorInterval.Value * 1000; } catch { }
             cbLogCollection.Checked = ConfigSystem.config.LogCollection;
+            cbDiscordRPC.Checked = ConfigSystem.config.DiscordRPC;
 
             // THEME SETTINGS
 
@@ -140,6 +142,17 @@ namespace C0bW3b.Forms
         {
             ConfigSystem.config.Blacklist = txtBlacklist.Text;
             ConfigSystem.SaveConfig();
+        }
+
+        private void cbDiscordRPC_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ConfigSystem.config.DiscordRPC = cbDiscordRPC.Checked;
+            ConfigSystem.SaveConfig();
+
+            if (!cbDiscordRPC.Checked)
+                Utils.DiscordRPC.client.ClearPresence();
+            else
+                Utils.DiscordRPC.SetDefaultPresence();
         }
     }
 }

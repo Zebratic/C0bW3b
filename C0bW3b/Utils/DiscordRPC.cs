@@ -15,37 +15,19 @@ namespace C0bW3b.Utils
 
         public static void Initialize()
         {
-            //Set the logger
+            // Set the logger
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
 
             //Subscribe to events
-            client.OnReady += (sender, e) => Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            client.OnReady += (sender, e) => Console.WriteLine($"Received Ready from user {e.User.Username}");
+            client.OnPresenceUpdate += (sender, e) => Console.WriteLine($"Received Update! {e.Presence}");
 
-            client.OnPresenceUpdate += (sender, e) => Console.WriteLine("Received Update! {0}", e.Presence);
-
-            //Connect to the RPC
+            // Connect to the RPC
             client.Initialize();
-
-            //Set the rich presence
-            //Call this as many times as you want and anywhere in your code.
-            client.SetPresence(new RichPresence()
-            {
-                Details = "Advanced Web Crawler",
-                State = "The fastest way to find websites!",
-                Buttons = new Button[]
-                {
-                    new Button()
-                    {
-                        Label = "Download",
-                        Url = "https://github.com/Zebratic/C0bW3b"
-                    },
-                },
-                Assets = new Assets()
-                {
-                    LargeImageKey = "spider_icon",
-                    LargeImageText = "Zebratic's C0bW3b - Advanced Web Crawler",
-                }
-            });
+            
+            // Set the rich presence
+            if (ConfigSystem.config.DiscordRPC)
+                SetDefaultPresence();
 
             int timeout = 0;
             while (client.CurrentUser == null)
@@ -58,15 +40,38 @@ namespace C0bW3b.Utils
             }
         }
 
+        public static void SetDefaultPresence()
+        {
+            client.SetPresence(new RichPresence()
+            {
+                Details = "Advanced Web Crawler",
+                State = "The fastest way to find websites!",
+                Buttons = new Button[]
+               {
+                    new Button()
+                    {
+                        Label = "Download",
+                        Url = "https://github.com/Zebratic/C0bW3b"
+                    },
+               },
+                Assets = new Assets()
+                {
+                    LargeImageKey = "spider_icon",
+                    LargeImageText = "Zebratic's C0bW3b - Advanced Web Crawler",
+                }
+            });
+        }
+
         public static void UpdatePresence(string details = null, string state = null, Button[] buttons = null, Assets assets = null)
         {
-            RichPresence presence = client.CurrentPresence;
-            if (!string.IsNullOrWhiteSpace(details)) presence.Details = details;
-            if (!string.IsNullOrWhiteSpace(state)) presence.State = state;
-            if (buttons != null) presence.Buttons = buttons;
-            if (assets != null) presence.Assets = assets;
+            
+                RichPresence presence = client.CurrentPresence;
+                if (!string.IsNullOrWhiteSpace(details)) presence.Details = details;
+                if (!string.IsNullOrWhiteSpace(state)) presence.State = state;
+                if (buttons != null) presence.Buttons = buttons;
+                if (assets != null) presence.Assets = assets;
 
-            client.SetPresence(presence);
+            try { client.SetPresence(presence); } catch { }
         }
     }
 }
