@@ -189,7 +189,7 @@ namespace C0bW3b
         }
         #endregion
 
-        #region Bar
+        #region Bar + Main load
         private void Main_Load(object sender, EventArgs e)
         {
             string CurrentVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;

@@ -21,28 +21,29 @@ namespace C0bW3b
                 if (Application.StartupPath == Path.GetTempPath() && args.Length > 0)
                 {
                     string path = args[1];
-                    File.Copy(Application.ExecutablePath, path, true);
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.FileName = Path.Combine(Path.GetTempPath(), "C0bW3b.exe");
-                    startInfo.Arguments = "done " + Assembly.GetExecutingAssembly().Location;
-                    Process.Start(startInfo);
-                    Application.Exit();
-                    Environment.Exit(0);
+                    if (args[0] == "update")
+                    {
+                        File.Copy(Application.ExecutablePath, path, true);
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = Path.Combine(Path.GetTempPath(), "C0bW3b.exe");
+                        startInfo.Arguments = "done " + Assembly.GetExecutingAssembly().Location;
+                        Process.Start(startInfo);
+                        Application.Exit();
+                        Environment.Exit(0);
+                    }
+                    else if (args[0] == "done")
+                    {
+                        File.Delete(args[1]);
+                    }
                 }
-                else
-                {
-                    if (args.Length > 0)
-                        if (args[0] == "done")
-                            File.Delete(args[1]);
+                
+                ConfigSystem.LoadConfig();
 
-                    ConfigSystem.LoadConfig();
+                Utils.DiscordRPC.Initialize();
 
-                    Utils.DiscordRPC.Initialize();
-
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new Main());
-                }
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main());
             }
             catch (Exception ex)
             {
