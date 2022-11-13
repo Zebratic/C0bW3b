@@ -1,0 +1,22 @@
+Buy %ITEM%
+Buy %ITEM% cheap
+Buy %ITEM% online
+Buy %ITEM% online cheap
+cheap %ITEM% designer
+cheap %ITEM% clothes
+clothing buy %ITEM%
+Refurbished clothes
+Refurbished %ITEM%
+Refurbished %ITEM% clothes
+Refurbished %ITEM% clothing
+Refurbished %ITEM% online
+Refurbished %ITEM% online cheap
+Refurbished %ITEM% cheap
+Buy cheap %ITEM%
+Buy cheap %ITEM% online
+Cheap purchase %ITEM%
+Cheap purchase %ITEM% online
+online webshop that sells %ITEM%
+Where to buy %ITEM%
+Where to buy %ITEM% cheap online fast delivery
+Fast delivery for %ITEM%

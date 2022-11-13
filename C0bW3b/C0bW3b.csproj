@@ -249,7 +249,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserAgents.cs" />
+    <Compile Include="Utils\Contributor Struct.cs" />
     <Compile Include="Utils\DiscordRPC.cs" />
+    <Compile Include="Utils\Rendering.cs" />
     <Compile Include="Utils\Theme.cs" />
     <EmbeddedResource Include="Forms\Engines.resx">
       <DependentUpon>Engines.cs</DependentUpon>

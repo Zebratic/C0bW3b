@@ -3,7 +3,7 @@
   "AllowDuplicates": false,
   "LogFullUrl": false,
   "MinimumMatches": 5,
-  "RecursiveSearch": true,
+  "RecursiveSearch": false,
   "RecursiveLimit": 3,
   "UrlLimit": 200,
   "UpdateThreadStatus": true,

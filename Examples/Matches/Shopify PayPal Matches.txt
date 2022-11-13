@@ -1,0 +1,3 @@
+aria-labelledby="pi-paypal"
+cdn.shopify.com\/s\/([a-zA-Z0-9_.-].*)\/([a-zA-Z0-9_.-].*)paypal
+id="in-context-paypal-metadata"

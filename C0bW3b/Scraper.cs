@@ -123,11 +123,11 @@ namespace C0bW3b
                                         foreach (Match match in regex.Matches(result.Html))
                                         {
                                             string url = match.Groups[1].Value;
-                                            if (url.Contains("https://"))
+                                            if (url.Contains("https://") || url.Contains("http://"))
                                             {
                                                 if (recursivehits.FindAll(x => x.Url == url).Count == 0 && recursiveresults.FindAll(x => x.Url == url).Count == 0)
                                                 {
-                                                    recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, result.Engine));
+                                                    recursivehits.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Replace("http://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, result.Engine));
                                                     if (recursivehits.Count >= urllimit)
                                                         goto stop;
                                                 }
@@ -255,11 +255,11 @@ namespace C0bW3b
                         {
                             string url = match.Groups[1].Value;
 
-                            if (url.Contains("https://"))
+                            if (url.Contains("https://") || url.Contains("http://"))
                             {
                                 string name = engine.SearchURL;
                                 try { Uri uri = new Uri(engine.SearchURL); name = uri.Host; } catch { }
-                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, name.ToUpper()));
+                                results.Add(new ScrapeHit(dork, logfullurl ? url.Replace("https://", "").Replace("http://", "").Split('"')[0] : new Uri(url).Host, null, null, proxy, useragent, name.ToUpper()));
                             }
                         }
                         catch { Forms.Runner.instance.Retries++; }
@@ -277,8 +277,8 @@ namespace C0bW3b
                 switch (((HttpWebResponse)webex?.Response)?.StatusCode)
                 {
                     case HttpStatusCode.Forbidden:
-                        engine.Banned = true;
                         Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);
+                        engine.Banned = true;
                         break;
                     case HttpStatusCode.RequestTimeout:
                         Main.instance.PrintFooter($"Banned {name}", ConfigSystem.config.CurrentTheme.Warning);

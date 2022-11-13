@@ -1,0 +1,4 @@
+"%ITEM%" site:myshopify.com
+"%ITEM%" site:shopify.com
+inurl:%ITEM% site:myshopify.com
+inurl:%ITEM% site:shopify.com

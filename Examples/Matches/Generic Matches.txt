@@ -1,0 +1,38 @@
+addToBasket
+Add to the basket
+add to cart
+ USD
+The item is in stock
+Order before
+Delivered tomorrow
+Delivery
+Order Item
+see price
+Buy now
+Payment
+Out of stock
+in stock
+store front
+Item number
+Briefly about the product
+Specifications
+Product description
+Express delivery
+Postal code
+Zip Code
+Customer type
+Corporation
+Price
+%ITEM%
+%ITEM%
+%ITEM%
+%ITEM%
+%ITEM%
+%ITEM%
+Webshop
+Fast delivery
+Express delivery
+1 day delivery
+1 day
+ before
+order before
