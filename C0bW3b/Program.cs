@@ -23,27 +23,28 @@ namespace C0bW3b
                     string path = args[1];
                     if (args[0] == "update")
                     {
-                        File.Copy(Application.ExecutablePath, path, true);
+                        try { File.Delete(path); } catch { }
+                        try { File.Copy(Application.ExecutablePath, path, true); } catch { }
                         ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = Path.Combine(Path.GetTempPath(), "C0bW3b.exe");
-                        startInfo.Arguments = "done " + Assembly.GetExecutingAssembly().Location;
+                        startInfo.FileName = path;
+                        startInfo.Arguments = "updatesuccess";
                         Process.Start(startInfo);
                         Application.Exit();
                         Environment.Exit(0);
                     }
-                    else if (args[0] == "done")
-                    {
-                        File.Delete(args[1]);
-                    }
                 }
-                
-                ConfigSystem.LoadConfig();
+                else
+                {
+                    try { if (args[0] == "updatesuccess") MessageBox.Show("Successfully updated!", "C0bW3b ~ Update", MessageBoxButtons.OK, MessageBoxIcon.Information); } catch { }
 
-                Utils.DiscordRPC.Initialize();
+                    ConfigSystem.LoadConfig();
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Main());
+                    Utils.DiscordRPC.Initialize();
+
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Main());
+                }
             }
             catch (Exception ex)
             {
