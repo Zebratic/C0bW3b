@@ -6,7 +6,7 @@
  
  |⚠ Warning ⚠|
  |---|
- |COMPILING FROM SOURCE IS USUALLY NOT RECOMMENDED, AS IT MIGHT CONTAIN UNFINISHED CODE|
+ |COMPILING FROM SOURCE IS USUALLY NOT RECOMMENDED, AS IT MIGHT CONTAIN UNFINISHED CODE, BUT ITS SIMPLY UP TO YOU|
  |Download the [Latest Build Here](https://github.com/Zebratic/C0bW3b/releases/download/Release/C0bW3b.zip)|
 </h3>
 
