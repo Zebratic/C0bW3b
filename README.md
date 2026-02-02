@@ -104,14 +104,4 @@ Such as:
 - [x] Hits database tab (WIP)
 - [x] Engines tab (Custom search engines)
 
-# Donate
-If you like this software, consider making a donation to the developer. Thank you!
-- BTC: ``bc1qh5tamp2sq7mdelxz2leeuc47j9llp2wt9y4d67``
-- LTC: ``MTsj4btp4WAWWof7WyjCDiFapPoiHtA6tr``
-- ETH: ``0x71504CAAbD13F0cDEF71e342D3Aa6D91139A8EDe``
-
-# Contact
-- Telegram: ``Zebratic``
-- Discord: ``Zebratic#6969``
-
 Found a bug? [Create an issue!](https://help.github.com/en/articles/creating-an-issue)
